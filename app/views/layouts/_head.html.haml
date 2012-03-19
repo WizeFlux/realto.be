@@ -1,5 +1,5 @@
 %title
-  = yield :title
+	= yield :title
 
 = csrf_meta_tag
 %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
@@ -9,3 +9,6 @@
 
 = stylesheet_link_tag :application
 = javascript_include_tag :application
+
+- if I18n.locale == :ru
+	= javascript_include_tag :'jquery.ui.datepicker-ru'

@@ -11,4 +11,3 @@
 //= require uploader/locale
 //= require uploader/main
 //= require colorbox/jquery.colorbox
-
