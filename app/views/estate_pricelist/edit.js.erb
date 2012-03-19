@@ -1,0 +1,3 @@
+$('#content').fadeOut('fast', function(){
+    $(this).html('<%=j render 'estate_pricelist/partials/form', :pricelist => @pricelist%>').fadeIn('fast');
+});

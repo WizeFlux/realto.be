@@ -1,0 +1,8 @@
+production:
+    database: realtobe
+
+development:
+    database: realtobe
+  
+test:
+    database: realtobe_test

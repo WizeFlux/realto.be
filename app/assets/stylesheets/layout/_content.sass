@@ -1,0 +1,27 @@
+#content
+    position: relative
+    > menu
+        position: absolute
+        top: 0
+        right: 0
+    > article
+        +grid(11)
+        +alpha
+    > aside
+        +grid(5)
+        +omega
+    > form
+        > section
+            +grid(11)
+            +alpha
+            > table
+                td
+                    border-right: 1px solid #ddd
+                    border-bottom: 1px solid #ddd
+                    padding: 0 $ninesixty-gutter-width / 2
+                    > span
+                        +adjust-font-size-to(13px)
+                        display: block
+        > aside
+            +grid(5)
+            +omega

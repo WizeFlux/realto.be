@@ -1,0 +1,40 @@
+.booking.well{:id => booking.id.to_s}
+	- if editable?
+		.btn-group.pull-right
+			= link_to edit_estate_booking_url(booking.estate,booking), :remote => true, :class => :btn, :disable_with => t('views.interface.opening') do
+				%i.icon-pencil
+				= t 'views.interface.edit'
+			= link_to estate_booking_url(booking.estate,booking), :remote => true, :method => :delete, :confirm => 'Are u shure?', :disable_with => t('views.interface.removing'), :class => 'btn btn-danger' do
+				%i.icon-white.icon-trash
+				= t 'views.interface.remove'
+	- if booking.customer
+		%h5
+			= booking.customer.name
+			%small= t "models.booking.status.#{booking.status.downcase}"
+			- if booking.customer.fb_url
+				%a{:href => booking.customer.fb_url} Facebook
+		= l(booking.checkin, :format => :long) + ' - ' + l(booking.checkout, :format => :long)
+		%br
+		= t('counters.people', :count => booking.adults)
+		- if booking.children.to_i > 0
+			= '+ ' + t('counters.children', :count => booking.children)
+	- else
+		%h5
+			= booking.addressing
+			%small= t "models.booking.status.#{booking.status.downcase}"
+		= l(booking.checkin, :format => :long) + ' - ' + l(booking.checkout, :format => :long)
+		%br
+		= booking.adults.to_s + ' people'
+		- if booking.children.to_i > 0
+			= '+ ' + booking.children.to_s + ' children'
+		- unless booking.email.empty?
+			%br
+			%a{:href => '#'}= booking.email
+		- unless booking.phone.empty?
+			%br
+			%a{:href => '#'}= booking.phone
+		- unless booking.skype.empty?
+			%br
+			%a{:href => '#'}= booking.skype
+	%br
+	= booking.message

@@ -1,0 +1,8 @@
+= form_for booking, :url => estate_booking_url(booking.estate, booking), :remote => true, :html => {:class => 'form-horizontal'} do |f|
+	.well
+		= render 'bookings/partials/fields', :f => f
+		.form-actions
+			= f.button raw('<i class="icon-ok icon-white"></i> ' + t('views.interface.save')), :disable_with => t('views.interface.saving'), :type => :submit, :class => 'btn btn-primary'
+			= link_to estate_booking_url(booking.estate, booking), :class => 'btn', :disable_with => t('views.interface.canceling'), :remote => true do
+				%i.icon-remove
+				= t 'views.interface.cancel'

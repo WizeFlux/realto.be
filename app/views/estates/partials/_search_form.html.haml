@@ -1,0 +1,42 @@
+= form_for :q, :url => estates_url, :method => :get, :remote => true, :html => {:class => 'form-horizontal'} do |f|
+	%fieldset.row-fluid
+		%fieldset.span5<>
+			.control-group
+				= f.label :checkin, t('views.q.checkin'), :class => 'control-label'
+				.controls
+					.input-prepend
+						%span.add-on
+							%i.icon-calendar
+						= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+			.control-group
+				= f.label :checkout, t('views.q.checkout'), :class => 'control-label'
+				.controls
+					.input-prepend
+						%span.add-on
+							%i.icon-calendar
+						= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+			.control-group
+				= f.label :beds_from, t('views.q.beds_from'), :class => 'control-label'
+				.controls
+					= f.select :beds_from, options_for_select(1..10), {}, :class => 'input-mini'
+					= raw('&nbsp &nbsp &nbsp &nbsp')
+					= f.label :beds_to, t('views.q.beds_to'), :class => 'help-inline'
+					= raw('&nbsp &nbsp')
+					= f.select :beds_to, options_for_select(1..10, 10), {}, :class => 'input-mini'
+		%fieldset.span7<>
+			.control-group
+				%label.control-label= t 'views.q.features'
+				.controls
+					= fields_for :features do |ff|
+						- Feature.where(searchable: true).each_with_index do |feature, i|
+							.span2
+								= ff.label i, :class => 'checkbox' do
+									= feature.title
+									= ff.check_box i, {}, feature.id, nil
+	.row-fluid
+		.btn-group.pull-right
+			= f.button raw('<i class="icon-search icon-white"></i> ' + t('views.interface.search')), :disable_with => t('views.interface.searching'), :type => :submit, :class => 'btn btn-primary'
+			= f.button raw('<i class="icon-refresh icon-white"></i> ' + t('views.interface.reset')), :type => :reset, :class => 'btn btn-warning'
+			- if editable?
+				= link_to raw('<i class="icon-file icon-white"></i> ' + t('views.q.new_estate')), new_estate_url, :remote => true, :disable_with => t('views.interface.opening'), :class => 'btn btn-success'
+	%hr

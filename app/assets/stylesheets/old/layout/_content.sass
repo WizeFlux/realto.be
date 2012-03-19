@@ -1,0 +1,35 @@
+#content
+    position: relative
+    > menu
+        position: absolute
+        top: 0
+        right: 0
+    > article
+        +grid(11)
+        +alpha
+    > aside
+        +grid(5)
+        +omega
+    > form.edit_booklet
+        > section
+            +grid(11)
+            +alpha
+        > aside
+            +grid(5)
+            +omega
+        > footer
+            +grid(11)
+            +alpha
+    > form.edit_pricelist
+        table
+            margin: 0 auto
+            td
+                border-right: 1px solid $primary
+                border-bottom: 1px solid $primary
+                padding: 0 $ninesixty-gutter-width / 2
+                > span
+                    +adjust-font-size-to(13px)
+                    display: block
+        
+
+        

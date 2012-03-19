@@ -1,0 +1,71 @@
+en:
+    views:
+        sort:
+            price: Price
+            beds: Bedrooms
+            sorting: Sorting...
+        q:
+            checkin: 'Checkin date:'
+            checkout: 'Checkout date:'
+            beds_from: 'Beds, from:'
+            beds_to: 'to:'
+            features: 'Necessary amenities:'
+            new_estate: 'New estate'
+        pagination:
+            next: "Next"
+            previous: "Prev."
+        interface:
+            write_something: 'Please write something, this should not be empty!'
+            lv_per_day: 'per day'
+            aus: 'Are you sure?'
+            login: 'Login'
+            email: 'Email'
+            password: 'Password'
+            remember_me: 'Remember me'
+            enter: 'Enter'
+            entering: 'Entering...'
+            something_wrong: 'Sorry, but something wrong. Try Again.'
+            logout: 'Logout'
+            wellcome: 'Wellcome'
+            reset: 'Reset'
+            cancel: 'Cancel'
+            canceling: 'Canceling...'
+            edit: 'Edit'
+            opening: 'Opening...'
+            remove: 'Remove'
+            removing: 'Removing...'
+            save: 'Save'
+            saving: 'Saving...'
+            processing: Processing...
+            upload: 'Upload'
+            search: 'Search'
+            searching: 'Searching...'
+            facebook: 'Facebook'
+            information: 'Information'
+        agency:
+            information: 'Agency information'
+        booking:
+            booked: 'Booked'
+            form: 'Booking form'
+            dates: 'Dates of visit'
+            know_u: 'We know you as'
+            book: 'Book'
+            confirm: 'Confirm'
+            not_avaiable: 'Price is not avaiable for this date'
+            success:
+                accepted: "Congradulations. Your booking was accepted."
+                confirmation: "Confirmation of your request was sent to described email. It will be reviewed in two operational hours 08:00 - 20:00 (UTC+8h). After that you will be informed by same email."
+                spam: "If you didn't see letter with confirmation in 10 minutes, please, check 'Spam' folder in email application."
+                own_contacts: "If you have any questions - contact us:"
+        estate:
+            from: from
+            to: to
+            information: 'Estate information'
+            bedrooms: 'Bedrooms number'
+            by_name: 'By name'
+            amenities: 'Necessary amenities'
+        pricelist:
+            menu: 'Menu'
+            free: 'included'
+            days: 'Days'
+            day: 'Day'

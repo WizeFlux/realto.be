@@ -1,0 +1,13 @@
+- selected = false if !defined? selected
+%li.span2
+	.thumbnail
+		%img.nano{:src => image.image.nano.url}
+		.caption
+			= hidden_field_tag "images[#{image.id}]", image.id
+			%p
+				= '#' + image.uid + '#'
+			.btn-group
+				= label_tag "avatar_#{image.id}", :class => 'btn' do
+					%i.icon-camera
+					= radio_button_tag 'avatar', image.id, selected
+				= link_to_function raw('<i class="icon-minus icon-white" />'), "$(this).parent().parent().parent().parent('li.span2').remove()", :class => "btn btn-danger"

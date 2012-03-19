@@ -1,0 +1,50 @@
+@import "colors"
+
+//
+//960
+//
+$ninesixty-columns: 16
+$ninesixty-grid-width: 960px
+$ninesixty-gutter-width: 20px
+$ninesixty-class-separator: '_'
+
+//
+//Typography
+//
+$base-font-size: 16px
+$base-line-height: 28px
+$default-rhythm-border-style: solid
+$relative-font-sizing: true
+$font-unit: if($relative-font-sizing, 1em, $base-font-size)
+
+
+//
+//Grid background
+//
+$grid-background-column-color: rgba(100, 100, 225, 0.04)
+$grid-background-gutter-color: rgba(0, 0, 0, 0)
+$grid-background-baseline-color: rgba(0, 0, 0, 0.03)
+$grid-background-baseline-height: $base-line-height
+$grid-background-total-columns: $ninesixty-columns
+$grid-background-column-width: 40px
+$grid-background-gutter-width: $ninesixty-gutter-width
+$grid-background-offset: $ninesixty-gutter-width / 2
+
+
+//
+//Sassy buttons
+//
+$sb-base-color: $primary
+$sb-second-color: false
+$sb-border-radius: 3px
+$sb-padding: 5px
+$sb-font-size: $base-font-size
+$sb-text-color: white
+
+// Style of button text, can be "inset" or "raised" or false.
+$sb-text-style: "inset"
+
+// Gradient style of button, can be "flat", "glass", "matte", "shiny", or "simple".
+$sb-gradient-style: "glass"
+
+$sb-line-height: 1

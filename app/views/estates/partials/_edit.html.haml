@@ -1,0 +1,7 @@
+= nested_form_for estate, :url => estate_url(estate), :remote => true, :html => {:class => 'form-horizontal'} do |f|
+	= render 'estates/partials/fields', :f => f
+	.form-actions
+		= f.button raw('<i class="icon-ok icon-white"/> ' + t('views.interface.save')), :disable_with => t('views.interface.saving'), :type => :submit, :class => 'btn btn-primary'
+		= link_to estate_url(estate), :class => 'btn', :disable_with => t('views.interface.canceling'), :remote => true do
+			%i.icon-remove
+			= t 'views.interface.cancel' 

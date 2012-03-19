@@ -1,0 +1,50 @@
+%article
+	- if editable?
+		.btn-group.pull-right
+			= link_to edit_estate_pricelist_url(pricelist.estate), :class => 'btn', :disable_with => t('views.interface.opening'), :remote => true do
+				%i.icon-pencil
+				= t 'views.interface.edit'
+	- if pricelist.prices.exists?
+		%table.table.table-striped
+			%thead
+				%tr
+					%th
+						%h3
+							= t 'models.pricelist.price.base'
+							%small= '(' + t('views.interface.lv_per_day') + ')'
+					- pricelist.leasespans.each do |leasespan|
+						%th
+							= leasespan.from.to_s
+							= '-'
+							= leasespan.to.to_s
+							= t 'views.pricelist.days'
+			%tbody
+				- pricelist.seasons.each do |season|
+					%tr
+						%td
+							%h5= season.title
+							%span
+								= l(season.start.to_date, :format => :long)
+								= ' - '
+								= l(season.finish.to_date, :format => :long)
+						- pricelist.leasespans.each do |leasespan|
+							%td.price
+								= pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id).value
+								%b= ' $'
+
+	- if pricelist.choices.exists?
+		%table.table
+			%thead
+				%tr
+					%th
+						%h3= t 'views.pricelist.menu'
+			%tbody
+				- pricelist.choices.where(:price.exists => false).each do |choice|
+					%tr
+						%td=choice.title
+						%td
+							%i= t 'views.pricelist.free'
+				- pricelist.choices.where(:price.exists => true).each do |choice|
+					%tr
+						%td=choice.title
+						%td=choice.price

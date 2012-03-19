@@ -1,0 +1,3 @@
+$('#content').fadeOut('fast', function(){
+    $(this).html('<%=j render 'estates/partials/new', :estate => @estate %>').fadeIn('fast');
+});

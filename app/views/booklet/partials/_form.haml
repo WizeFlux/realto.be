@@ -1,0 +1,68 @@
+- url = agency_booklet_url if booklet.describable.instance_of? Agency
+- url = estate_booklet_url(booklet.describable) if booklet.describable.instance_of? Estate
+
+= nested_form_for booklet, :url => url, :remote => true, :html => {:class => 'form-horizontal'} do |f|
+	%fieldset.row-fluid
+		%fieldset.span8<>
+			%legend= t 'models.booklet.base'
+			= f.fields_for :content_translations do |ff|
+				.control-group
+					= ff.label :en, (t('models.booklet.content') + ' (En)'), :class => 'control-label'
+					.controls.row-fluid
+						= ff.text_area :en, :class => 'span9', :rows => 20, :value => (f.object.content_translations['en'] unless f.object.content.blank?)
+				.control-group
+					= ff.label :ru, (t('models.booklet.content') + ' (Ru)'), :class => 'control-label'
+					.controls.row-fluid
+						= ff.text_area :ru, :class => 'span9', :rows => 20, :value => (f.object.content_translations['ru'] unless f.object.content.blank?)
+	
+			%fieldset
+				%legend= t 'models.booklet.tag.tags'
+				%br
+				= f.fields_for :tags do |ff|
+					.well
+						= ff.link_to_remove :class => 'btn-danger btn btn-small pull-right' do
+							%i.icon-minus.icon-white
+						.control-group
+							= ff.label :feature_id, t('models.booklet.tag.feature'), :class => 'control-label'
+							.controls
+								= ff.select :feature_id, options_from_collection_for_select(Feature.all, 'id', 'title', :selected => ff.object.feature_id), {}, :class => 'input-large'
+						= ff.fields_for :text_translations do |fff|
+							.control-group
+								= fff.label :en, (t('models.booklet.tag.text') + ' (En)'), :class => 'control-label'
+								.controls
+									= fff.text_field :en, :class => 'span6', :value => (ff.object.text_translations['en'] unless ff.object.text.blank?)
+							.control-group
+								= fff.label :ru, (t('models.booklet.tag.text') + ' (Ru)'), :class => 'control-label'
+								.controls
+									= fff.text_field :ru, :class => 'span6', :value => (ff.object.text_translations['ru'] unless ff.object.text.blank?)
+				= f.link_to_add :tags, :class => 'btn-success btn btn-small' do
+					%i.icon-plus.icon-white
+			
+			.form-actions
+				= f.button raw('<i class="icon-ok icon-white" /> ' + t('views.interface.save')), :disable_with => t('views.interface.save'), :type => :submit, :class => 'btn btn-primary'
+				= link_to url, :class => 'btn', :disable_with => t('views.interface.canceling'), :remote => true do
+					%i.icon-remove
+					= t 'views.interface.cancel'
+		%fieldset.span4<>
+			%legend= t 'models.booklet.pictures'
+			= file_field_tag :fileupload, :multiple => true
+			%ul.thumbnails#filepool
+				- f.object.images.each do |image|
+					= render 'images/blob', :image => image, :selected => (booklet.avatar_id == image.id.to_s)
+			:javascript
+				$(function() {
+					$('#fileupload').fileupload({
+						dataType: 'json',
+						url: '/images',
+						paramName: 'image[]',
+						formData: [
+							{name: 'passing_data', value: "ok"}
+						],
+						done: function(e, data) {
+							$.each(data.result,
+							function(index, file) {
+								$(file.html).appendTo('#filepool');
+							});
+						}
+				    });
+				});

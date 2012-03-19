@@ -1,0 +1,10 @@
+= content_for :title do
+	= @agency.title
+
+= content_for :billboard do
+	= render 'agency/partials/billboard', :agency => @agency
+	
+= content_for :navigation do
+	= render 'agency/partials/navigation', :agency => @agency
+
+= render 'booklet/partials/form', :booklet => @booklet

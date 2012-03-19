@@ -1,0 +1,59 @@
+ru:
+    models:
+        title: Название
+        teaser: Лозунг
+        agency:
+            base: Агентство
+            contacts: Контакты
+        booking:
+            base: Брнирование
+            bookings: Заказы
+            status:
+                base: Статус
+                new: Новый
+                confirmed: Подтверждён
+                invoice: Инвоис отправлен
+                paid: Оплачен
+                voucher: Ваучер отправлен
+            checkin: Дата въезда
+            checkout: Дата отъезда
+            adults: Взрослых
+            children: Детей
+            person: Контактное лицо
+            email: Электронная почта
+            phone: Контактный телефон
+            skype: Скайп
+            message: Сообщение
+        booklet:
+            base: Буклет
+            content: Контент
+            pictures: Изображения
+            tag:
+                tags: Тэги
+                feature: Удобство
+                text: Текст
+        estate:
+            base: Объект
+            slug: Идентификатор
+            estates: Недвижимость
+            settings: Настройки
+            teaser: Лозунг
+            bedrooms: Спальни
+            adults_max: Макс. взрослых
+            childs_max: Макс. детей
+            seasons: Сезоны
+        pricelist:
+            base: Прайс-лист
+            price:
+                base: Цена
+                prices: Цены
+            leasespan:
+                base: Арендный период
+                s: Арендрые периоды
+                to: до
+                from: От
+            season:
+                base: Сезон
+                seasons: Сезоны
+                start: Начало
+                finish: Конец

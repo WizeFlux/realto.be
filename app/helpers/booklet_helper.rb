@@ -1,0 +1,2 @@
+module BookletHelper
+end

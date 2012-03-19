@@ -1,0 +1,111 @@
+@import "bootstrap"
+
+= border-radius($radius: 5px, $y: false, $x: false)
+    @if $x
+        :-moz-border-radius-#{$y}#{$x} $radius
+        :-o-border-radius-#{$y}-#{$x} $radius
+        :-khtml-border-radius-#{$y}-#{$x} $radius
+        :-ms-border-radius-#{$y}-#{$x} $radius
+        :-webkit-border-#{$y}-#{$x}-radius $radius
+        :border-#{$y}-#{$x}-radius $radius
+    @else
+        :-moz-border-radius $radius
+        :-o-border-radius $radius
+        :-ms-border-radius $radius
+        :-khtml-border-radius $radius
+        :-webkit-border-radius $radius
+        :border-radius $radius
+
+=ajax-bg
+    background-image: url(/assets/ajax.gif)
+    background-position: center center
+    background-repeat: no-repeat
+
+body > div.container-fluid
+    min-width: 1000px
+    max-width: 1200px
+    margin: 0 auto
+
+#content
+    min-height: 300px
+//     position: relative
+//     z-index: 10
+//     
+// #ui-datepicker-div
+//     position: relative
+//     z-index: 15
+
+#billboard 
+    ul
+        vertical-align: top
+        display: inline-block
+        list-style-type: none
+        margin-left: 0
+        list-style-position: inside
+    > section
+        margin-left: 320px
+
+div > ul.nav > li > a.iconed, div > ul > li > a.iconed, a.iconed
+    display: inline-block
+    padding-left: 32px
+    background-position: 10px center
+    background-repeat: no-repeat
+
+i.ajax
+    +ajax-bg
+    width: 16px
+    height: 11px
+    display: inline-block
+    vertical-align: text-top
+
+a.thumb
+    display: inline-block
+    margin-right: 10px
+
+a.thumbnail
+    +ajax-bg
+
+#estates
+    a, a:hover
+        text-decoration: none
+
+img.thumb
+    width: 290px
+    height: 215px
+
+img.medium
+    width: 210px
+    height: 145px
+    
+img.nano
+    width: 130px
+    height: 97px
+
+#___plusone_0, #___plusone_1, #___plusone_2, #___plusone_3, #___plusone_4
+    position:  relative !important
+    bottom: 10px !important
+    
+header > div.navbar > div.navbar-inner
+    +border-radius(0, top, right)
+    +border-radius(0, top, left)
+
+footer > div.navbar
+    margin-bottom: 0
+    > div.navbar-inner
+        +border-radius(0, bottom, right)
+        +border-radius(0, bottom, left)
+
+.ui-autocomplete
+    max-height: 300px
+    overflow-y: auto
+    overflow-x: hidden
+    
+div.well
+    > div.control-group:last-child, > div.form-actions:last-child
+        margin-bottom: 0
+        padding-bottom: 0
+
+label:hover
+    text-decoration: underline
+    cursor: pointer
+    

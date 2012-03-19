@@ -1,0 +1,3 @@
+$('#edit_booking_<%= @booking.id.to_s %>').fadeOut('fast', function(){
+    $(this).replaceWith('<%=j render 'bookings/partials/booking', :booking => @booking %>').fadeIn('fast');
+});

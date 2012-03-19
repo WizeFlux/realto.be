@@ -1,0 +1,10 @@
+= content_for :title do
+	= @estate.title
+
+= content_for :billboard do
+	= render 'estates/partials/billboard', :estate => @estate
+	
+= content_for :navigation do
+	= render 'estates/partials/navigation', :estate => @estate
+
+= render 'bookings/partials/edit', :booking => @booking

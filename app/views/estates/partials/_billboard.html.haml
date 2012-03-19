@@ -1,0 +1,35 @@
+%p.pull-left
+	%a.thumb.thumbnail{:href => '#'}
+		- if !estate.booklet.avatar_id.blank?
+			%img.thumb{:src => estate.booklet.avatar.image.thumb.url}
+		- else
+			%img.thumb{:src => '/assets/dummy/estate.thumb.jpg'}
+%section
+	.btn-group.pull-right
+		- if editable?
+			= link_to edit_estate_url(estate), :remote => true, :class => :btn, :disable_with => t('views.interface.opening') do
+				%i.icon-pencil
+				= t 'views.interface.edit'
+			= link_to estate_url(estate), :method => :delete, :confirm => t('views.interface.aus'), :disable_with => t('views.interface.removing'), :class => 'btn btn-danger' do
+				%i.icon-white.icon-trash
+				= t 'views.interface.remove'
+		- else
+			= link_to new_estate_booking_url(estate), :disable_with => t('views.interface.opening'), :class => 'btn btn-success btn-large' do
+				%i.icon-shopping-cart.icon-white
+				= t 'views.booking.book'
+	.page-header
+		%h1
+			= estate.title
+			%small
+				%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+				- if estate.pricelist.min_price && estate.pricelist.max_price
+					= ','
+					= estate.pricelist.min_price.to_s + '$ -'
+					= estate.pricelist.max_price.to_s + '$'
+					= t 'views.interface.lv_per_day'
+	%p
+		%big= estate.teaser
+
+	%p
+		= plus_one_button(request.url)
+		= like_button(request.url)

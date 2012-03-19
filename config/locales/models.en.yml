@@ -1,0 +1,60 @@
+en:
+    models:
+        title: 'Title'
+        teaser: 'Teaser'
+        agency:
+            base: 'Agency'
+            contacts: 'Contacts'
+        booking:
+            base: 'Booking'      
+            bookings: 'Bookings'
+            status:
+                base: 'Status'
+                new: "New"
+                confirmed: "Confirmed"
+                invoice: "Invoice sent"
+                paid: "Paid"
+                voucher: "Voucher sent"
+            estimated_price: 'Estimated price'
+            checkin: 'Check-in date'
+            checkout: 'Check-out date'
+            adults: 'Adults'
+            children: 'Children'
+            contact_person: 'Contact person'
+            contact_email: 'Contact email'
+            contact_phone: 'Contact phone'
+            contact_skype: 'Contact skype'
+            message: 'Message'
+        booklet:
+            base: 'Booklet'
+            content: 'Content'
+            pictures: 'Pictures'
+            tag:
+                tags: 'Tags'
+                feature: 'Feature'
+                text: 'Text'
+        estate:
+            base: 'Estate'
+            slug: 'Slug'
+            estates: 'Estates'
+            settings: 'Settings'
+            teaser: 'Teaser'
+            bedrooms: 'Bedrooms'
+            adults_max: 'Max adults'
+            childs_max: 'Max children'
+            seasons: 'Seasons'
+        pricelist:
+            base: 'Pricelist'
+            price:
+                base: 'Price'
+                prices: 'Prices'
+            leasespan:
+                base: 'Lease span'
+                s: 'Lease spans'
+                to: 'to'
+                from: From'
+            season:
+                base: 'Season'
+                seasons: 'Seasons'
+                start: 'Start'
+                finish: 'Finish'

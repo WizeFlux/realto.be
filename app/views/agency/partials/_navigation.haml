@@ -1,0 +1,6 @@
+%ul.nav.nav-tabs
+	%li{:class => active_if(['agency', 'agency_booklet'])}
+		= link_to t('views.interface.information'), agency_booklet_url
+	- if editable?
+		%li{:class => active_if(['agency_bookings'])}
+			= link_to t('models.booking.bookings'), agency_bookings_url

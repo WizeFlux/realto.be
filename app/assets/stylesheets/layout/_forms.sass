@@ -1,0 +1,37 @@
+form
+    fieldset, textarea
+        display: block
+    fieldset
+        +trailer
+        > .fields:not(:last-of-type)
+            +trailer
+    label
+        +inline-block
+    input[type=radio]
+        margin: 0
+        padding: 0
+    input[type=submit]
+        margin: 0
+    input[type=file]
+        +inline-block
+        width: 0
+        height: 0
+    select
+        padding: 0
+        margin: 0
+        +adjust-font-size-to(16px)
+    textarea, input[type=text]
+        resize: none
+        margin: -1px
+        padding: 0
+        border: 1px solid #ddd
+        +adjust-font-size-to(14px)
+        +border-radius(5px)
+    #filepool
+        > .blob
+            position: relative
+            > menu
+                position: absolute
+                top: 0
+                right: 0
+            

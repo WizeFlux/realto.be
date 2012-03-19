@@ -1,0 +1,44 @@
+#estates
+	%ul.nav.nav-pills.pull-right
+		%li{:class => (params[:order_by] == 'average_price' || !params[:order_by]  ? 'active' : nil)}
+			= link_to url_for(params.merge(:page => 1, :order_by => :average_price, :order => (params[:order] == 'asc' || !params[:order] ? :desc : :asc))), :remote => true, :disable_with => t('views.sort.sorting') do
+				= t 'views.sort.price'
+				- if params[:order_by] == 'average_price' || !params[:order_by]
+					%i.icon-white{:class => (params[:order] == 'asc' || !params[:order] ? 'icon-arrow-up' : 'icon-arrow-down')}
+		%li{:class => (params[:order_by] == 'bedrooms' ? 'active' : nil)}
+			= link_to url_for(params.merge(:page => 1, :order_by => :bedrooms, :order => (params[:order] == 'asc' ? :desc : :asc))), :remote => true, :disable_with => t('views.sort.sorting') do
+				= t 'views.sort.beds'
+				- if params[:order_by] == 'bedrooms'
+					%i.icon-white{:class => (params[:order] == 'asc' ? 'icon-arrow-up' : 'icon-arrow-down')}
+
+	= paginate @estates, :window => 20, :remote => true	
+	- @estates.each do |estate|
+		%ul.thumbnails
+			%li.span3
+				%a.thumbnail{:href => estate_url(estate)}
+					- unless estate.booklet.avatar_id.blank?
+						%img.medium{:src => estate.booklet.avatar.image.medium.url}
+					- else
+						%img.medium{:src => '/assets/dummy/estate.medium.jpg'}
+			%li.span9
+				%a{:href => estate_url(estate)}
+					%h2
+						= estate.title
+						%small
+							%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+							- if estate.pricelist.min_price && estate.pricelist.max_price
+								= ','
+								= estate.pricelist.min_price.to_s + '$ -'
+								= estate.pricelist.max_price.to_s + '$'
+								= t 'views.interface.lv_per_day'
+					%p= estate.teaser
+					- if q and selected_days > 0
+						%b= estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
+						= t('counters.days', :count => selected_days) + ','
+						= t 'views.estate.from'
+						%i= l(checkin, :format => :long)
+						= t 'views.estate.to'
+						%i= l(checkout, :format => :long)							
+
+						
+	= paginate @estates, :window => 20, :remote => true

@@ -1,0 +1,128 @@
+- url = estate_pricelist_url(pricelist.estate)
+= nested_form_for pricelist, :url => url, :remote => true, :html => {:class => 'form-horizontal'} do |f|
+	- if f.object.prices.exists?
+		%fieldset
+			%table.table.table-striped
+				%thead
+					%tr
+						%th
+							%h3
+								= t 'models.pricelist.price.base'
+								%small= '(' + t('views.interface.lv_per_day') + ')'
+						- pricelist.leasespans.each do |leasespan|
+							%th
+								= leasespan.from.to_s
+								= '-'
+								= leasespan.to.to_s
+								= t 'views.pricelist.days'
+				%tbody
+					- pricelist.seasons.each do |season|
+						%tr
+							%td
+								%h5= season.title
+								%span
+									= l(season.start.to_date, :format => :long)
+									= ' - '
+									= l(season.finish.to_date, :format => :long)
+							- pricelist.leasespans.each do |leasespan|
+								%td.price
+									- price = pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id)
+									= f.fields_for :prices, price do |ff|
+										.input-prepend
+											%span.add-on $
+											= ff.text_field :value,:class => 'span1'
+
+	%fieldset.seasons
+		:javascript
+			$('#edit_pricelist_#{f.object.id} .seasons').on('focus', '.autocomplete', function(event){
+				if ($(this).autocomplete('widget').attr('id')) {
+					$(this).autocomplete({
+						source: #{Filling.where(:model => 'Season', :field => 'title').map(&:text)}
+					});
+				};
+			});
+		
+		%legend= t 'models.pricelist.season.seasons'
+		%br	
+		= f.fields_for :seasons do |ff|
+			.well
+				= ff.link_to_remove :class => 'btn btn-danger btn-small pull-right' do
+					%i.icon-minus.icon-white
+				.control-group
+					= ff.label :start, t('models.pricelist.season.start'), :class => 'control-label'
+					.controls
+						= ff.date_select :start, {}, :class => 'input-small'
+						= raw('&nbsp &nbsp &nbsp')
+						= ff.label :finish, t('models.pricelist.season.finish'), :class => 'help-inline'
+						= raw('&nbsp')
+						= ff.date_select :finish, {}, :class => 'input-small'
+				= ff.fields_for :title_translations do |fff|
+					.control-group
+						= fff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
+						.controls
+							= fff.text_field :en, :class => 'span9 autocomplete', :value => (ff.object.title_translations['en'] unless ff.object.title.blank?)
+					.control-group
+						= fff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
+						.controls
+							= fff.text_field :ru, :class => 'span9 autocomplete', :value => (ff.object.title_translations['ru'] unless ff.object.title.blank?)
+		= f.link_to_add :seasons, :class => 'btn btn-success btn-small' do
+			%i.icon-plus.icon-white
+			
+	%fieldset
+		%legend= t 'models.pricelist.leasespan.s'
+		%br
+		= f.fields_for :leasespans do |ff|
+			.well
+				= ff.link_to_remove :class => 'btn btn-danger btn-small pull-right' do
+					%i.icon-minus.icon-white
+				.control-group
+					= ff.label :from, t('models.pricelist.leasespan.from'), :class => 'control-label'
+					.controls
+						= ff.text_field :from, :class => 'input-mini'
+						= raw('&nbsp &nbsp &nbsp &nbsp')
+						= ff.label :to, t('models.pricelist.leasespan.to'), :class => 'help-inline'
+						= raw('&nbsp &nbsp')
+						= ff.text_field :to, :class => 'input-mini'
+						= raw('&nbsp &nbsp')
+						= (t('views.pricelist.days')).downcase
+		= f.link_to_add :leasespans, :class => 'btn btn-success btn-small' do
+			%i.icon-plus.icon-white
+
+	%fieldset.choices
+		:javascript
+			$('#edit_pricelist_#{f.object.id} .choices').on('focus', '.autocomplete', function(event){
+				if ($(this).autocomplete('widget').attr('id')) {
+					$(this).autocomplete({
+						source: #{Filling.where(:model => 'Choice', :field => 'title').map(&:text)}
+					});
+				};
+			});
+		
+		%legend= t('views.pricelist.menu')
+		%br
+		= f.fields_for :choices do |ff|
+			.well
+				= ff.link_to_remove :class => 'btn btn-danger btn-small pull-right' do
+					%i.icon-minus.icon-white
+				= ff.fields_for :title_translations do |fff|
+					.control-group
+						= fff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
+						.controls
+							= fff.text_field :en, :class => 'span9 autocomplete', :value => (ff.object.title_translations['en'] unless ff.object.title.blank?)
+					.control-group
+						= fff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
+						.controls
+							= fff.text_field :ru, :class => 'span9 autocomplete', :value => (ff.object.title_translations['ru'] unless ff.object.title.blank?)
+				.control-group
+					= ff.label :price, t('models.pricelist.price.base'), :class => 'control-label'
+					.controls
+						= ff.text_field :price, :class => 'input-xlarge'
+		= f.link_to_add :choices, :class => 'btn btn-success btn-small' do
+			%i.icon-plus.icon-white
+	%fieldset
+		.form-actions
+			= f.button raw('<i class="icon-ok icon-white"></i> ' + t('views.interface.save')), :disable_with => t('views.interface.saving'), :type => :submit, :class => 'btn btn-primary'
+			= link_to url, :class => 'btn', :disable_with => t('views.interface.canceling'), :remote => true do
+				%i.icon-remove
+				= t 'views.interface.cancel'
+	

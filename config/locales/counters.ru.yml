@@ -1,0 +1,27 @@
+ru:
+    counters:
+        bedrooms:
+            one: "%{count} Спальня"
+            few: "%{count} Спальни"
+            many: "%{count} Спален"
+            other: "%{count} Спален"
+        days:
+            one: "за %{count} день"
+            few: "за %{count} дня"
+            many: "за %{count} дней"
+            other: "за %{count} дней"
+        days:
+            one: "за %{count} день"
+            few: "за %{count} дня"
+            many: "за %{count} дней"
+            other: "за %{count} дней"
+        people:
+            one: "%{count} гость"
+            few: "%{count} гостя"
+            many: "%{count} гостей"
+            other: "%{count} гостей"
+        children:
+            one: "%{count} ребёнок"
+            few: "%{count} детей"
+            many: "%{count} детей"
+            other: "%{count} детей"

@@ -1,0 +1,17 @@
+- if current_parent_resource.class == Estate
+	= content_for :title do
+		= @estate.title
+	= content_for :billboard do
+		= render 'estates/partials/billboard', :estate => @estate
+	= content_for :navigation do
+		= render 'estates/partials/navigation', :estate => @estate
+
+- if current_parent_resource.class == Agency
+	= content_for :title do
+		= @agency.title
+	= content_for :billboard do
+		= render 'agency/partials/billboard', :agency => @agency
+	= content_for :navigation do
+		= render 'agency/partials/navigation', :agency => @agency
+
+= render 'bookings/partials/list', :bookings => @bookings

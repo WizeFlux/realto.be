@@ -1,0 +1,14 @@
+en:
+    counters:
+        bedrooms:
+            one: "%{count} Bedroom"
+            other: "%{count} Bedrooms"
+        days:
+            one: "for %{count} day"
+            other: "for %{count} days"
+        people:
+            one: "%{count} person"
+            other: "%{count} people"
+        children:
+            one: "%{count} child"
+            other: "%{count} children"

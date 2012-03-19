@@ -1,0 +1,25 @@
+%p.pull-left
+	%a.thumbnail.thumb{:href => '#'}
+		- if !agency.booklet.avatar_id.blank?
+			%img.thumb{:src => agency.booklet.avatar.image.thumb.url}
+		- else
+			%img.thumb{:src => '/assets/dummy/estate.thumb.jpg'}
+%section
+	.btn-group.pull-right
+		- if editable?
+			= link_to edit_agency_url, :remote => true, :class => :btn, :disable_with => t('views.interface.opening') do
+				%i.icon-pencil
+				= t 'views.interface.edit'
+	.page-header
+		%h1= agency.title
+	%p
+		%big= agency.teaser
+	- Contact.kinds.each do |kind|
+		- if agency.contacts.where(:kind => kind).exists?
+			%ul
+				- agency.contacts.where(:kind => kind).each do |contact|
+					%li
+						%a.iconed{:style => "background-image: url(/assets/icons/#{kind.downcase}.png);", :href => contact.href, :class => kind.downcase}= contact.entry
+	%p
+		= plus_one_button(request.url)
+		= like_button(request.url)

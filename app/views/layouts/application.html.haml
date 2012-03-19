@@ -1,0 +1,16 @@
+!!! 5
+%html
+	%head
+		= render 'layouts/head'
+	%body
+		.container-fluid
+			%header.row-fluid
+				= render 'layouts/header'
+			#billboard.row-fluid
+				= yield :billboard
+			#navigation.row-fluid
+				= yield :navigation
+			#content.row-fluid
+				= yield
+			%footer.row-fluid
+				= render 'layouts/footer'

@@ -1,0 +1,78 @@
+/*
+Syntax error: Undefined mixin 'baseline'.
+        on line 3 of /Users/wizeflux/Projects/realto.be/app/assets/stylesheets/application.css.sass, in `baseline'
+        from line 3 of /Users/wizeflux/Projects/realto.be/app/assets/stylesheets/application.css.sass
+
+1: @import "compass/reset"
+2: // @import 'baseline/baseline.sass'
+3: +baseline
+
+Backtrace:
+/Users/wizeflux/Projects/realto.be/app/assets/stylesheets/application.css.sass:3:in `baseline'
+/Users/wizeflux/Projects/realto.be/app/assets/stylesheets/application.css.sass:3
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:170:in `visit_mixin'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:47:in `visit_root'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/tree/root_node.rb:20:in `render'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/engine.rb:299:in `_render'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/engine.rb:247:in `block in render'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/util.rb:310:in `silence_sass_warnings'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/engine.rb:247:in `render'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:339:in `update_stylesheet'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:202:in `block in update_stylesheets'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:200:in `each'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:200:in `update_stylesheets'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin.rb:54:in `check_for_updates'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/sass-3.1.15/lib/sass/plugin/rack.rb:51:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/activesupport-3.2.1/lib/active_support/callbacks.rb:405:in `_run__3949017345996442__call__3848104284137261471__callbacks'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/activesupport-3.2.1/lib/active_support/callbacks.rb:405:in `__run_callback'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/activesupport-3.2.1/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/activesupport-3.2.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/railties-3.2.1/lib/rails/rack/logger.rb:26:in `call_app'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/railties-3.2.1/lib/rails/rack/logger.rb:16:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/activesupport-3.2.1/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/actionpack-3.2.1/lib/action_dispatch/middleware/static.rb:53:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/railties-3.2.1/lib/rails/engine.rb:479:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/railties-3.2.1/lib/rails/application.rb:220:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/railties-3.2.1/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/wizeflux/.rvm/gems/ruby-1.9.3-p125@realto/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/Users/wizeflux/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+/Users/wizeflux/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+/Users/wizeflux/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'baseline'.\A         on line 3 of /Users/wizeflux/Projects/realto.be/app/assets/stylesheets/application.css.sass, in `baseline'\A         from line 3 of /Users/wizeflux/Projects/realto.be/app/assets/stylesheets/application.css.sass\A \A 1: @import \"compass/reset\"\A 2: // @import 'baseline/baseline.sass'\A 3: +baseline"; }

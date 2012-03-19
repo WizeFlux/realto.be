@@ -1,0 +1,5 @@
+en:
+  errors:
+    malformed: 'is malformed'
+    booking:
+      no_contact: "must contain at least one contact"
