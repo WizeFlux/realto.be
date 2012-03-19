@@ -13,3 +13,22 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+log/*.log
+tmp/
+.sass-cache/
+.bundle
+db/*.sqlite3
+db/logos
+log/*
+log/*!.gitignore
+.DS_Store
+._*
+.svn
+.hg
+Gemfile.lock
+*.cache
+tmp/**/*
+public/uploads/**/*
+.sass-cache/**/*
+public/stylesheets/**/*
+vendor/bundle/**/*
