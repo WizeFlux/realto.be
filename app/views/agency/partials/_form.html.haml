@@ -5,20 +5,20 @@
 			.control-group
 				= ff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
 				.controls
-					= ff.text_field :en, :class => 'input-xlarge', :value => f.object.title_translations['en']
+					= ff.text_field :en, :class => 'input-xlarge', :value => (f.object.title_translations['en'] if f.object.title_translations['en'])
 			.control-group
 				= ff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
 				.controls
-					= ff.text_field :ru, :class => 'input-xlarge', :value => f.object.title_translations['ru']
+					= ff.text_field :ru, :class => 'input-xlarge', :value => (f.object.title_translations['ru'] if f.object.title_translations['ru'])
 		= f.fields_for :teaser_translations do |ff|
 			.control-group
 				= ff.label :en, (t('models.teaser') + ' (En)'), :class => 'control-label'
 				.controls
-					= ff.text_area :en, :class => 'input-xlarge', :rows => 5, :value => f.object.teaser_translations['en']
+					= ff.text_area :en, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['en'] if f.object.teaser_translations['en'])
 			.control-group
 				= ff.label :ru, (t('models.teaser') + ' (Ru)'), :class => 'control-label'
 				.controls
-					= ff.text_area :ru, :class => 'input-xlarge', :rows => 5, :value => f.object.teaser_translations['ru']
+					= ff.text_area :ru, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['ru'] if f.object.teaser_translations['ru'])
 
 			.control-group
 				%label.control-label= t 'models.agency.contact.contacts'
