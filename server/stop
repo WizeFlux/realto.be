@@ -1,0 +1,5 @@
+cd ./server/nginx/sbin
+sudo ./nginx -s stop
+
+cd ../../..
+kill -TERM `cat ./tmp/pids/unicorn.pid`

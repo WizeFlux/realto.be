@@ -25,6 +25,7 @@ gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git', :branch 
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem 'russian'
+gem 'unicorn'
 
 group :assets do
 	# gem 'compass-rails','~> 1.0.0.rc.3'

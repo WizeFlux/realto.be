@@ -1,0 +1,20 @@
+# Run './server/install.sh' to install standalone nginx with uploading module
+
+mkdir ./server/nginx
+sudo rm -rf ./server/nginx/*
+
+cd ./server/src
+tar -xzf nginx-1.0.9.tar.gz
+
+cd ./nginx-1.0.9
+./configure \
+    --prefix=../../nginx \
+    --conf-path=../conf/nginx.conf
+make
+make install
+
+cd ..
+rm -rf nginx-1.0.9
+
+cd ..
+rm -rf ./conf/*.default

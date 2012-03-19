@@ -1,0 +1,5 @@
+cd ./server/nginx/sbin
+rvmsudo ./nginx
+
+cd ../../..
+unicorn_rails -c ./server/unicorn.rb -D -E production
