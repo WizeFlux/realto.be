@@ -6,8 +6,8 @@ class Agency
     
     after_create :create_booklet
     
-    field :title, localize: true
-    field :teaser, localize: true
+    field :title, localize: true, default: ' '
+    field :teaser, localize: true, default: ' '
   
     def able_to_update?(person)
         person == owner
