@@ -4,7 +4,7 @@ class Season
     
     field :start, type: DateTime, default: -> {Date.today}
     field :finish, type: DateTime, default: -> {Date.today}
-    field :title, localize: true, default: 'New Season'
+    field :title, localize: true, default: ''
 
     after_save :populate_fillings
 

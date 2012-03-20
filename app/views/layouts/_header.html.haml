@@ -1,7 +1,7 @@
 .navbar
 	.navbar-inner
 		.row-fluid
-			%a.brand{:href => '#'}= current_agency.title
+			%a.brand{:href => root_url}= current_agency.title
 			%ul.nav
 				%li.divider-vertical
 				%li{:class => active_if(['agency', 'agency_booklet', 'agency_bookings'])}

@@ -49,7 +49,7 @@ ru:
                 prices: Цены
             leasespan:
                 base: Арендный период
-                s: Арендрые периоды
+                s: Арендные периоды
                 to: до
                 from: От
             season:
