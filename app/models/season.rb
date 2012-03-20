@@ -8,6 +8,8 @@ class Season
 
     after_save :populate_fillings
 
+    scope :order, order_by([[:start, :asc]])
+
     def populate_fillings
         title_translations.each do |key, value|
             Filling.find_or_create_by(

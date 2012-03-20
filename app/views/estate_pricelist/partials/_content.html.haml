@@ -12,14 +12,14 @@
 						%h3
 							= t 'models.pricelist.price.base'
 							%small= '(' + t('views.interface.lv_per_day') + ')'
-					- pricelist.leasespans.each do |leasespan|
+					- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
 						%th
 							= leasespan.from.to_s
 							= '-'
 							= leasespan.to.to_s
 							= t 'views.pricelist.days'
 			%tbody
-				- pricelist.seasons.each do |season|
+				- pricelist.seasons.order_by([[:start, :asc]]).each do |season|
 					%tr
 						%td
 							%h5= season.title
@@ -27,7 +27,7 @@
 								= l(season.start.to_date, :format => :long)
 								= ' - '
 								= l(season.finish.to_date, :format => :long)
-						- pricelist.leasespans.each do |leasespan|
+						- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
 							%td.price
 								= pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id).value
 								%b= ' $'

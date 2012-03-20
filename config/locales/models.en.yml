@@ -52,7 +52,7 @@ en:
                 base: 'Lease span'
                 s: 'Lease spans'
                 to: 'to'
-                from: From'
+                from: From
             season:
                 base: 'Season'
                 seasons: 'Seasons'
