@@ -1,6 +1,5 @@
 class Contact
     include Mongoid::Document
-    include Mongoid::I18n
 
     field :kind, type: String
     field :entry, type: String
