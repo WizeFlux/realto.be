@@ -51,11 +51,11 @@
 				.control-group
 					= ff.label :start, t('models.pricelist.season.start'), :class => 'control-label'
 					.controls
-						= ff.date_select :start, {}, :class => 'input-small'
+						= ff.date_select :start, {:use_month_numbers => true, :order => [:day, :month, :year]}, :class => 'input-mini'
 						= raw('&nbsp &nbsp &nbsp')
 						= ff.label :finish, t('models.pricelist.season.finish'), :class => 'help-inline'
 						= raw('&nbsp')
-						= ff.date_select :finish, {}, :class => 'input-small'
+						= ff.date_select :finish, {:use_month_numbers => true, :order => [:day, :month, :year]}, :class => 'input-mini'
 				= ff.fields_for :title_translations do |fff|
 					.control-group
 						= fff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'

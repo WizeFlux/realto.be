@@ -65,7 +65,7 @@ en:
             by_name: 'By name'
             amenities: 'Necessary amenities'
         pricelist:
-            menu: 'Menu'
+            menu: Services
             free: 'included'
             days: 'Days'
             day: 'Day'
