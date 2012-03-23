@@ -7,19 +7,19 @@
 					.input-prepend
 						%span.add-on
 							%i.icon-calendar
-						= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+						= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
 			.control-group
 				= f.label :checkout, t('views.q.checkout'), :class => 'control-label'
 				.controls
 					.input-prepend
 						%span.add-on
 							%i.icon-calendar
-						= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+						= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
 			.control-group
 				= f.label :beds_from, t('views.q.beds_from'), :class => 'control-label'
 				.controls
 					= f.select :beds_from, options_for_select(1..10), {}, :class => 'input-mini'
-					= raw('&nbsp &nbsp &nbsp &nbsp')
+					= raw('&nbsp &nbsp &nbsp')
 					= f.label :beds_to, t('views.q.beds_to'), :class => 'help-inline'
 					= raw('&nbsp &nbsp')
 					= f.select :beds_to, options_for_select(1..10, 10), {}, :class => 'input-mini'
