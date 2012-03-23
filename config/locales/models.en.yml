@@ -59,4 +59,4 @@ en:
                 start: 'Start'
                 finish: 'Finish'
         map:
-            base: Карта
+            base: Map
