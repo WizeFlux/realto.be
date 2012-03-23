@@ -35,6 +35,7 @@ class Estate
         agency.able_to_destroy?(person)
     end
     
+    belongs_to :district
     belongs_to :agency
     has_many :bookings
 end

@@ -15,6 +15,7 @@ ru:
             next: "След."
             previous: "Пред."
         interface:
+            all: Все
             write_something: 'Пожалуста, напишите что-либо. Здесь не должно быть пусто!'
             lv_per_day: в сутки
             aus: Вы уверенны?

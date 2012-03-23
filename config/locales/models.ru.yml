@@ -59,3 +59,5 @@ ru:
                 finish: Конец
         map:
             base: Карта
+        district:
+            base: Район

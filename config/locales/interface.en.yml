@@ -7,7 +7,7 @@ en:
         q:
             checkin: 'Checkin date:'
             checkout: 'Checkout date:'
-            beds_from: 'Beds, from:'
+            beds_from: 'Bedrooms, from:'
             beds_to: 'to:'
             features: 'Necessary amenities:'
             new_estate: 'New estate'
@@ -15,6 +15,7 @@ en:
             next: "Next"
             previous: "Prev."
         interface:
+            all: All
             write_something: 'Please write something, this should not be empty!'
             lv_per_day: 'per day'
             aus: 'Are you sure?'

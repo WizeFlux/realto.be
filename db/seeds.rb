@@ -50,11 +50,31 @@ end
     })
 end
 
+{
+    'Jimbaran' => 'Джимбаран',
+    'Canggu' => 'Чангу',
+    'Ubud' => 'Убуд',
+    'Seminyak' => 'Семиньяк',
+    'Nusa Dua' => 'Нуса Дуа',
+    'Kuta' => 'Кута',
+    'Umalas' => 'Умалас',
+    'Kerobokan' => 'Керобокан',
+    'Tuban' => 'Тубан',
+    'Singaraja' => 'Сингараджа',
+    'Lombok' => 'Ломбок',
+    'Denpasar' => 'Денпасар',
+    'Amed' => 'Амед'
+}.each do |en, ru|
+    District.create({:title_translations => {'en' => en, 'ru' => ru}})
+end
+
+
+
 admin  = Fabricate(:person)
 myagency = Fabricate(:myagency, :owner => admin)
 
-60.times do
-    estate = Fabricate(:estate, :agency => myagency)
+20.times do
+    estate = Fabricate(:estate, :agency => myagency, :district => District.all.to_a.sample)
 end
 
 # myagency = Agency.find('yourvilla')

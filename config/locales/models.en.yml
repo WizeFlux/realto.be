@@ -60,3 +60,5 @@ en:
                 finish: 'Finish'
         map:
             base: Map
+        district:
+            base: District
