@@ -1,5 +1,6 @@
 class Estate
     include Mongoid::Document
+    include Mongoid::Spacial::Document
 
     field :title, localize: true
     field :teaser, localize: true
@@ -14,10 +15,12 @@ class Estate
 
     key :slug
 
-    after_create :create_booklet, :create_pricelist
-    
-    embeds_one :booklet, :as => :describable
+    after_create :create_booklet, :create_pricelist, :create_map
+
     embeds_one :pricelist
+    embeds_one :booklet, :as => :describable
+    embeds_one :map, :as => :locatable
+    
     embeds_many :pricings
     
     def able_to_update?(person)

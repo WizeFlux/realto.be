@@ -57,3 +57,5 @@ ru:
                 seasons: Сезоны
                 start: Начало
                 finish: Конец
+        map:
+            base: Карта

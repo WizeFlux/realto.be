@@ -1,7 +1,6 @@
 class EstatesController < ApplicationController
     include Traits::Authentication
     include Traits::Resource
-    include Traits::Pagination
     include Traits::Actions::Create
     include Traits::Actions::Update
     include Traits::Actions::Destroy
@@ -26,10 +25,6 @@ class EstatesController < ApplicationController
 
     def q
         params[:q]
-    end
-    
-    def per_page
-        5
     end
 
     def post_create_location

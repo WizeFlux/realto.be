@@ -4,7 +4,7 @@ class Agency
     field :subdomain
     key :subdomain
     
-    after_create :create_booklet
+    after_create :create_booklet, :create_map
     
     field :title, localize: true, default: ' '
     field :teaser, localize: true, default: ' '
@@ -27,6 +27,7 @@ class Agency
     has_many :bookings
     has_many :estates
     
+    embeds_one :map, :as => :locatable
     embeds_one :booklet, :as => :describable
     
     embeds_many :contacts

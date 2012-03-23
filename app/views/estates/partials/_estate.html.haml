@@ -1,0 +1,69 @@
+- marker_url = marker(("A".."ZZ").to_a[index])
+
+.estate{:id => estate.id.to_s}
+	:javascript
+		$(function(){
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(#{estate.map.location[:lat]},#{estate.map.location[:lng]}),
+				map: map,
+				icon: '#{marker_url}'
+			});
+			
+			markers.push(marker);
+			
+			function roll_it(){
+				$('#estates .selected').removeClass('selected');
+				$('##{estate.id.to_s}').addClass('selected');
+				infowindow.setContent($('##{estate.id.to_s} .infowindow').html());
+				infowindow.open(map, marker);
+			}
+			
+			$('##{estate.id.to_s} a').click(function(event){
+				event.preventDefault();
+				roll_it();
+			});
+			
+			google.maps.event.addListener(marker, 'click', function() {
+				roll_it();
+				$('#estates .grid').animate({
+					scrollTop: ($('##{estate.id.to_s}').position().top - $('#estates .estate:first-of-type').position().top)
+				}, 'slow');
+			});
+		});
+	
+	%a{:href => estate_url(estate)}
+		%img.marker.pull-left{:src => marker_url}
+		%h3
+			= estate.title
+			%br
+			%small
+				%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+				- if q and selected_days > 0
+					%b= ', ' + estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
+					= t('counters.days', :count => selected_days)
+	.clearfix
+	.hidden.infowindow
+		%ul.thumbnails
+			%li.span3
+				%a.thumbnail{:href => estate_url(estate)}
+					- unless estate.booklet.avatar_id.blank?
+						%img.medium{:src => estate.booklet.avatar.image.medium.url}
+					- else
+						%img.medium{:src => '/assets/dummy/estate.medium.jpg'}
+			%li.span5
+				%h2
+					= estate.title
+					%small
+						%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+				%p
+					- if q and selected_days > 0
+						%b= estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
+						= t('counters.days', :count => selected_days)
+						= t 'views.estate.from'
+						%i= l(checkin, :format => :long)
+						= t 'views.estate.to'
+						%i= l(checkout, :format => :long)
+
+				%p= estate.teaser						
+		.clearfix
+			= link_to t('views.interface.open'), estate_url(estate), :target => '_blank', :class => 'btn btn-primary btn-large pull-right'

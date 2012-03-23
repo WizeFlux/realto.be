@@ -99,6 +99,9 @@ GEM
       activemodel (~> 3.1)
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
+    mongoid_spacial (0.2.16)
+      activesupport (~> 3.0)
+      mongoid (>= 2.3.0)
     multi_json (1.1.0)
     multipart-post (1.1.5)
     nested_form (0.2.0)
@@ -177,6 +180,7 @@ DEPENDENCIES
   mini_magick
   mongo
   mongoid
+  mongoid_spacial
   nested_form
   rails (= 3.2.1)
   rake

@@ -21,7 +21,7 @@ class AgencyEstatesController < EstatesController
                                                     :actual => true  })
             end
         end
-        r.order_by(resource_sort_conditions).page(current_page).per(per_page)
+        r.order_by(resource_sort_conditions)
     end
 
     def resource_attributes

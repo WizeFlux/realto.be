@@ -4,7 +4,7 @@ gem 'rails', '3.2.1'
 gem 'rake'
 gem "mongo"
 gem "mongoid"
-# gem 'mongoid_i18n', :require => 'mongoid/i18n'
+gem 'mongoid_spacial'
 gem "bson"
 gem "bson_ext"
 

@@ -1,0 +1,58 @@
+- url = agency_map_url if map.locatable.instance_of? Agency
+- url = estate_map_url(map.locatable) if map.locatable.instance_of? Estate
+
+= form_for map, :url => url, :html => {:class => 'form-horizontal'} do |f|
+	%fieldset
+		#map-canvas.map
+			:javascript
+				$(function() {
+					map = new google.maps.Map($("#map-canvas")[0], {
+						center: new google.maps.LatLng(#{map.center[:lat]}, #{map.center[:lng]}),
+						zoom: #{map.zoom},
+						mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+						streetViewControl: false,
+						overviewMapControl: false,
+						rotateControl: false,
+						panControl: false,
+						mapTypeControl: false,
+
+						zoomControl: true,
+						zoomControlOptions: {
+							position: google.maps.ControlPosition.TOP_RIGHT,
+							style: google.maps.ZoomControlStyle.LARGE
+						}
+					});
+					
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(#{map.location[:lat]}, #{map.location[:lng]}),
+						map: map,
+						draggable: true
+					});
+
+					function set_values(){
+						$('#map_zoom').val(map.getZoom());
+						$('#map_location_lat').val(marker.getPosition().lat());
+						$('#map_location_lng').val(marker.getPosition().lng());
+						$('#map_center_lat').val(map.getCenter().lat());
+						$('#map_center_lng').val(map.getCenter().lng());
+					}
+					
+					google.maps.event.addListener(marker, 'drag', function() {set_values()});
+					google.maps.event.addListener(map, 'bounds_changed', function() {set_values()});
+				});
+			
+		%fieldset
+			= f.hidden_field :zoom, :class => 'input-large'
+			= f.fields_for :location do |ff|
+				= ff.hidden_field :lat, :class => 'input-large', :value => (f.object.location[:lat] if f.object.location)
+				= ff.hidden_field :lng, :class => 'input-large', :value => (f.object.location[:lng] if f.object.location)
+			= f.fields_for :center do |ff|
+				= ff.hidden_field :lat, :class => 'input-large', :value => (f.object.location[:lat] if f.object.location)
+				= ff.hidden_field :lng, :class => 'input-large', :value => (f.object.location[:lng] if f.object.location)
+
+	.form-actions
+		= f.button raw('<i class="icon-ok icon-white"></i> ' + t('views.interface.save')), :disable_with => t('views.interface.saving'), :type => :submit, :class => 'btn btn-primary'
+		= link_to url, :class => 'btn', :disable_with => t('views.interface.canceling'), :remote => true do
+			%i.icon-remove
+			= t 'views.interface.cancel'

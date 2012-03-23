@@ -58,3 +58,5 @@ en:
                 seasons: 'Seasons'
                 start: 'Start'
                 finish: 'Finish'
+        map:
+            base: Карта

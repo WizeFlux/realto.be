@@ -3,6 +3,8 @@
 		= link_to t('views.interface.information'), estate_booklet_url(estate)
 	%li{:class => active_if(['estate_pricelist'])}
 		= link_to t('models.pricelist.price.prices'), estate_pricelist_url(estate)
+	%li{:class => active_if(['estate_map'])}
+		= link_to t('models.map.base'), estate_map_url(estate)
 	- if editable?
 		%li{:class => active_if(['estate_bookings#index'])}
 			= link_to t('models.booking.bookings'), estate_bookings_url(estate)

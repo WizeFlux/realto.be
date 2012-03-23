@@ -1,0 +1,39 @@
+- if editable?
+	%p
+		.btn-group.pull-right
+			- if map.locatable.instance_of? Agency
+				= link_to edit_agency_map_url, :class => :btn, :disable_with => t('views.interface.opening') do
+					%i.icon-pencil
+					= t 'views.interface.edit'
+			- if map.locatable.instance_of? Estate
+				= link_to edit_estate_map_url(map.locatable), :class => :btn, :disable_with => t('views.interface.opening') do
+					%i.icon-pencil
+					= t 'views.interface.edit'
+		.clearfix
+
+#map-canvas.map
+	:javascript
+		$(function() {
+			map = new google.maps.Map($("#map-canvas")[0], {
+				center: new google.maps.LatLng(#{map.center[:lat]}, #{map.center[:lng]}),
+				zoom: #{map.zoom},
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+				streetViewControl: false,
+				overviewMapControl: false,
+				rotateControl: false,
+				panControl: false,
+				mapTypeControl: false,
+
+				zoomControl: true,
+				zoomControlOptions: {
+					position: google.maps.ControlPosition.TOP_RIGHT,
+					style: google.maps.ZoomControlStyle.LARGE
+				}
+			});
+			
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(#{map.location[:lat]}, #{map.location[:lng]}),
+				map: map
+			});
+		});

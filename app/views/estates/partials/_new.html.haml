@@ -2,6 +2,6 @@
 	= render 'estates/partials/fields', :f => f
 	.form-actions
 		= f.button raw('<i class="icon-ok icon-white"></i> Create'), :disable_with => 'Creating...', :type => :submit, :class => 'btn btn-primary'
-		= link_to estates_url, :class => 'btn', :disable_with => 'Canceling...', :remote => true do
+		= link_to estates_url, :class => 'btn', :disable_with => 'Canceling...' do
 			%i.icon-remove
 			Cancel
