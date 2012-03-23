@@ -25,6 +25,7 @@
 					style: google.maps.ZoomControlStyle.LARGE
 				}
 			});
+			google.maps.event.addListener(map, 'click', function() {infowindow.close()});
 		});
 	
 = render 'estates/partials/list', :estates => @estates
