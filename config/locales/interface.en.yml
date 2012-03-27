@@ -54,11 +54,6 @@ en:
             book: 'Book'
             confirm: 'Confirm'
             not_avaiable: 'Price is not avaiable for this date'
-            success:
-                accepted: "Congradulations. Your booking was accepted."
-                confirmation: "Confirmation of your request was sent to described email. It will be reviewed in two operational hours 08:00 - 20:00 (UTC+8h). After that you will be informed by same email."
-                spam: "If you didn't see letter with confirmation in 10 minutes, please, check 'Spam' folder in email application."
-                own_contacts: "If you have any questions - contact us:"
         estate:
             from: from
             to: to

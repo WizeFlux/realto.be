@@ -7,4 +7,7 @@
 = content_for :navigation do
 	= render 'estates/partials/navigation', :estate => @estate
 
+- if flash[:success]
+	.alert.alert-success= flash[:success]
+
 = render 'bookings/partials/booking', :booking => @booking
