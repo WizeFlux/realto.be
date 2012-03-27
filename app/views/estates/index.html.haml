@@ -1,3 +1,6 @@
+= content_for :title do
+	= @agency.title + ' - ' + t('models.estate.estates')
+
 = content_for :billboard do
 	= render 'estates/partials/search_form'
 

@@ -1,7 +1,6 @@
 = content_for :title do
 	= current_parent_resource.title
 
-
 - if current_parent_resource.instance_of? Agency
 	= content_for :billboard do
 		= render "agency/partials/billboard", :agency => current_parent_resource
