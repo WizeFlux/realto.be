@@ -1,4 +1,4 @@
-class AgencyController < ApplicationController
+class AgenciesController < ApplicationController
     include Traits::Resource
     include Traits::Actions::Update
   

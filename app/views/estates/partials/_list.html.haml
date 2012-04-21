@@ -8,6 +8,6 @@
 	= render 'estates/partials/sorting_menu'
 	.grid
 		- if estates.empty?
-			%h4 Sorry, but no results found.
+			%h4= t 'views.interface.nothing_found'
 		- estates.each_with_index do |estate, index|
 			= render 'estates/partials/estate', :estate => estate, :index => index

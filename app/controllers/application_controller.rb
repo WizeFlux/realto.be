@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
     end
 
     def editable?
-        signed_in? && current_resource.able_to_update?(current_person) ? true : false
+        signed_in? && current_resource.able_to_update?(current_person)
     end
     
-    helper_method :signed_in?, :current_person, :agency_param_from_domain, :current_agency, :oauth_url, :this_page_redirect, :editable?
+    helper_method   :signed_in?, :current_person, :agency_param_from_domain, :current_agency,
+                    :oauth_url, :this_page_redirect, :editable?, :current_parent_resourcem, :current_resource
 end

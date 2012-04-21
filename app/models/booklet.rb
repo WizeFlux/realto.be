@@ -1,21 +1,26 @@
 class Booklet
     include Mongoid::Document
 
+    field :title, type: String, localize: true
     field :content, type: String, localize: true
     field :avatar_id, type: String
+    
+    def avatar
+        Image.find(avatar_id) if !avatar_id.blank?
+    end
 
     before_save :collect_features_ids
     
     def collect_features_ids
         describable.update_attributes!(:features_ids => tags.map(&:feature_id)) if describable.kind_of? Estate
     end
-    
-    def avatar
-        Image.find(avatar_id) if !avatar_id.blank?
-    end
 
     def format!
-        RedCloth.new(content || ' ').to_html.gsub(/#.{1,4}#/) do |s|
+        RedCloth.new(imagefull_content).to_html
+    end
+    
+    def imagefull_content
+        (content || ' ').gsub(/#.{1,4}#/) do |s|
             image = images.where({:uid => s[1..4]}).first
             "<a class='thumbnail thumb colorbox' rel='box' href='#{image.image.lightbox.url}'><img src='#{image.image.medium.url}' class='medium'/></a>" unless image.nil?
         end

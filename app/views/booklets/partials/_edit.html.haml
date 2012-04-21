@@ -1,0 +1,11 @@
+- url = agency_booklet_url(booklet) if booklet.describable.instance_of? Agency
+- url = estate_booklet_url(booklet.describable, booklet) if booklet.describable.instance_of? Estate
+
+= nested_form_for booklet, :url => url, :remote => true, :html => {:class => 'form-horizontal'} do |f|
+	= render 'booklets/partials/fields', :f => f
+	%fieldset.row-fluid
+		.form-actions
+			= f.button raw('<i class="icon-ok icon-white"></i> ' + t('views.interface.save')), :disable_with => t('views.interface.saving'), :type => :submit, :class => 'btn btn-primary'
+			= link_to url, :class => 'btn', :disable_with => t('views.interface.canceling'), :remote => true do
+				%i.icon-remove
+				= t 'views.interface.cancel'

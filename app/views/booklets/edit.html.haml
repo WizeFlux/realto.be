@@ -7,4 +7,4 @@
 = content_for :navigation do
 	= render "#{current_parent_resource.class.name.pluralize.downcase}/partials/navigation", :"#{current_parent_resource.class.name.downcase}" => current_parent_resource
 
-= render 'bookings/partials/list', :bookings => @bookings
+= render 'booklet/partials/form', :booklet => @booklet

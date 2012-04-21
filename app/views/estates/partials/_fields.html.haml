@@ -45,3 +45,35 @@
 		= f.label :childs_max, t('models.estate.childs_max'), :class => 'control-label'
 		.controls
 			= f.select :childs_max, options_for_select(1..32, f.object.childs_max), {}, :class => 'input-mini'
+%fieldset
+	%legend= t 'views.estate.privat'
+	
+	.control-group
+		= f.label :comission, t('models.estate.comission'), :class => 'control-label'
+		.controls
+			= f.text_field :comission, :class => 'input-xlarge'
+	
+	.control-group
+		= f.label :margin, t('models.estate.margin'), :class => 'control-label'
+		.controls
+			= f.text_field :margin, :class => 'input-xlarge'
+
+	.control-group
+		= f.label :comment, t('models.estate.comment'), :class => 'control-label'
+		.controls
+			= f.text_area :comment, :rows => 5, :class => 'input-xlarge'
+
+	.control-group
+		%label.control-label= t 'models.agency.contact.contacts'
+		.controls
+			= f.fields_for :contacts do |ff|
+				= ff.select :kind, options_for_select(Contact.kinds, :selected => ff.object.kind), {}, :class => 'input-small'
+				= raw('&nbsp')
+				= ff.text_field :entry, :class => 'input-xlarge'
+				= raw('&nbsp')
+				= ff.link_to_remove :class => 'btn-danger btn btn-small' do
+					%i.icon-minus.icon-white
+				%br
+				%br
+			= f.link_to_add :contacts, :class => 'btn-success btn btn-small' do
+				%i.icon-plus.icon-white

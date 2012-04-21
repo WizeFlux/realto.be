@@ -33,6 +33,9 @@ ru:
                 feature: Удобство
                 text: Текст
         estate:
+            comment: Комментарий
+            margin: Наценка
+            comission: Комиссия
             base: Объект
             slug: Идентификатор
             estates: Недвижимость

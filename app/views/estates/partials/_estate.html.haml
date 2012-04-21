@@ -46,7 +46,7 @@
 		%ul.thumbnails
 			%li.span3
 				%a.thumbnail{:href => estate_url(estate)}
-					- unless estate.booklet.avatar_id.blank?
+					- unless estate.booklets.empty? or estate.booklets.to_a.sample.avatar_id.blank?
 						%img.medium{:src => estate.booklet.avatar.image.medium.url}
 					- else
 						%img.medium{:src => '/assets/dummy/estate.medium.jpg'}

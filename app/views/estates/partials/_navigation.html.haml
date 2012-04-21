@@ -1,12 +1,17 @@
 %ul.nav.nav-tabs
-	%li{:class => active_if(['agency_estates', 'estate_booklet'])}
-		= link_to t('views.interface.information'), estate_booklet_url(estate)
-	%li{:class => active_if(['estate_pricelist'])}
+	- estate.booklets.each_with_index do |b, i|
+		- unless b.new?
+			%li{:class => active_if(["estate_booklets#show##{b.id.to_s}", "estate_booklets#edit##{b.id.to_s}"], (i==0 && controller_name == 'agency_estates'))}
+				= link_to b.title, estate_booklet_url(estate, b)
+
+	%li{:class => active_if(['estate_pricelist'], false)}
 		= link_to t('models.pricelist.price.prices'), estate_pricelist_url(estate)
-	%li{:class => active_if(['estate_map'])}
+	%li{:class => active_if(['estate_map'], false)}
 		= link_to t('models.map.base'), estate_map_url(estate)
-	- if editable?
-		%li{:class => active_if(['estate_bookings#index'])}
-			= link_to t('models.booking.bookings'), estate_bookings_url(estate)
-	%li{:class => active_if(['estate_bookings#new', 'estate_bookings#show'])}
+	%li{:class => active_if(['estate_bookings#new', 'estate_bookings#show'], false)}
 		= link_to t('views.booking.book'), new_estate_booking_url(estate)
+	- if editable?
+		%li{:class => active_if(['estate_bookings#index'], false)}
+			= link_to t('models.booking.bookings'), estate_bookings_url(estate)
+		%li{:class => active_if(['estate_booklets#new'], false)}
+			= link_to raw('<i class="icon-plus"></i>'), new_estate_booklet_url(estate)

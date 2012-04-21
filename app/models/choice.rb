@@ -6,7 +6,6 @@ class Choice
     after_save :populate_fillings
     
     def populate_fillings
-        logger.info self.inspect
         title_translations.each do |key, value|
             Filling.find_or_create_by(
                 :model => 'Choice',

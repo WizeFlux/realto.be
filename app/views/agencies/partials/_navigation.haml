@@ -1,0 +1,15 @@
+%ul.nav.nav-tabs
+	- agency.booklets.each_with_index do |b, i|
+		%li{:class => active_if(["agency_booklets#show##{b.id.to_s}", "agency_booklets#edit##{b.id.to_s}"], (i == 0 and controller_name == "agencies"))}
+			- unless b.new?
+				= link_to b.title, agency_booklet_url(b)
+
+	- if editable?
+		%li{:class => active_if(['agency_bookings'], false)}
+			= link_to t('models.booking.bookings'), agency_bookings_url
+
+		%li{:class => active_if(['agency_map'], false)}
+			= link_to t('models.map.base'), agency_map_url
+
+		%li{:class => active_if(['agency_booklets#new'], false)}
+			= link_to raw('<i class="icon-plus"></i>'), new_agency_booklet_url

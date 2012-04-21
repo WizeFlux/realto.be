@@ -6,5 +6,6 @@
 	
 = content_for :navigation do
 	= render 'estates/partials/navigation', :estate => @estate
-	
-= render 'booklet/partials/content', :booklet => @estate.booklet
+
+- unless @estate.booklets.empty?
+	= render 'booklets/partials/content', :booklet => @estate.booklets[0]

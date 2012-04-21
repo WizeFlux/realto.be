@@ -5,7 +5,7 @@ class Contact
     field :entry, type: String
     
     def self.kinds
-        ['Skype', 'Email', 'Facebook', 'Phone']
+        ['Skype', 'Email', 'Facebook', 'Phone', 'Website']
     end
     
     def href

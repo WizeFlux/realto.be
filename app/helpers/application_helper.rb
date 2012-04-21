@@ -1,6 +1,9 @@
 module ApplicationHelper
-    def active_if(ways)
-        'active' if ((ways.include? controller_name) || (ways.include? (controller_name + '#' + action_name)))
+    def active_if(ways, condition)
+        'active' if (condition ||
+                    (ways.include? controller_name) ||
+                    (ways.include? (controller_name + '#' + action_name)) ||
+                    (ways.include? (controller_name + '#' + action_name + '#' + current_resource.id.to_s) if current_resource))
     end
     
     def like_button(page)

@@ -20,20 +20,20 @@
 				.controls
 					= ff.text_area :ru, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['ru'] if f.object.teaser_translations['ru'])
 
-			.control-group
-				%label.control-label= t 'models.agency.contact.contacts'
-				.controls
-					= f.fields_for :contacts do |ff|
-						= ff.select :kind, options_for_select(Contact.kinds, :selected => ff.object.kind), {}, :class => 'input-small'
-						= raw('&nbsp')
-						= ff.text_field :entry, :class => 'input-xlarge'
-						= raw('&nbsp')
-						= ff.link_to_remove :class => 'btn-danger btn btn-small' do
-							%i.icon-minus.icon-white
-						%br
-						%br
-					= f.link_to_add :contacts, :class => 'btn-success btn btn-small' do
-						%i.icon-plus.icon-white
+		.control-group
+			%label.control-label= t 'models.agency.contact.contacts'
+			.controls
+				= f.fields_for :contacts do |ff|
+					= ff.select :kind, options_for_select(Contact.kinds, :selected => ff.object.kind), {}, :class => 'input-small'
+					= raw('&nbsp')
+					= ff.text_field :entry, :class => 'input-xlarge'
+					= raw('&nbsp')
+					= ff.link_to_remove :class => 'btn-danger btn btn-small' do
+						%i.icon-minus.icon-white
+					%br
+					%br
+				= f.link_to_add :contacts, :class => 'btn-success btn btn-small' do
+					%i.icon-plus.icon-white
 
 	.form-actions
 		= f.button raw('<i class="icon-ok icon-white" /> ' + t('views.interface.save')), :disable_with => t('views.interface.saving'), :type => :submit, :class => 'btn btn-primary'

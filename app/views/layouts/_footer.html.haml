@@ -4,3 +4,8 @@
 			%ul.nav
 				%li
 					%a{:href => 'mailto:fear.ru@gamail.com'} © Wizeflux
+			%ul.nav.pull-right
+				- current_agency.booklets.each do |b|
+					%li
+						- unless b.new?
+							= link_to b.title, agency_booklet_url(b)

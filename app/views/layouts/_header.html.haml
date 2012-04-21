@@ -4,9 +4,9 @@
 			%a.brand{:href => root_url}= current_agency.title
 			%ul.nav
 				%li.divider-vertical
-				%li{:class => active_if(['agency', 'agency_booklet', 'agency_bookings', 'agency_map'])}
+				%li{:class => active_if(['agencies', 'agency_booklets', 'agency_bookings', 'agency_map'], false)}
 					%a{:href => agency_url}= t 'models.agency.base'
-				%li{:class => active_if(['agency_estates', 'estate_booklet', 'estate_pricelist', 'estate_bookings', 'estate_map'])}
+				%li{:class => active_if(['agency_estates', 'estate_booklets', 'estate_pricelist', 'estate_bookings', 'estate_map'], false)}
 					%a{:href => estates_url}= t 'models.estate.estates'
 				%li.divider-vertical
 				%li{:class => ->{I18n.locale == :ru ? 'active' : ''}.call}

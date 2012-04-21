@@ -1,7 +1,7 @@
 %p.pull-left
 	%a.thumbnail.thumb{:href => '#'}
-		- if !agency.booklet.avatar_id.blank?
-			%img.thumb{:src => agency.booklet.avatar.image.thumb.url}
+		- if !agency.booklets.empty? and agency.booklets[0].avatar_id
+			%img.thumb{:src => agency.booklets[0].avatar.image.thumb.url}
 		- else
 			%img.thumb{:src => '/assets/dummy/estate.thumb.jpg'}
 %section

@@ -8,7 +8,7 @@ class Agency
     
     field :title, localize: true, default: ' '
     field :teaser, localize: true, default: ' '
-  
+    
     def able_to_update?(person)
         person == owner
     end
@@ -28,7 +28,7 @@ class Agency
     has_many :estates
     
     embeds_one :map, :as => :locatable
-    embeds_one :booklet, :as => :describable
+    embeds_many :booklets, :as => :describable
     
     embeds_many :contacts
     accepts_nested_attributes_for :contacts, :allow_destroy => true

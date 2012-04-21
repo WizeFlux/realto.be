@@ -1,18 +1,10 @@
 = content_for :title do
 	= current_parent_resource.title
 
+= content_for :billboard do
+	= render "#{current_parent_resource.class.name.pluralize.downcase}/partials/billboard", :"#{current_parent_resource.class.name.downcase}" => current_parent_resource
 
-- if current_parent_resource.instance_of? Agency
-	= content_for :billboard do
-		= render "agency/partials/billboard", :agency => current_parent_resource
-	= content_for :navigation do
-		= render "agency/partials/navigation", :agency => current_parent_resource
-	
-- if current_parent_resource.instance_of? Estate
-	= content_for :billboard do
-		= render "estates/partials/billboard", :estate => current_parent_resource
-	= content_for :navigation do
-		= render "estates/partials/navigation", :estate => current_parent_resource
-
+= content_for :navigation do
+	= render "#{current_parent_resource.class.name.pluralize.downcase}/partials/navigation", :"#{current_parent_resource.class.name.downcase}" => current_parent_resource
 
 = render 'map/partials/form', :map => @map

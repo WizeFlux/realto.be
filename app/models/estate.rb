@@ -12,17 +12,13 @@ class Estate
     
     field :features_ids, type: Array, :default => []
     field :average_price, type: Integer, :default => 0
-
+    
+    field :comment, type: String
+    field :comission, type: String
+    field :margin, type: String
+    
     key :slug
 
-    after_create :create_booklet, :create_pricelist, :create_map
-
-    embeds_one :pricelist
-    embeds_one :booklet, :as => :describable
-    embeds_one :map, :as => :locatable
-    
-    embeds_many :pricings
-    
     def able_to_update?(person)
         agency.able_to_update?(person)
     end
@@ -34,8 +30,17 @@ class Estate
     def able_to_destroy?(person)
         agency.able_to_destroy?(person)
     end
+
+    after_create :create_booklet, :create_pricelist, :create_map
+    accepts_nested_attributes_for :contacts, :allow_destroy => true
     
+    has_many :bookings
+    embeds_one :pricelist
+    embeds_one :map, :as => :locatable
+    embeds_many :booklets, :as => :describable
+    embeds_many :contacts
+    embeds_many :pricings
     belongs_to :district
     belongs_to :agency
-    has_many :bookings
+    
 end

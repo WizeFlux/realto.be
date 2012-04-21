@@ -15,6 +15,7 @@ ru:
             next: "След."
             previous: "Пред."
         interface:
+            nothing_found: "Извините, ничего не найдено"
             all: Все
             write_something: 'Пожалуста, напишите что-либо. Здесь не должно быть пусто!'
             lv_per_day: в сутки
@@ -55,6 +56,7 @@ ru:
             confirm: Подтвердить
             not_avaiable: Цена на эти даты недоступна
         estate:
+            privat: Приватное
             from: с
             to: по
             information: Информация об объекте

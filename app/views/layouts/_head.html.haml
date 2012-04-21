@@ -6,9 +6,10 @@
 %meta{:name => 'description', :content => 'RealtoBe'}
 %meta{:name => 'keywords', :content => 'realto.be'}
 %link{:rel => 'shortcut icon', :href => '/favicon.ico', :type => 'image/x-icon'}
-%script{:type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDNIzwBp4cCrFqwk-mZ6OIRSMuvP_Uc22U&sensor=true"}
-= stylesheet_link_tag :application
-= javascript_include_tag :application
 
+= stylesheet_link_tag :application
+
+%script{:type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDNIzwBp4cCrFqwk-mZ6OIRSMuvP_Uc22U&sensor=true"}
+= javascript_include_tag :application
 - if I18n.locale == :ru
 	= javascript_include_tag :'jquery.ui.datepicker-ru'

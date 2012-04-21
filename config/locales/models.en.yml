@@ -34,15 +34,18 @@ en:
                 feature: 'Feature'
                 text: 'Text'
         estate:
-            base: 'Estate'
-            slug: 'Slug'
-            estates: 'Estates'
-            settings: 'Settings'
-            teaser: 'Teaser'
-            bedrooms: 'Bedrooms'
-            adults_max: 'Max adults'
+            comment: Comment
+            margin: Margin
+            comission: Comission
+            base: Estate
+            slug: Slug
+            estates: Estates
+            settings: Settings
+            teaser: Teaser
+            bedrooms: Bedrooms
+            adults_max: Max adults
             childs_max: 'Max children'
-            seasons: 'Seasons'
+            seasons: Seasons
         pricelist:
             base: 'Pricelist'
             price:

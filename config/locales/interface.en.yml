@@ -15,6 +15,7 @@ en:
             next: "Next"
             previous: "Prev."
         interface:
+            nothing_found: "Sorry, but nothing found"
             all: All
             write_something: 'Please write something, this should not be empty!'
             lv_per_day: 'per day'
@@ -55,6 +56,7 @@ en:
             confirm: 'Confirm'
             not_avaiable: 'Price is not avaiable for this date'
         estate:
+            privat: Privat
             from: from
             to: to
             information: 'Estate information'
