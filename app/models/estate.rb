@@ -31,7 +31,7 @@ class Estate
         agency.able_to_destroy?(person)
     end
 
-    after_create :create_booklet, :create_pricelist, :create_map
+    after_create :create_pricelist, :create_map
     accepts_nested_attributes_for :contacts, :allow_destroy => true
     
     has_many :bookings

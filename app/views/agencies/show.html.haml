@@ -7,4 +7,5 @@
 = content_for :navigation do
 	= render 'agencies/partials/navigation', :agency => @agency
 
-= render 'booklets/partials/content', :booklet => @agency.booklets.first
+- unless @agency.booklets.empty?
+	= render 'booklets/partials/content', :booklet => @agency.booklets.first
