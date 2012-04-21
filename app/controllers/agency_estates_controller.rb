@@ -9,7 +9,7 @@ class AgencyEstatesController < EstatesController
     def lookup_resources
         r = Estate.where(:agency_id => current_parent_resource.id)
         if q
-            r = r.where(:features_ids.all => features) unless features.empty?
+            r = r.where(:features_ids.all => features) if features
             r = r.where(:bedrooms => {  '$gte' => q[:beds_from].to_i,
                                         '$lte' => q[:beds_to].to_i    })
             r = r.where(:district_id => District.find(q[:district_id]).id) unless q[:district_id].blank?

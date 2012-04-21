@@ -1,6 +1,5 @@
 class Estate
     include Mongoid::Document
-    include Mongoid::Spacial::Document
 
     field :title, localize: true
     field :teaser, localize: true

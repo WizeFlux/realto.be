@@ -8,7 +8,7 @@ class EstatesController < ApplicationController
     helper_method :q, :checkin, :checkout, :selected_days
     
     def features
-        params[:features].values.delete_if(&:empty?) if q
+        params[:features].values.delete_if(&:empty?) if (q && params[:features])
     end
 
     def selected_days
