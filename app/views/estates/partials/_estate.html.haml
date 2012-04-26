@@ -37,7 +37,7 @@
 			= estate.title
 			%br
 			%small
-				%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+				- #%span<>= t('counters.bedrooms', :count => estate.bedrooms)
 				- if q and selected_days > 0
 					%b= ', ' + estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
 					= t('counters.days', :count => selected_days)
@@ -54,7 +54,7 @@
 				%h2
 					= estate.title
 					%small
-						%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+						- #%span<>= t('counters.bedrooms', :count => estate.bedrooms)
 				%p
 					- if q and selected_days > 0
 						%b= estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
