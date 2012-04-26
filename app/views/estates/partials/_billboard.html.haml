@@ -21,7 +21,7 @@
 		%h1
 			= estate.title
 			%small
-				%span<>= t('counters.bedrooms', :count => estate.bedrooms)
+				- #%span<>= t('counters.bedrooms', :count => estate.bedrooms)
 				- if estate.pricelist.min_price && estate.pricelist.max_price
 					= ','
 					= estate.pricelist.min_price.to_s + '$ -'
