@@ -4,17 +4,17 @@
 			.control-group
 				= f.label :checkin, t('views.q.checkin'), :class => 'control-label'
 				.controls
-					.input-prepend
-						%span.add-on
-							%i.icon-calendar
+					.input-append
 						= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
+						%span.add-on<>
+							%i.icon-calendar
 			.control-group
 				= f.label :checkout, t('views.q.checkout'), :class => 'control-label'
 				.controls
-					.input-prepend
-						%span.add-on
-							%i.icon-calendar
+					.input-append
 						= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
+						%span.add-on<>
+							%i.icon-calendar
 			.control-group
 				= f.label :beds_from, t('views.q.beds_from'), :class => 'control-label'
 				.controls

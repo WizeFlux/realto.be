@@ -28,9 +28,9 @@
 								%td.price
 									- price = pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id)
 									= f.fields_for :prices, price do |ff|
-										.input-prepend
-											%span.add-on $
+										.input-append
 											= ff.text_field :value,:class => 'span1'
+											%span.add-on<> $
 
 	%fieldset.seasons
 		:javascript

@@ -1,3 +1,4 @@
+//= require html5
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
@@ -7,7 +8,7 @@
 //= require uploader/cors/jquery.xdr-transport
 //= require uploader/jquery.iframe-transport
 //= require uploader/jquery.fileupload
-
 //= require uploader/locale
 //= require uploader/main
-//= require colorbox/jquery.colorbox
+
+//= require jquery.fancybox

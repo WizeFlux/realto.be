@@ -18,4 +18,4 @@
 				= f.check_box :remember_me
 	.form-actions
 		= f.submit t('views.interface.enter'), :disable_with => t('views.interface.entering'), :class => 'btn btn-primary'
-		= link_to t('views.interface.cancel'), Redirect.find(params[:redirect_id]).url, :disable_with => 'Processing', :class => 'btn'
+		= link_to t('views.interface.cancel'), Redirect.find(params[:redirect_id]).url, :disable_with => t('views.interface.canceling'), :class => 'btn'

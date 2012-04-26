@@ -13,17 +13,17 @@
 	.control-group
 		= f.label :checkin, t('models.booking.checkin'), :class => 'control-label'
 		.controls
-			.input-prepend
-				%span.add-on
-					%i.icon-calendar
+			.input-append
 				= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+				%span.add-on<>
+					%i.icon-calendar
 	.control-group
 		= f.label :checkout, t('models.booking.checkout'), :class => 'control-label'
 		.controls
-			.input-prepend
-				%span.add-on
-					%i.icon-calendar
+			.input-append
 				= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+				%span.add-on<>
+					%i.icon-calendar
 	
 	= render 'estate_pricing/partials/pricing', :pricing => f.object.estate.pricings.create({:checkin => f.object.checkin, :checkout => f.object.checkout})
 	:javascript
@@ -58,7 +58,7 @@
 			.controls
 				= f.hidden_field :customer_id, :value => (f.object.new? ? current_person.id : f.object.customer.id)
 				.input-prepend
-					%span.add-on
+					%span.add-on<>
 						%i.icon-user
 					%input.input-large.disabled{:disabled => :disabled, :value => (f.object.new? ? current_person.name : f.object.customer.name)}
 					%span.help-inline

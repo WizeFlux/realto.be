@@ -1,7 +1,9 @@
-%article.span9= (booklet.content and !booklet.content.empty?) ? raw(booklet.format!) : t('views.interface.write_something')
+%article.span9<>= (booklet.content and !booklet.content.empty?) ? raw(booklet.format!) : t('views.interface.write_something')
 :javascript
-	$("a.colorbox").colorbox({rel:"box"});
-%aside.span3
+	$(function(){
+		$("a.colorbox").fancybox();
+	});
+%aside.span3<>
 	- if editable?
 		.btn-group.pull-right
 			- if booklet.describable.instance_of? Agency
@@ -11,7 +13,6 @@
 				= link_to agency_booklet_url(booklet), :method => :delete, :confirm => t('views.interface.aus'), :disable_with => t('views.interface.removing'), :class => 'btn btn-danger' do
 					%i.icon-white.icon-trash
 					= t 'views.interface.remove'
-			
 					
 			- if booklet.describable.instance_of? Estate
 				= link_to edit_estate_booklet_url(booklet.describable, booklet), :remote => true, :class => :btn, :disable_with => t('views.interface.opening') do
@@ -20,10 +21,10 @@
 				= link_to estate_booklet_url(booklet.describable, booklet), :method => :delete, :confirm => t('views.interface.aus'), :disable_with => t('views.interface.removing'), :class => 'btn btn-danger' do
 					%i.icon-white.icon-trash
 					= t 'views.interface.remove'
-				
-	
+
 	- booklet.tags.each do |tag|
 		%h4
 			%img{:src => "/assets/icons/features/#{tag.feature.title_translations['en'].parameterize}.png"}
 			= tag.feature.title
 		%p= tag.text
+		%br

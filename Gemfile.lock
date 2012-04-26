@@ -164,7 +164,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
-  bootstrap-sass (~> 2.0.1)
+  bootstrap-sass (~> 2.0.2)
   bson
   bson_ext
   carrierwave!

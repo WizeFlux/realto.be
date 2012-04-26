@@ -1,9 +1,9 @@
 #pricing.control-group{:class => ->{(pricing.actual ? 'success' : 'error')}.call}
 	%label.control-label= t 'models.pricelist.price.base'
 	.controls
-		.input-prepend
-			%span.add-on $
+		.input-append
 			%input.disabled.span2{:disabled => :disabled, :type => :text, :value => ->{(pricing.actual ? pricing.total : 'N/A')}.call}
+			%span.add-on<> $
 			%span.help-inline
 				%i.ajax
 			- unless pricing.actual
