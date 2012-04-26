@@ -41,15 +41,19 @@ ru:
             estates: Недвижимость
             settings: Настройки
             teaser: Лозунг
-            bedrooms: Спальни
-            adults_max: Макс. взрослых
-            childs_max: Макс. детей
             seasons: Сезоны
         pricelist:
             base: Прайс-лист
             price:
                 base: Цена
                 prices: Цены
+            accommodation:
+                base: Вариант размещения
+                s: Варианты размещения
+                bedrooms: Спальни
+                adults_max: "Макс. взрослых"
+                childs_max: "Макс. детей"
+                amount: Количество
             leasespan:
                 base: Арендный период
                 s: Арендные периоды

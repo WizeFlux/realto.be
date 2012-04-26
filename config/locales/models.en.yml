@@ -42,15 +42,19 @@ en:
             estates: Estates
             settings: Settings
             teaser: Teaser
-            bedrooms: Bedrooms
-            adults_max: Max adults
-            childs_max: 'Max children'
             seasons: Seasons
         pricelist:
             base: 'Pricelist'
             price:
                 base: 'Price'
                 prices: 'Prices'
+            accommodation:
+                base: Accommodation
+                s: Accommodations
+                bedrooms: Bedrooms
+                adults_max: Max adults
+                childs_max: Max children
+                amount: Amount
             leasespan:
                 base: 'Lease span'
                 s: 'Lease spans'

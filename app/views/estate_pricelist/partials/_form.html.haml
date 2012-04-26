@@ -1,37 +1,86 @@
 - url = estate_pricelist_url(pricelist.estate)
 = nested_form_for pricelist, :url => url, :remote => true, :html => {:class => 'form-horizontal'} do |f|
-	- if f.object.prices.exists?
-		%fieldset
-			%table.table.table-striped
-				%thead
-					%tr
-						%th
-							%h3
-								= t 'models.pricelist.price.base'
-								%small= '(' + t('views.interface.lv_per_day') + ')'
-						- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
-							%th
-								= leasespan.from.to_s
-								= '-'
-								= leasespan.to.to_s
-								= t 'views.pricelist.days'
-				%tbody
-					- pricelist.seasons.order_by([[:start, :asc]]).each do |season|
-						%tr
-							%td
-								%h5= season.title
-								%span
-									= l(season.start.to_date, :format => :long)
-									= ' - '
-									= l(season.finish.to_date, :format => :long)
-							- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
-								%td.price
-									- price = pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id)
-									= f.fields_for :prices, price do |ff|
-										.input-append
-											= ff.text_field :value,:class => 'span1'
-											%span.add-on<> $
 
+	- if f.object.prices.exists?
+		- pricelist.accommodations.each do |accommodation|
+			%fieldset
+				%table.table.table-striped
+					%thead
+						%tr
+							%th
+								%h3
+									= accommodation.title
+									%small= '(' + t('views.interface.lv_per_day') + ')'
+							- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
+								%th
+									= leasespan.from.to_s
+									= '-'
+									= leasespan.to.to_s
+									= t 'views.pricelist.days'
+					%tbody
+						- pricelist.seasons.order_by([[:start, :asc]]).each do |season|
+							%tr
+								%td
+									%h5= season.title
+									%span
+										= l(season.start.to_date, :format => :long)
+										= ' - '
+										= l(season.finish.to_date, :format => :long)
+								- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
+									%td.price
+										- price = pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accommodation_id: accommodation.id)
+										= f.fields_for :prices, price do |ff|
+											.input-append
+												= ff.text_field :value,:class => 'span1'
+												%span.add-on<> $
+
+	
+	%fieldset.accommodations
+		:javascript
+			$('#edit_pricelist_#{f.object.id} .accommodations').on('focus', '.autocomplete', function(event){
+				if ($(this).autocomplete('widget').attr('id')) {
+					$(this).autocomplete({
+						source: #{Filling.where(:model => 'Accommodation', :field => 'title').map(&:text)}
+					});
+				};
+			});
+		
+		%legend= t 'models.pricelist.accommodation.s'
+		%br	
+		= f.fields_for :accommodations do |ff|
+			.well
+				= ff.link_to_remove :class => 'btn btn-danger btn-small pull-right' do
+					%i.icon-minus.icon-white
+				.control-group
+					= ff.label :bedrooms, t('models.pricelist.accommodation.bedrooms'), :class => 'control-label'
+					.controls
+						= ff.select :bedrooms, options_for_select(1..16, ff.object.bedrooms), {}, :class => 'input-mini'
+						= raw('&nbsp &nbsp &nbsp &nbsp')
+						= ff.label :adults_max, t('models.pricelist.accommodation.adults_max'), :class => 'help-inline'
+						= raw('&nbsp &nbsp')
+						= ff.select :adults_max, options_for_select(1..32, ff.object.adults_max), {}, :class => 'input-mini'
+						= raw('&nbsp &nbsp &nbsp &nbsp')
+						= ff.label :childs_max, t('models.pricelist.accommodation.childs_max'), :class => 'help-inline'
+						= raw('&nbsp &nbsp')
+						= ff.select :childs_max, options_for_select(1..32, ff.object.childs_max), {}, :class => 'input-mini'
+						= raw('&nbsp &nbsp &nbsp &nbsp')
+						= ff.label :amount, t('models.pricelist.accommodation.amount'), :class => 'help-inline'
+						= raw('&nbsp &nbsp')
+						= ff.select :amount, options_for_select(1..32, ff.object.amount), {}, :class => 'input-mini'
+						
+				= ff.fields_for :title_translations do |fff|
+					.control-group
+						= fff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
+						.controls
+							= fff.text_field :en, :class => 'span9 autocomplete', :value => (ff.object.title_translations['en'] unless ff.object.title.blank?)
+					.control-group
+						= fff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
+						.controls
+							= fff.text_field :ru, :class => 'span9 autocomplete', :value => (ff.object.title_translations['ru'] unless ff.object.title.blank?)
+		= f.link_to_add :accommodations, :class => 'btn btn-success btn-small' do
+			%i.icon-plus.icon-white
+		
+	
 	%fieldset.seasons
 		:javascript
 			$('#edit_pricelist_#{f.object.id} .seasons').on('focus', '.autocomplete', function(event){

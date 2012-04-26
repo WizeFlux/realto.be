@@ -4,10 +4,6 @@ class Estate
     field :title, localize: true
     field :teaser, localize: true
     field :slug, type: String
-
-    field :bedrooms, type: Integer, :default => 1
-    field :adults_max, type: Integer, :default => 1
-    field :childs_max, type: Integer, :default => 0
     
     field :features_ids, type: Array, :default => []
     field :average_price, type: Integer, :default => 0
@@ -40,6 +36,5 @@ class Estate
     embeds_many :contacts
     embeds_many :pricings
     belongs_to :district
-    belongs_to :agency
-    
+    belongs_to :agency    
 end

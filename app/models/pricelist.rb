@@ -9,9 +9,11 @@ class Pricelist
     
     def price_control
         prices.each {|price| price.delete if price.outdated?}
-        leasespans.each do |leasespan|
-            seasons.each do |season|
-                prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id)
+        accommodations.each do |accommodation|
+            leasespans.each do |leasespan|
+                seasons.each do |season|
+                    prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accomodation_id: accommodation.id)
+                end
             end
         end
     end
@@ -53,6 +55,9 @@ class Pricelist
     
     embeds_many :choices, cascade_callbacks: true
     accepts_nested_attributes_for :choices, :allow_destroy => true
+
+    embeds_many :accommodations, cascade_callbacks: true
+    accepts_nested_attributes_for :accommodations, :allow_destroy => true
     
     embeds_many :seasons, cascade_callbacks: true
     accepts_nested_attributes_for :seasons, :allow_destroy => true

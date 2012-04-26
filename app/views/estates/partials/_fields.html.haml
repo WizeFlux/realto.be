@@ -31,20 +31,6 @@
 		.controls
 			= f.select :district_id, options_from_collection_for_select(District.all, 'id', 'title', f.object.district_id), {:include_blank => true}, :class => 'input-xlarge'
 
-	.control-group
-		= f.label :bedrooms, t('models.estate.bedrooms'), :class => 'control-label'
-		.controls
-			= f.select :bedrooms, options_for_select(1..16, f.object.bedrooms), {}, :class => 'input-mini'
-
-	.control-group
-		= f.label :adults_max, t('models.estate.adults_max'), :class => 'control-label'
-		.controls
-			= f.select :adults_max, options_for_select(1..32, f.object.adults_max), {}, :class => 'input-mini'
-
-	.control-group
-		= f.label :childs_max, t('models.estate.childs_max'), :class => 'control-label'
-		.controls
-			= f.select :childs_max, options_for_select(1..32, f.object.childs_max), {}, :class => 'input-mini'
 %fieldset
 	%legend= t 'views.estate.privat'
 	
