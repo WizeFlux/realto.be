@@ -1,5 +1,5 @@
 %p.pull-left
-	%a.thumb.thumbnail{:href => '#'}
+	%a.thumb.thumbnail{:href => estate_url(estate)}
 		- if !estate.booklets.empty? and estate.booklets[0].avatar_id
 			%img.thumb{:src => estate.booklets[0].avatar.image.thumb.url}
 		- else
@@ -20,16 +20,24 @@
 	.page-header
 		%h1
 			= estate.title
-			%small
-				- #%span<>= t('counters.bedrooms', :count => estate.bedrooms)
-				- if estate.pricelist.min_price && estate.pricelist.max_price
-					= ','
-					= estate.pricelist.min_price.to_s + '$ -'
-					= estate.pricelist.max_price.to_s + '$'
-					= t 'views.interface.lv_per_day'
-	%p
-		%big= estate.teaser
+			%small= estate.district.title
+	.row-fluid			
+		.span7
+			%big= estate.teaser
+			%p
+				= plus_one_button(request.url)
+				= like_button(request.url)
+		- if estate.pricelist.prices.exists?
+			.span5
+				%table.table.table-bordered.table-condensed
+					%thead
+						%tr
+							%td
+								%big= link_to (t('models.pricelist.price.base') + ' ' + t('views.interface.lv_per_day')), estate_pricelist_url(estate)
+					%tbody
+					- estate.pricelist.accommodations.each do |accommodation|
+						%tr
+							%td= accommodation.title
+							%td= accommodation.min_price.to_s + '$ - ' + accommodation.max_price.to_s + '$'	
 
-	%p
-		= plus_one_button(request.url)
-		= like_button(request.url)
+

@@ -5,7 +5,7 @@ class EstatesController < ApplicationController
     include Traits::Actions::Update
     include Traits::Actions::Destroy
     
-    helper_method :q, :checkin, :checkout, :selected_days
+    helper_method :q, :checkin, :checkout, :selected_days, :beds_from, :beds_to
     
     def features
         params[:features].values.delete_if(&:empty?) if (q && params[:features])
@@ -15,14 +15,22 @@ class EstatesController < ApplicationController
         (checkout - checkin).to_i
     end
 
+    def beds_from
+        q ? q[:beds_from].to_i : 0
+    end
+    
+    def beds_to
+        q ? q[:beds_to].to_i : 10
+    end
+    
     def checkin
-      q[:checkin].to_date || Date.today
+        q ? (q[:checkin].to_date or Date.today) : Date.today
     end
     
     def checkout
-      q[:checkout].to_date || Date.today
+        q ? (q[:checkout].to_date or Date.today) : Date.today
     end
-
+    
     def q
         params[:q]
     end

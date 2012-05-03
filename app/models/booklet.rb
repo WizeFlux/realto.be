@@ -12,7 +12,7 @@ class Booklet
     before_save :collect_features_ids
     
     def collect_features_ids
-        describable.update_attributes!(:features_ids => tags.map(&:feature_id)) if describable.kind_of? Estate
+        describable.update_attributes!(:features_ids => describable.features) if describable.kind_of? Estate
     end
 
     def format!

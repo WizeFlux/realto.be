@@ -9,7 +9,9 @@
 
 = stylesheet_link_tag :application
 
-%script{:type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDNIzwBp4cCrFqwk-mZ6OIRSMuvP_Uc22U&sensor=true"}
+%meta{:controller => controller_name, :action => action_name}
+- if (controller_name == "agency_estates") && (action_name == "index")
+	%script{:type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDNIzwBp4cCrFqwk-mZ6OIRSMuvP_Uc22U&sensor=true"}
 = javascript_include_tag :application
 - if I18n.locale == :ru
 	= javascript_include_tag :'jquery.ui.datepicker-ru'

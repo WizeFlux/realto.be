@@ -5,34 +5,34 @@
 				%i.icon-pencil
 				= t 'views.interface.edit'
 	- if pricelist.prices.exists?
-		- pricelist.accommodations.each do |accommodation|
-			%table.table.table-striped
+		%table.table
+			- pricelist.accommodations.each do |accommodation|
 				%thead
 					%tr
 						%th
+							%br
 							%h3
 								= accommodation.title
-								%small= '(' + t('views.interface.lv_per_day') + ')'
+								%small='(' + t('views.interface.lv_per_day') + ')'
 						- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
 							%th
-								= leasespan.from.to_s
-								= '-'
-								= leasespan.to.to_s
-								= t 'views.pricelist.days'
-				%tbody
+								%big
+									= leasespan.from.to_s
+									= '-'
+									= leasespan.to.to_s
+									= t 'views.pricelist.days'
+				%tbody				
 					- pricelist.seasons.order_by([[:start, :asc]]).each do |season|
 						%tr
 							%td
-								%h5= season.title
+								%h4= season.title
 								%span
 									= l(season.start.to_date, :format => :long)
 									= ' - '
 									= l(season.finish.to_date, :format => :long)
 							- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
 								%td.price
-									= pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accommodation_id: accommodation.id).value
-									%b= ' $'
-
+									%big= pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accommodation_id: accommodation.id).value.to_s + ' $'
 	- if pricelist.choices.exists?
 		%table.table
 			%thead

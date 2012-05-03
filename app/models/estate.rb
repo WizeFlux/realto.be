@@ -6,13 +6,20 @@ class Estate
     field :slug, type: String
     
     field :features_ids, type: Array, :default => []
+    
     field :average_price, type: Integer, :default => 0
+    field :max_bedrooms, type: Integer, :default => 0
+    field :min_bedrooms, type: Integer, :default => 0
     
     field :comment, type: String
     field :comission, type: String
     field :margin, type: String
     
     key :slug
+    
+    def features
+        booklets.inject([]){|i,b| i << b.tags.map(&:feature_id)}.flatten.uniq
+    end
 
     def able_to_update?(person)
         agency.able_to_update?(person)

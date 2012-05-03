@@ -11,6 +11,18 @@ class Accommodation
     
     after_save :populate_fillings
 
+    def min_price
+        pricelist.prices.where(:accommodation_id => id).map(&:value).min
+    end
+    
+    def max_price
+        pricelist.prices.where(:accommodation_id => id).map(&:value).max
+    end
+
+    def average_price
+        (min_price + max_price) / 2 / bedrooms
+    end
+    
     def populate_fillings
         title_translations.each do |key, value|
             Filling.find_or_create_by(

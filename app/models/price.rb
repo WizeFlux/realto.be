@@ -12,15 +12,15 @@ class Price
     end
     
     def accommodation
-        pricelist.accommodations.where(_id: accommodation_id.to_s).first
-    end    
+        pricelist.accommodations.find accommodation_id if accommodation_id
+    end
     
     def season
-        pricelist.seasons.where(_id: season_id.to_s).first
+        pricelist.seasons.find season_id if season_id
     end
     
     def leasespan
-        pricelist.leasespans.where(_id: leasespan_id.to_s).first
+        pricelist.leasespans.find leasespan_id if leasespan_id
     end
         
     embedded_in :pricelist

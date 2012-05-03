@@ -9,6 +9,12 @@ class Booking
       ['New', 'Confirmed', 'Invoice', 'Paid', 'Voucher']
   end
   
+  field :accommodation_id
+  
+  def accommodation
+      estate.pricelist.accommodations.where(_id: accommodation_id.to_s).first
+  end
+  
   field :price, type: Integer, default: 0
   
   field :checkin, type: Date, default: -> {Date.today}

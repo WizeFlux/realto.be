@@ -1,46 +1,36 @@
 class Pricelist
     include Mongoid::Document
     
-    before_save :price_control, :collect_average_price
-
-    def collect_average_price
-        estate.update_attributes!(:average_price => prices.map(&:value).instance_eval{reduce(:+) / size.to_f}) if prices.exists?
+    before_save :price_control, :pricings_control, :update_estate_information
+    
+    def update_estate_information
+        estate.update_attributes(
+            average_price: accommodations.map(&:average_price).inject(:+)/accommodations.count,
+            max_bedrooms: accommodations.map(&:bedrooms).max,
+            min_bedrooms: accommodations.map(&:bedrooms).min
+        )
     end
     
     def price_control
-        prices.each {|price| price.delete if price.outdated?}
-        accommodations.each do |accommodation|
-            leasespans.each do |leasespan|
-                seasons.each do |season|
-                    prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accomodation_id: accommodation.id)
-                end
-            end
-        end
+        prices.each {|p| p.delete if p.outdated?}
     end
     
-    def price_for(day, days)
+    def pricings_control
+        estate.pricings.delete_all
+    end
+    
+    def price_for(day, days, accommodation_id)
         if !leasespans.where(:from.lte => days, :to.gte => days).to_a.empty? && !seasons.where(:start.lte => day, :finish.gte => day).to_a.empty?
             prices.where(
                 :leasespan_id => leasespans.where(:from.lte => days, :to.gte => days).first.id,
-                :season_id => seasons.where(:start.lte => day, :finish.gte => day).first.id
+                :season_id => seasons.where(:start.lte => day, :finish.gte => day).first.id,
+                :accommodation_id => accommodation_id
             ).first
         else
             false
         end
     end
-    
-    def format!
-        RedCloth.new(content).to_html
-    end
-    
-    def min_price
-        prices.map(&:value).min
-    end
-    
-    def max_price
-        prices.map(&:value).max
-    end
-    
+
     def able_to_update?(person)
         estate.able_to_update?(person)
     end

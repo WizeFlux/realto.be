@@ -10,6 +10,12 @@
 						= f.radio_button :status, status
 						= t "models.booking.status.#{status.downcase}"
 					= raw('&nbsp &nbsp')
+
+	.control-group
+		= f.label :accommodation_id, t('models.pricelist.accommodation.base'), :class => 'control-label'
+		.controls
+			= f.select :accommodation_id, options_from_collection_for_select(f.object.estate.pricelist.accommodations, :id, :title, f.object.accommodation_id), {}, :class => 'input-xlarge'
+
 	.control-group
 		= f.label :checkin, t('models.booking.checkin'), :class => 'control-label'
 		.controls
@@ -17,6 +23,7 @@
 				= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
 				%span.add-on<>
 					%i.icon-calendar
+					
 	.control-group
 		= f.label :checkout, t('models.booking.checkout'), :class => 'control-label'
 		.controls
@@ -25,16 +32,17 @@
 				%span.add-on<>
 					%i.icon-calendar
 	
-	= render 'estate_pricing/partials/pricing', :pricing => f.object.estate.pricings.create({:checkin => f.object.checkin, :checkout => f.object.checkout})
+	= render 'estate_pricing/partials/pricing', :pricing => f.object.estate.pricings.find_or_create_by({:checkin => f.object.checkin, :checkout => f.object.checkout, :accommodation_id => f.object.accommodation_id.to_s})
 	:javascript
 		$('#pricing .ajax').hide();
-		$('#booking_checkin, #booking_checkout').change(function(){
+		$('#booking_checkin, #booking_checkout, #booking_accommodation_id').change(function(){
 			$('#pricing .ajax').show();
 			$.ajax({
 				data: {
 					pricing: {
 						checkin: $('#booking_checkin').val(),
 						checkout: $('#booking_checkout').val(),
+						accommodation_id: $('#booking_accommodation_id').val(),
 					}
 				},
 				type: 'GET',
@@ -46,11 +54,11 @@
 	.control-group
 		= f.label :adults, t('models.booking.adults'), :class => 'control-label'
 		.controls
-			= f.select :adults, options_for_select(1..f.object.estate.adults_max, f.object.adults), {}, :class => 'input-mini'
+			= f.select :adults, options_for_select(1..24, 1), {}, :class => 'input-mini'
 			= raw('&nbsp &nbsp &nbsp &nbsp')
 			= f.label :children, t('models.booking.children'), :class => 'help-inline'
 			= raw('&nbsp &nbsp')
-			= f.select :children, options_for_select(0..f.object.estate.childs_max, f.object.children), {}, :class => 'input-mini'
+			= f.select :children, options_for_select(0..24, 0), {}, :class => 'input-mini'
 
 	- if (signed_in? && f.object.new?) || (f.object.customer && !f.object.new?)
 		.control-group

@@ -2,26 +2,28 @@
 = nested_form_for pricelist, :url => url, :remote => true, :html => {:class => 'form-horizontal'} do |f|
 
 	- if f.object.prices.exists?
-		- pricelist.accommodations.each do |accommodation|
-			%fieldset
-				%table.table.table-striped
+		%fieldset
+			%table.table
+				- pricelist.accommodations.each do |accommodation|
 					%thead
 						%tr
 							%th
+								%br
 								%h3
 									= accommodation.title
-									%small= '(' + t('views.interface.lv_per_day') + ')'
+									%small='(' + t('views.interface.lv_per_day') + ')'
 							- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
 								%th
-									= leasespan.from.to_s
-									= '-'
-									= leasespan.to.to_s
-									= t 'views.pricelist.days'
+									%big
+										= leasespan.from.to_s
+										= '-'
+										= leasespan.to.to_s
+										= t 'views.pricelist.days'
 					%tbody
 						- pricelist.seasons.order_by([[:start, :asc]]).each do |season|
 							%tr
 								%td
-									%h5= season.title
+									%h4= season.title
 									%span
 										= l(season.start.to_date, :format => :long)
 										= ' - '

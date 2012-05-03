@@ -35,17 +35,31 @@
 		%img.marker.pull-left{:src => marker_url}
 		%h4
 			= estate.title
-			%br
 			%small
-				- #%span<>= t('counters.bedrooms', :count => estate.bedrooms)
-				- if q and selected_days > 0
-					%b= ', ' + estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
-					= t('counters.days', :count => selected_days)
+				%big
+					- if (selected_days >= 1)
+						= '(' + t('counters.days', :count => selected_days) + ')'
+					- else
+						= '(' + t('views.interface.lv_per_day') + ')'
+			%br
+		%table
+			- estate.pricelist.accommodations.where({:bedrooms => {'$gte' => beds_from, '$lte' => beds_to}}).each do |accommodation|
+				- pricing = estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc, :accommodation_id => accommodation.id.to_s).first
+				%tr
+					%td= t('counters.bedrooms', :count => accommodation.bedrooms)
+					%td= raw('&nbsp—&nbsp')
+					- if (selected_days >= 1)
+						%td= pricing.total.to_s + '$'
+					- else
+						%td
+							= accommodation.min_price.to_s + '$'
+							= '-'
+							= accommodation.max_price.to_s + '$'			
 	.clearfix
 	.hidden.infowindow
 		%ul.thumbnails
 			%li.span3
-				%a.thumbnail{:href => estate_url(estate)}
+				%a.thumbnail{:href => estate_url(estate), :target => '_blank'}
 					- if !estate.booklets.empty? and estate.booklets[0].avatar_id
 						%img.medium{:src => estate.booklets[0].avatar.image.medium.url}
 					- else
@@ -53,17 +67,35 @@
 			%li.span5
 				%h2
 					= estate.title
-					%small
-						- #%span<>= t('counters.bedrooms', :count => estate.bedrooms)
-				%p
-					- if q and selected_days > 0
-						%b= estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc).first.total.to_s + ' $'
-						= t('counters.days', :count => selected_days)
-						= t 'views.estate.from'
-						%i= l(checkin, :format => :long)
-						= t 'views.estate.to'
-						%i= l(checkout, :format => :long)
-
-				%p= estate.teaser						
+					%small= estate.district.title
+				%table.table.table-bordered.table-condensed
+					%thead
+						%tr
+							%td
+								- if q and selected_days > 0
+									%big
+										= t 'models.pricelist.price.base'
+										= t('counters.days', :count => selected_days)
+									%br
+									= t 'views.estate.from'
+									%i= l(checkin, :format => :long)
+									= t 'views.estate.to'
+									%i= l(checkout, :format => :long)
+								- else
+									%big
+										= t 'models.pricelist.price.base'
+										= t 'views.interface.lv_per_day'
+					%tbody
+						- estate.pricelist.accommodations.where({:bedrooms => {'$gte' => beds_from, '$lte' => beds_to}}).each do |accommodation|
+							- pricing = estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc, :accommodation_id => accommodation.id.to_s).first
+							%tr
+								%td
+									= accommodation.title
+								- if (selected_days >= 1)
+									%td= pricing.total.to_s + '$'
+								- else
+									%td= accommodation.min_price.to_s + '$ - ' + accommodation.max_price.to_s + ' $'
+			%li.span8
+				%big= estate.teaser						
 		.clearfix
 			= link_to t('views.interface.open'), estate_url(estate), :target => '_blank', :class => 'btn btn-primary btn-large pull-right'
