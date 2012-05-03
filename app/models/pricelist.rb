@@ -5,10 +5,10 @@ class Pricelist
     
     def update_estate_information
         estate.update_attributes(
-            average_price: accommodations.map(&:average_price).inject(:+)/accommodations.count,
+            average_price: accommodations.map(&:average_price).inject(:+) / accommodations.count,
             max_bedrooms: accommodations.map(&:bedrooms).max,
             min_bedrooms: accommodations.map(&:bedrooms).min
-        )
+        ) if prices.exists?
     end
     
     def price_control

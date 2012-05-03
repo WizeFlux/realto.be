@@ -8,19 +8,19 @@ class Price
     
     
     def outdated?
-        !leasespan.exists? || !season.exists? || !accommodation.exists?
+        leasespan.nil? || season.nil? || accommodation.nil?
     end
     
     def accommodation
-        pricelist.accommodations.where(id: accommodation_id)
+        pricelist.accommodations.where(_id: accommodation_id)
     end
     
     def season
-        pricelist.seasons.where(id: season_id)
+        pricelist.seasons.where(_id: season_id).first
     end
     
     def leasespan
-        pricelist.leasespans.where(id:leasespan_id)
+        pricelist.leasespans.where(_id: leasespan_id).first
     end
         
     embedded_in :pricelist
