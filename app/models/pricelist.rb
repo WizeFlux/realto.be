@@ -1,7 +1,11 @@
 class Pricelist
     include Mongoid::Document
     
-    before_save :price_control, :pricings_control, :update_estate_information
+    before_save :pricings_control, :update_estate_information, :prices_control
+    
+    def prices_control
+        prices.any_in(_id: prices.map(&:outdated?).compact).delete_all
+    end
     
     def update_estate_information
         estate.update_attributes(
@@ -9,10 +13,6 @@ class Pricelist
             max_bedrooms: accommodations.map(&:bedrooms).max,
             min_bedrooms: accommodations.map(&:bedrooms).min
         ) if prices.exists?
-    end
-    
-    def price_control
-        prices.each {|p| p.delete if p.outdated?}
     end
     
     def pricings_control
@@ -52,10 +52,10 @@ class Pricelist
     embeds_many :seasons, cascade_callbacks: true
     accepts_nested_attributes_for :seasons, :allow_destroy => true
 
-    embeds_many :leasespans
+    embeds_many :leasespans, cascade_callbacks: true
     accepts_nested_attributes_for :leasespans, :allow_destroy => true    
     
-    embeds_many :prices
+    embeds_many :prices, cascade_callbacks: true
     accepts_nested_attributes_for :prices, :allow_destroy => true
     
     embedded_in :estate

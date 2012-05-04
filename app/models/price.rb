@@ -5,14 +5,13 @@ class Price
     field :accommodation_id
     field :season_id
     field :leasespan_id
-    
-    
+
     def outdated?
-        leasespan.nil? || season.nil? || accommodation.nil?
+        id if (leasespan.nil? || season.nil? || accommodation.nil?)
     end
     
     def accommodation
-        pricelist.accommodations.where(_id: accommodation_id)
+        pricelist.accommodations.where(_id: accommodation_id).first
     end
     
     def season
