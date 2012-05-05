@@ -1,6 +1,9 @@
 %fieldset.row-fluid
 	%fieldset.span8<>
-		%legend= t 'models.booklet.base'
+		%legend
+			= t 'models.booklet.base'
+			%a{href: "http://redcloth.org/hobix.com/textile/", :target => "_blank"}
+				%i.icon-question-sign
 		= f.fields_for :title_translations do |ff|
 			.control-group
 				= ff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'

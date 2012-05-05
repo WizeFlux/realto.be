@@ -23,8 +23,13 @@
 					= t 'views.interface.remove'
 
 	- booklet.tags.each do |tag|
-		%h4
-			%img{:src => "/assets/icons/features/#{tag.feature.title_translations['en'].parameterize}.png"}
-			= tag.feature.title
-		%p= tag.text
-		%br
+		%table.table
+			%thead
+				%tr
+					%td{width: "20px"}
+						%img{:src => "/assets/icons/features/#{tag.feature.title_translations['en'].parameterize}.png"}
+					%td
+						%h3=tag.feature.title
+			%tbody
+				%tr
+					%td{colspan: 2}= tag.text

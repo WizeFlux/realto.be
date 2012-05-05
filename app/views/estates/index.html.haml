@@ -4,31 +4,27 @@
 = content_for :billboard do
 	= render 'estates/partials/search_form'
 
-#map-canvas.map.span9
+= render 'estates/partials/list', :estates => @estates
+
+#map-canvas.map.span4
 	:javascript
 		var map;
-		var infowindow = new google.maps.InfoWindow();
 		var markers = [];
-
-		$(function() {
-			map = new google.maps.Map($("#map-canvas")[0], {
-				center: new google.maps.LatLng(#{@agency.map.center[:lat]}, #{@agency.map.center[:lng]}),
-				zoom: #{@agency.map.zoom},
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				
-				streetViewControl: false,
-				overviewMapControl: false,
-				rotateControl: false,
-				panControl: false,
-				mapTypeControl: false,
-				
-				zoomControl: true,
-				zoomControlOptions: {
-					position: google.maps.ControlPosition.TOP_RIGHT,
-					style: google.maps.ZoomControlStyle.LARGE
-				}
-			});
-			google.maps.event.addListener(map, 'click', function() {infowindow.close()});
+		map = new google.maps.Map($("#map-canvas")[0], {
+			center: new google.maps.LatLng(#{@agency.map.center[:lat]}, #{@agency.map.center[:lng]}),
+			zoom: #{@agency.map.zoom},
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			
+			streetViewControl: false,
+			overviewMapControl: false,
+			rotateControl: false,
+			panControl: false,
+			mapTypeControl: false,
+			
+			zoomControl: true,
+			zoomControlOptions: {
+				position: google.maps.ControlPosition.TOP_RIGHT,
+				style: google.maps.ZoomControlStyle.LARGE
+			}
 		});
-	
-= render 'estates/partials/list', :estates => @estates
+

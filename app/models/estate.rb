@@ -34,14 +34,17 @@ class Estate
     end
 
     after_create :create_pricelist, :create_map
-    accepts_nested_attributes_for :contacts, :allow_destroy => true
     
-    has_many :bookings
+    accepts_nested_attributes_for :contacts, :allow_destroy => true
+    embeds_many :contacts
+    
+    
     embeds_one :pricelist
     embeds_one :map, :as => :locatable
     embeds_many :booklets, :as => :describable
-    embeds_many :contacts
     embeds_many :pricings
+    
+    has_many :bookings
     belongs_to :district
     belongs_to :agency    
 end

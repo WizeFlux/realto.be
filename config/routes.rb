@@ -21,4 +21,5 @@ RealtoBe::Application.routes.draw do
     end
 
     root :to => 'agencies#show'
+    # root :to => 'estates#index'
 end
