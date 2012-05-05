@@ -25,20 +25,20 @@
 		});
 	
 	.row-fluid
-		.span8
+		.span7
 			= link_to estate_url(estate), :target => '_blank', :class => "thumb thumbnail pull-left" do
 				- if !estate.booklets.empty? and estate.booklets[0].avatar_id
 					%img.nano{:src => estate.booklets[0].avatar.image.nano.url}
 				- else
 					%img.nano{:src => '/assets/dummy/estate.nano.jpg'}
-			%h2
+			%h3
 				= link_to estate_url(estate), :target => '_blank' do
 					= estate.title
 					%small= estate.district.title
 				%a.marker.pull-right{:href => '#'}
 					%img.marker{:src => marker_url}
 			%p= estate.teaser						
-		.span4
+		.span5
 			%table.table.table-bordered.table-condensed
 				%thead
 					%tr
