@@ -15,7 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :quality => 100
 
     version :lightbox do
-        process :resize_to_fill => [800, 600]
+        process :resize_to_limit => [800, 600]
         process :quality => 100
     end
 
