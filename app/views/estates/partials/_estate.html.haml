@@ -1,20 +1,33 @@
 - slim_marker_url = marker(("A".."ZZ").to_a[index], '55bfe6', 0.7, 330)
-- fat_marker_url = marker(("A".."ZZ").to_a[index], '88bfff', 0.7, 330)
+- fat_marker_url = marker(("A".."ZZ").to_a[index], 'ee7777', 0.7, 330)
 
 .estate{:id => estate.id.to_s}<>
 	:javascript
 		$(function(){
+			var slim_icon = new google.maps.MarkerImage('#{slim_marker_url}',
+							new google.maps.Size(47, 54),
+							new google.maps.Point(0,0),
+							new google.maps.Point(0, 54))
+									
+			var fat_icon =	new google.maps.MarkerImage('#{fat_marker_url}',
+							new google.maps.Size(47, 54),
+							new google.maps.Point(0,0),
+							new google.maps.Point(0, 54))
+									
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(#{estate.map.location[:lat]},#{estate.map.location[:lng]}),
 				map: map,
-				icon: new google.maps.MarkerImage('#{slim_marker_url}',
-					new google.maps.Size(47, 54),
-					new google.maps.Point(0,0),
-					new google.maps.Point(0, 54))
+				icon: slim_icon
 			});
 
 			markers.push(marker);
-
+			
+			$('##{estate.id.to_s} a.marker').hover(function(){
+				marker.setIcon(fat_icon);
+			}, function(){
+				marker.setIcon(slim_icon);
+			});
+			
 			$('##{estate.id.to_s} a.marker').click(function(event){
 				event.preventDefault();
 				marker.setAnimation(google.maps.Animation.DROP);
