@@ -17,13 +17,14 @@
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(#{estate.map.location[:lat]},#{estate.map.location[:lng]}),
 				map: map,
-				icon: slim_icon
+				icon: slim_icon,
+				zIndex: 1
 			});
 
 			markers.push(marker);
 			
 			$('##{estate.id.to_s} a.marker').hover(function(){
-				marker.setZIndex(5);
+				marker.setZIndex(2);
 				marker.setIcon(fat_icon);
 			}, function(){
 				marker.setZIndex(1);
@@ -34,6 +35,7 @@
 				event.preventDefault();
 				marker.setAnimation(google.maps.Animation.DROP);
 				map.setCenter(marker.getPosition());
+				map.setZoom(#{estate.map.zoom});
 			});
 
 			google.maps.event.addListener(marker, 'click', function() {
