@@ -68,5 +68,8 @@
 							- if (selected_days >= 1)
 								%td= pricing.total.to_s + '$'
 							- else
-								%td= accommodation.min_price.to_s + '$ - ' + accommodation.max_price.to_s + ' $'
+								- if accommodation.min_price == accommodation.max_price
+									%td= accommodation.min_price.to_s + '$'
+								- else
+									%td= accommodation.min_price.to_s + '$ - ' + accommodation.max_price.to_s + '$'
 	%hr
