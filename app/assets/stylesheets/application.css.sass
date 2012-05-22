@@ -7,9 +7,24 @@
 
 .estates
     .grid
-        height: 600px - 34px - 18px
+        height: 600px// - 34px - 18px
         overflow-y: scroll
+
+.estate
+    position: relative
+    .marker
+        position: absolute
+        top: 0
+        left: 112px
+        .fat
+            display: none
+        &:hover
+            .slim
+                display: none
+            .fat
+                display: inline
         
+    
 .map
     display: block
     height: 600px !important

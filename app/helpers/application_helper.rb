@@ -24,10 +24,10 @@ module ApplicationHelper
         render 'shared/like', :url => url
     end
     
-    def marker(symbol, color)
-        "https://chart.googleapis.com/chart?chst=d_map_spin&chld=0.7|0|#{color}|13|b|#{symbol}"
+    def marker(symbol, color, size, rotation)
+        "https://chart.googleapis.com/chart?chst=d_map_spin&chld=#{size.to_s}|#{rotation.to_s}|#{color}|13|b|#{symbol}"
     end
-    
+
     def plus_one_button(url)
         render 'shared/plus_one', :url => url
     end

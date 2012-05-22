@@ -1,4 +1,5 @@
-- marker_url = marker(("A".."ZZ").to_a[index], '55bfe6')
+- slim_marker_url = marker(("A".."ZZ").to_a[index], '55bfe6', 0.7, 330)
+- fat_marker_url = marker(("A".."ZZ").to_a[index], '88bfff', 0.7, 330)
 
 .estate{:id => estate.id.to_s}<>
 	:javascript
@@ -6,7 +7,10 @@
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(#{estate.map.location[:lat]},#{estate.map.location[:lng]}),
 				map: map,
-				icon: '#{marker_url}'
+				icon: new google.maps.MarkerImage('#{slim_marker_url}',
+					new google.maps.Size(47, 54),
+					new google.maps.Point(0,0),
+					new google.maps.Point(0, 54))
 			});
 
 			markers.push(marker);
@@ -33,29 +37,28 @@
 					%img.nano{:src => '/assets/dummy/estate.nano.jpg'}
 			%h3
 				= link_to estate_url(estate), :target => '_blank' do
-					= estate.title
+					= raw('&nbsp &nbsp') + estate.title
 					%small= estate.district.title
-				%a.marker.pull-right{:href => '#'}
-					%img.marker{:src => marker_url}
 			%p= estate.teaser						
+		%a.marker.pull-right{:href => '#'}
+			%img.slim{:src => slim_marker_url}
+			%img.fat{:src => fat_marker_url}
 		.span5
 			%table.table.table-bordered.table-condensed
 				%thead
 					%tr
 						%td
 							- if q and selected_days > 0
-								%big
-									= t 'models.pricelist.price.base'
-									= t('counters.days', :count => selected_days)
+								= t 'models.pricelist.price.base'
+								= t('counters.days', :count => selected_days)
 								%br
 								= t 'views.estate.from'
 								%i= l(checkin, :format => :long)
 								= t 'views.estate.to'
 								%i= l(checkout, :format => :long)
 							- else
-								%big
-									= t 'models.pricelist.price.base'
-									= t 'views.interface.lv_per_day'
+								= t 'models.pricelist.price.base'
+								= t 'views.interface.lv_per_day'
 				%tbody
 					- estate.pricelist.accommodations.where({:bedrooms => {'$gte' => beds_from, '$lte' => beds_to}}).each do |accommodation|
 						- pricing = estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc, :accommodation_id => accommodation.id.to_s).first
