@@ -23,8 +23,10 @@
 			markers.push(marker);
 			
 			$('##{estate.id.to_s} a.marker').hover(function(){
+				marker.setZIndex(5);
 				marker.setIcon(fat_icon);
 			}, function(){
+				marker.setZIndex(1);
 				marker.setIcon(slim_icon);
 			});
 			
