@@ -10,4 +10,4 @@
 				= label_tag "avatar_#{image.id}", :class => 'btn' do
 					%i.icon-camera
 					= radio_button_tag 'avatar', image.id, selected
-				= link_to_function raw('<i class="icon-minus icon-white" />'), "$(this).parent().parent().parent().parent('li.span2').remove()", :class => "btn btn-danger"
+				= link_to_function raw('<i class="icon-minus icon-white"></i>'), "$(this).parent().parent().parent().parent('li.span2').remove()", :class => "btn btn-danger"

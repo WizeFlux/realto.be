@@ -57,7 +57,23 @@
 	
 	%fieldset.span4<>
 		%legend= t 'models.booklet.pictures'
-		= file_field_tag :fileupload, :multiple => true
+		%br
+		%p
+			= file_field_tag :fileupload, :multiple => true
+			%a.btn#collect{:href => "#"}
+				%i.icon-refresh
+			:javascript
+				$(function() {
+					$('#collect').click(function(event) {
+						event.preventDefault();
+						$('#collection').empty();
+						$('#filepool .caption p').each(function(i) {
+							$('#collection').html($('#collection').html() + $(this).html())
+						});
+					});
+				});
+			
+		%p#collection
 		%ul.thumbnails#filepool
 			- f.object.images.each do |image|
 				= render 'images/blob', :image => image, :selected => (f.object.avatar_id == image.id.to_s)
