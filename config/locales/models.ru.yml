@@ -62,6 +62,7 @@ ru:
             season:
                 base: Сезон
                 seasons: Сезоны
+                datesranges: Диапазоны дат
                 start: Начало
                 finish: Конец
         map:

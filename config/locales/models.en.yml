@@ -63,6 +63,7 @@ en:
             season:
                 base: 'Season'
                 seasons: 'Seasons'
+                datesranges: Dates Ranges
                 start: 'Start'
                 finish: 'Finish'
         map:

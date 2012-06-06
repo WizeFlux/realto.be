@@ -24,7 +24,7 @@
 					.controls
 						= fff.text_field :ru, :class => 'span9 autocomplete', :value => (ff.object.title_translations['ru'] unless ff.object.title.blank?)
 			.control-group
-				%big.control-label Dates ranges
+				%big.control-label= t('models.pricelist.season.datesranges')
 			= ff.fields_for :datesranges do |fff|
 				.control-group
 					= fff.label :start, t('models.pricelist.season.start'), :class => 'control-label'
