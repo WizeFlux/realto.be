@@ -1,12 +1,12 @@
 %ul.nav.nav-pills
 	%li{:class => (params[:order_by] == 'average_price' || !params[:order_by]  ? 'active' : nil)}
-		= link_to url_for(params.merge(:page => 1, :order_by => :average_price, :order => (params[:order] == 'asc' || !params[:order] ? :desc : :asc))), :remote => true, :disable_with => t('views.sort.sorting') do
+		= link_to url_for(params.merge(:page => 1, :order_by => :average_price, :order => (params[:order] == 'asc' || !params[:order] ? :desc : :asc))), :remote => true, 'data-disable-with' => t('views.sort.sorting') do
 			= t 'views.sort.price'
 			- if params[:order_by] == 'average_price' || !params[:order_by]
 				%i.icon-white{:class => (params[:order] == 'asc' || !params[:order] ? 'icon-arrow-up' : 'icon-arrow-down')}
 
 	%li{:class => (['max_bedrooms', 'min_bedrooms'].include?(params[:order_by]) ? 'active' : nil)}
-		= link_to url_for(params.merge(:page => 1, :order_by => (params[:order_by] == 'min_bedrooms' ? 'max_bedrooms' : 'min_bedrooms'), :order => (params[:order_by] == 'min_bedrooms' ? 'desc' : 'asc'))), :remote => true, :disable_with => t('views.sort.sorting') do
+		= link_to url_for(params.merge(:page => 1, :order_by => (params[:order_by] == 'min_bedrooms' ? 'max_bedrooms' : 'min_bedrooms'), :order => (params[:order_by] == 'min_bedrooms' ? 'desc' : 'asc'))), :remote => true, 'data-disable-with' => t('views.sort.sorting') do
 			= t 'views.sort.beds'
 			- if ['max_bedrooms', 'min_bedrooms'].include?(params[:order_by])
 				%i.icon-white{:class => (params[:order] == 'asc' ? 'icon-arrow-up' : 'icon-arrow-down')}

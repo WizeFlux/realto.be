@@ -2,11 +2,11 @@
 	%p
 		.btn-group.pull-right
 			- if map.locatable.instance_of? Agency
-				= link_to edit_agency_map_url, :class => :btn, :disable_with => t('views.interface.opening') do
+				= link_to edit_agency_map_url, :class => :btn, 'data-disable-with' => t('views.interface.opening') do
 					%i.icon-pencil
 					= t 'views.interface.edit'
 			- if map.locatable.instance_of? Estate
-				= link_to edit_estate_map_url(map.locatable), :class => :btn, :disable_with => t('views.interface.opening') do
+				= link_to edit_estate_map_url(map.locatable), :class => :btn, 'data-disable-with' => t('views.interface.opening') do
 					%i.icon-pencil
 					= t 'views.interface.edit'
 		.clearfix

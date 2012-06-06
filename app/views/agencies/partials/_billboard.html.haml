@@ -7,7 +7,7 @@
 %section
 	.btn-group.pull-right
 		- if editable?
-			= link_to edit_agency_url, :remote => true, :class => :btn, :disable_with => t('views.interface.opening') do
+			= link_to edit_agency_url, :remote => true, :class => :btn, 'data-disable-with' => t('views.interface.opening') do
 				%i.icon-pencil
 				= t 'views.interface.edit'
 	.page-header

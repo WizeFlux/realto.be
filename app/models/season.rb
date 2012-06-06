@@ -1,9 +1,6 @@
 class Season
     include Mongoid::Document
-    include Mongoid::MultiParameterAttributes
-    
-    field :start, type: DateTime, default: -> {Date.today}
-    field :finish, type: DateTime, default: -> {Date.today}
+
     field :title, localize: true, default: ''
 
     after_save :populate_fillings
@@ -20,6 +17,9 @@ class Season
             ) if key && value
         end
     end
-
+    
+    embeds_many :datesranges, cascade_callbacks: true
+    accepts_nested_attributes_for :datesranges, :allow_destroy => true
+    
     embedded_in :pricelist
 end

@@ -1,10 +1,10 @@
 .booking.well{:id => booking.id.to_s}
 	- if editable?
 		.btn-group.pull-right
-			= link_to edit_estate_booking_url(booking.estate,booking), :remote => true, :class => :btn, :disable_with => t('views.interface.opening') do
+			= link_to edit_estate_booking_url(booking.estate,booking), :remote => true, :class => :btn, 'data-disable-with' => t('views.interface.opening') do
 				%i.icon-pencil
 				= t 'views.interface.edit'
-			= link_to estate_booking_url(booking.estate,booking), :remote => true, :method => :delete, :confirm => 'Are u shure?', :disable_with => t('views.interface.removing'), :class => 'btn btn-danger' do
+			= link_to estate_booking_url(booking.estate,booking), :remote => true, :method => :delete, :confirm => 'Are u shure?', 'data-disable-with' => t('views.interface.removing'), :class => 'btn btn-danger' do
 				%i.icon-white.icon-trash
 				= t 'views.interface.remove'
 	- if booking.customer

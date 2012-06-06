@@ -1,39 +1,38 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.5'
+
 gem 'rake'
-gem "mongo"
-gem "mongoid"
+gem 'mongoid', '2.4.10'
 gem 'mongoid_spacial'
-gem "bson"
-gem "bson_ext"
+gem 'bson_ext'
+gem 'bson', '1.6.2'
 
-gem "kaminari"
-gem "rb-fsevent"
-gem "koala"
-gem "fabrication"
-gem "faker"
+gem 'kaminari'
+gem 'rb-fsevent'
+gem 'koala'
+gem 'fabrication'
+gem 'faker'
 gem 'RedCloth'
-gem 'haml-rails'
 
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'jquery_datepicker'
-gem "nested_form"
+gem 'nested_form'
 
-gem "mini_magick"
-gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git', :branch => "0.5-stable"
+gem 'mini_magick'
+gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 gem 'russian'
 gem 'unicorn'
 
+gem 'ruby-debug19'
+
 group :assets do
-	# gem 'compass-rails','~> 1.0.0.rc.3'
-	# gem 'compass-colors'
-	# gem 'compass-bootstrap'   
-	gem 'sass-rails', '~> 3.2.3'
-	gem 'bootstrap-sass', '~> 2.0.2'
-	gem 'coffee-rails', '~> 3.2.1'
-	gem 'uglifier', '>= 1.0.3'
+	gem 'sass-rails', '~> 3.2.5'
+	gem 'bootstrap-sass', '~> 2.0.3.1'
+	gem 'coffee-rails', '~> 3.2.2'
+	gem 'uglifier', '~> 1.2.4'
 end
 

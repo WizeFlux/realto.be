@@ -41,8 +41,8 @@
 
 	.row-fluid
 		.btn-group.pull-right
-			= f.button raw('<i class="icon-search icon-white"></i> ' + t('views.interface.search')), :disable_with => t('views.interface.searching'), :type => :submit, :class => 'btn btn-primary'
+			= f.button raw('<i class="icon-search icon-white"></i> ' + t('views.interface.search')), 'data-disable-with' => t('views.interface.searching'), :type => :submit, :class => 'btn btn-primary'
 			= f.button raw('<i class="icon-refresh icon-white"></i> ' + t('views.interface.reset')), :type => :reset, :class => 'btn btn-warning'
 			- if editable?
-				= link_to raw('<i class="icon-file icon-white"></i> ' + t('views.q.new_estate')), new_estate_url, :disable_with => t('views.interface.opening'), :class => 'btn btn-success'
+				= link_to raw('<i class="icon-file icon-white"></i> ' + t('views.q.new_estate')), new_estate_url, 'data-disable-with' => t('views.interface.opening'), :class => 'btn btn-success'
 	%hr

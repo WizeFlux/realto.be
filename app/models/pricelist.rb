@@ -20,17 +20,30 @@ class Pricelist
     end
     
     def price_for(day, days, accommodation_id)
-        if !leasespans.where(:from.lte => days, :to.gte => days).to_a.empty? && !seasons.where(:start.lte => day, :finish.gte => day).to_a.empty?
+        if leasespan_for(days) && season_for(day)
             prices.where(
-                :leasespan_id => leasespans.where(:from.lte => days, :to.gte => days).first.id,
-                :season_id => seasons.where(:start.lte => day, :finish.gte => day).first.id,
+                :leasespan_id => leasespan_for(days).id,
+                :season_id => season_for(day).id,
                 :accommodation_id => accommodation_id
             ).first
         else
             false
         end
     end
-
+    
+    def leasespan_for(days)
+        leasespans.where(:from.lte => days, :to.gte => days).to_a.first
+    end
+    
+    def season_for(day)
+        seasons.each do |season|
+            season.datesranges.each do |dr|
+                return season if (dr.start..dr.finish).include?(day)
+            end
+        end
+        false
+    end
+    
     def able_to_update?(person)
         estate.able_to_update?(person)
     end
