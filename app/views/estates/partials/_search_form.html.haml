@@ -35,7 +35,7 @@
 					= fields_for :features do |ff|
 						- Feature.where(searchable: true).each_with_index do |feature, i|
 							%span
-							.span3
+							.span4
 								= ff.label i, :class => 'checkbox' do
 									= feature.title
 									= ff.check_box i, {}, feature.id, nil
