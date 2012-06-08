@@ -8,6 +8,25 @@
 
 #map-canvas.map.span4
 	:javascript
+		$(function(){
+			$(window).scroll(function() {
+				var canvas = $("#map-canvas");
+				
+				if ($(window).scrollTop() > 285) {
+					canvas.css({
+						position: 'fixed',
+						width: $("#map-canvas").width(),
+						left: $('#estates').offset().left + $('#estates').width() - 3
+					});
+				}else{
+					canvas.css({
+						position: 'relative',
+						left: '0',
+						width: '31.915%'
+					});
+				}
+			});
+		});
 		var map;
 		var markers = [];
 		map = new google.maps.Map($("#map-canvas")[0], {

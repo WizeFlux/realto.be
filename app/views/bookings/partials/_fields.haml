@@ -19,19 +19,19 @@
 	.control-group
 		= f.label :checkin, t('models.booking.checkin'), :class => 'control-label'
 		.controls
-			.input-append
-				= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+			.input-prepend
 				%span.add-on<>
 					%i.icon-calendar
+				= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
 					
 	.control-group
 		= f.label :checkout, t('models.booking.checkout'), :class => 'control-label'
 		.controls
-			.input-append
-				= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'span2'
+			.input-prepend
 				%span.add-on<>
 					%i.icon-calendar
-	
+				= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
+
 	= render 'estate_pricing/partials/pricing', :pricing => f.object.estate.pricings.find_or_create_by({:checkin => f.object.checkin, :checkout => f.object.checkout, :accommodation_id => f.object.accommodation_id.to_s})
 	:javascript
 		$('#pricing .ajax').hide();
