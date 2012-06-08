@@ -58,7 +58,7 @@
 					%img.nano{:src => '/assets/dummy/estate.nano.jpg'}
 			%h3
 				= link_to estate_url(estate), :target => '_blank' do
-					= raw('&nbsp &nbsp') + estate.title
+					= raw('&nbsp &nbsp ') + estate.title
 					%small= estate.district.title
 			%p= estate.teaser						
 		%a.marker.pull-right{:href => '#'}
