@@ -31,5 +31,5 @@
 								- price = pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accommodation_id: accommodation.id)
 								= f.fields_for :prices, price do |ff|
 									.input-append
-										= ff.text_field :value,:class => 'span1'
+										= ff.text_field :value,:class => 'input-mini'
 										%span.add-on<> $
