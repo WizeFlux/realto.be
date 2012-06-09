@@ -5,9 +5,6 @@
 				%i.icon-pencil
 				= t 'views.interface.edit'
 
-
-
-
 	- if pricelist.prices.exists?
 		%table.table
 			- pricelist.accommodations.each do |accommodation|
@@ -39,11 +36,6 @@
 							- pricelist.leasespans.order_by([[:from, :asc]]).each do |leasespan|
 								%td.price
 									%big= pricelist.prices.find_or_create_by(leasespan_id: leasespan.id, season_id: season.id, accommodation_id: accommodation.id).value.to_s + ' $'
-
-
-
-
-
 
 	- if pricelist.choices.exists?
 		%table.table
