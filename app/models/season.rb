@@ -1,9 +1,6 @@
 class Season
     include Mongoid::Document
 
-    field :start, type: DateTime
-    field :finish, type: DateTime
-
     field :title, localize: true, default: ''
 
     after_save :populate_fillings
