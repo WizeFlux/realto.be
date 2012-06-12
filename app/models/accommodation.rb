@@ -12,11 +12,11 @@ class Accommodation
     after_save :populate_fillings
 
     def min_price
-        pricelist.prices.where(:accommodation_id => id).map(&:value).min
+        pricelist.prices.where(:accommodation_id => id).map(&:value).min.to_i
     end
     
     def max_price
-        pricelist.prices.where(:accommodation_id => id).map(&:value).max
+        pricelist.prices.where(:accommodation_id => id).map(&:value).max.to_i
     end
 
     def average_price
