@@ -1,6 +1,8 @@
 class Pricelist
     include Mongoid::Document
     
+    field :comment, localize: true, default: ''
+    
     before_save :pricings_control, :update_estate_information, :prices_control
     
     def prices_control

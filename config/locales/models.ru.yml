@@ -44,6 +44,7 @@ ru:
             seasons: Сезоны
         pricelist:
             base: Прайс-лист
+            comment: Комментарий
             price:
                 base: Цена
                 prices: Цены

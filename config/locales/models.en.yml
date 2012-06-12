@@ -44,7 +44,8 @@ en:
             teaser: Teaser
             seasons: Seasons
         pricelist:
-            base: 'Pricelist'
+            base: Pricelist
+            comment: Comment
             price:
                 base: 'Price'
                 prices: 'Prices'
