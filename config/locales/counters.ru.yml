@@ -6,15 +6,10 @@ ru:
             many: "%{count} Спален"
             other: "%{count} Спален"
         days:
-            one: "за %{count} день"
-            few: "за %{count} дня"
-            many: "за %{count} дней"
-            other: "за %{count} дней"
-        days:
-            one: "за %{count} день"
-            few: "за %{count} дня"
-            many: "за %{count} дней"
-            other: "за %{count} дней"
+            one: "за %{count} ночь"
+            few: "за %{count} ночи"
+            many: "за %{count} ночей"
+            other: "за %{count} ночей"
         people:
             one: "%{count} гость"
             few: "%{count} гостя"

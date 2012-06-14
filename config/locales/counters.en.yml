@@ -4,8 +4,8 @@ en:
             one: "%{count} Bedroom"
             other: "%{count} Bedrooms"
         days:
-            one: "for %{count} day"
-            other: "for %{count} days"
+            one: "for %{count} night"
+            other: "for %{count} nights"
         people:
             one: "%{count} person"
             other: "%{count} people"
