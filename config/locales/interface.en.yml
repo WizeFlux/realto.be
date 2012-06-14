@@ -18,7 +18,7 @@ en:
             nothing_found: "Sorry, but nothing found"
             all: All
             write_something: 'Please write something, this should not be empty!'
-            lv_per_day: 'per day'
+            lv_per_day: 'per night'
             aus: 'Are you sure?'
             login: 'Login'
             email: 'Email'
@@ -62,9 +62,9 @@ en:
             information: 'Estate information'
             bedrooms: 'Bedrooms number'
             by_name: 'By name'
-            amenities: 'Necessary amenities'
+            amenities: Necessary amenities
         pricelist:
             menu: Services
-            free: 'included'
-            days: 'Days'
-            day: 'Day'
+            free: included
+            days: Nights
+            day: Night

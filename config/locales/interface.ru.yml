@@ -18,7 +18,7 @@ ru:
             nothing_found: "Извините, ничего не найдено"
             all: Все
             write_something: 'Пожалуста, напишите что-либо. Здесь не должно быть пусто!'
-            lv_per_day: в сутки
+            lv_per_day: за ночь
             aus: Вы уверенны?
             login: Вход
             email: Электронная почта
@@ -66,5 +66,5 @@ ru:
         pricelist:
             menu: Услуги
             free: включено
-            days: Дней
-            day: День
+            days: Ночей
+            day: Ночь
