@@ -36,7 +36,7 @@ namespace :carrierwave do
         ids_in_use.map!(&:to_s)
         
         storage.children.each do |f|
-            if ids_in_use.include?(f.basename.to_s)
+            unless ids_in_use.include?(f.basename.to_s)
                 FileUtils.rm_rf f.to_s
                 print '.'
             end
