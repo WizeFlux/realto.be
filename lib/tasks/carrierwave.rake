@@ -31,6 +31,19 @@ namespace :carrierwave do
         p "#{ids_in_use.size} images used"
         p "#{ids_to_delete.size} images deleted"
         ids_to_delete.each(&:delete)
+        
+        storage = Rails.root.join('public/uploads/image/image')
+        ids_in_use.map!(&:to_s)
+        
+        storage.children.each do |f|
+            if ids_in_use.include?(f.basename.to_s)
+                FileUtils.rm_rf f.to_s
+                print '.'
+            end
+        end
+        print " ok\n"
+        p "#{ids_in_use.size} images used"
+        p "#{ids_to_delete.size} images deleted"
     end
     
 end
