@@ -2,35 +2,27 @@
 	- if f.object.new?
 		%legend= t('views.booking.form')
 	- else
-		.control-group
-			= f.label :status, t('models.booking.status.base'), :class => 'control-label'
-			.controls
-				- Booking.statuses.each do |status|
-					= f.label "status_#{status.downcase}", :class => 'radio inline' do
-						= f.radio_button :status, status
-						= t "models.booking.status.#{status.downcase}"
-					= raw('&nbsp &nbsp')
+		= bs_wrapper f, :status, t('models.booking.status.base') do
+			- Booking.statuses.each do |status|
+				= f.label "status_#{status.downcase}", :class => 'radio inline' do
+					= f.radio_button :status, status
+					= t "models.booking.status.#{status.downcase}"
+				= raw('&nbsp &nbsp')
 
-	.control-group
-		= f.label :accommodation_id, t('models.pricelist.accommodation.base'), :class => 'control-label'
-		.controls
-			= f.select :accommodation_id, options_from_collection_for_select(f.object.estate.pricelist.accommodations, :id, :title, f.object.accommodation_id), {}, :class => 'input-xlarge'
+	= bs_wrapper f, :accommodation_id, t('models.pricelist.accommodation.base') do
+		= f.select :accommodation_id, options_from_collection_for_select(f.object.estate.pricelist.accommodations, :id, :title, f.object.accommodation_id), {}, :class => 'input-xlarge'
 
-	.control-group
-		= f.label :checkin, t('models.booking.checkin'), :class => 'control-label'
-		.controls
-			.input-prepend
-				%span.add-on<>
-					%i.icon-calendar
-				= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
+	= bs_wrapper f, :checkin, t('models.booking.checkin') do
+		.input-prepend
+			%span.add-on<>
+				%i.icon-calendar
+			= f.datepicker :checkin, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
 					
-	.control-group
-		= f.label :checkout, t('models.booking.checkout'), :class => 'control-label'
-		.controls
-			.input-prepend
-				%span.add-on<>
-					%i.icon-calendar
-				= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
+	= bs_wrapper f, :checkout, t('models.booking.checkout') do
+		.input-prepend
+			%span.add-on<>
+				%i.icon-calendar
+			= f.datepicker :checkout, :dateFormat => 'yy-mm-dd', :firstDay => 1, :minDate => Date.today, :class => 'input-medium'
 
 	= render 'estate_pricing/partials/pricing', :pricing => f.object.estate.pricings.find_or_create_by({:checkin => f.object.checkin, :checkout => f.object.checkout, :accommodation_id => f.object.accommodation_id.to_s})
 	:javascript
@@ -51,50 +43,34 @@
 			});
 		});
 	
-	.control-group
-		= f.label :adults, t('models.booking.adults'), :class => 'control-label'
-		.controls
-			= f.select :adults, options_for_select(1..24, 1), {}, :class => 'input-mini'
-			= raw('&nbsp &nbsp &nbsp &nbsp')
-			= f.label :children, t('models.booking.children'), :class => 'help-inline'
-			= raw('&nbsp &nbsp')
-			= f.select :children, options_for_select(0..24, 0), {}, :class => 'input-mini'
+	= bs_wrapper f, :adults, t('models.booking.adults') do
+		= f.select :adults, options_for_select(1..24, 1), {}, :class => 'input-mini'
+		= raw('&nbsp &nbsp &nbsp &nbsp')
+		= f.label :children, t('models.booking.children'), :class => 'help-inline'
+		= raw('&nbsp &nbsp')
+		= f.select :children, options_for_select(0..24, 0), {}, :class => 'input-mini'
 
 	- if (signed_in? && f.object.new?) || (f.object.customer && !f.object.new?)
-		.control-group
-			= f.label :customer_id, t('models.booking.person'), :class => 'control-label'
-			.controls
-				= f.hidden_field :customer_id, :value => (f.object.new? ? current_person.id : f.object.customer.id)
-				.input-prepend
-					%span.add-on<>
-						%i.icon-user
-					%input.input-large.disabled{:disabled => :disabled, :value => (f.object.new? ? current_person.name : f.object.customer.name)}
-					%span.help-inline
-						- if f.object.new?
-							= link_to t('views.interface.logout'), session_url(:redirect_id => this_page_redirect.id), :method => :delete
-						- else
-							- if f.object.customer.fb_url
-								%a{:href => f.object.customer.fb_url} Open Facebook
+		= bs_wrapper f, :customer_id, t('models.booking.person') do
+			= f.hidden_field :customer_id, :value => (f.object.new? ? current_person.id : f.object.customer.id)
+			.input-prepend
+				%span.add-on<>
+					%i.icon-user
+				%input.input-large.disabled{:disabled => :disabled, :value => (f.object.new? ? current_person.name : f.object.customer.name)}
+				%span.help-inline
+					- if f.object.new?
+						= link_to t('views.interface.logout'), session_url(:redirect_id => this_page_redirect.id), :method => :delete
+					- else
+						- if f.object.customer.fb_url
+							%a{:href => f.object.customer.fb_url} Open Facebook
 	- else
-		.control-group
-			= f.label :addressing, t('models.booking.person'), :class => 'control-label'
-			.controls
-				= f.text_field :addressing, :class =>'input-xlarge'
-				- if f.object.new?
-					%a.iconed.help-inline{:href => Koala::Facebook::OAuth.new(oauth_url(this_page_redirect.id.to_s)).url_for_oauth_code(:permissions => "email"), :style => 'background-image: url(/assets/icons/facebook.png) !important;'} Facebook
-		.control-group
-			= f.label :email, t('models.booking.email'), :class => 'control-label'
-			.controls
-				= f.text_field :email, :class => 'input-xlarge'
-		.control-group
-			= f.label :phone, t('models.booking.phone'), :class => 'control-label'
-			.controls
-				= f.text_field :phone, :class => 'input-xlarge'
-		.control-group
-			= f.label :skype, t('models.booking.skype'), :class => 'control-label'
-			.controls
-				= f.text_field :skype, :class => 'input-xlarge'
-	.control-group
-		= f.label :message, t('models.booking.message'), :class => 'control-label'
-		.controls
-			= f.text_area :message, :rows => 6, :class => 'input-xlarge'
+		= bs_wrapper f, :addressing, t('models.booking.person') do
+			= f.text_field :addressing, :class =>'input-xlarge'
+			- if f.object.new?
+				%a.iconed.help-inline{:href => Koala::Facebook::OAuth.new(oauth_url(this_page_redirect.id.to_s)).url_for_oauth_code(:permissions => "email"), :style => 'background-image: url(/assets/icons/facebook.png) !important;'} Facebook
+		
+		= bs_text_field f, :email, t('models.booking.email'), :class => 'input-xlarge'
+		= bs_text_field f, :phone, t('models.booking.phone'), :class => 'input-xlarge'
+		= bs_text_field f, :skype, t('models.booking.skype'), :class => 'input-xlarge'
+	
+	= bs_text_area f, :message, t('models.booking.message'), :rows => 6, :class => 'input-xlarge'

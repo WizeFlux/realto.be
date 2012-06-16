@@ -14,6 +14,7 @@ class Estate
     field :comment, type: String
     field :comission, type: String
     field :margin, type: String
+    field :hidden, type: Boolean, default: false
     
     key :slug
     

@@ -5,15 +5,14 @@
 		.well
 			= ff.link_to_remove :class => 'btn btn-danger btn-small pull-right' do
 				%i.icon-minus.icon-white
-			.control-group
-				= ff.label :from, t('models.pricelist.leasespan.from'), :class => 'control-label'
-				.controls
-					= ff.text_field :from, :class => 'input-mini'
-					= raw('&nbsp &nbsp &nbsp &nbsp')
-					= ff.label :to, t('models.pricelist.leasespan.to'), :class => 'help-inline'
-					= raw('&nbsp &nbsp')
-					= ff.text_field :to, :class => 'input-mini'
-					= raw('&nbsp &nbsp')
-					= (t('views.pricelist.days')).downcase
+			= bs_wrapper ff, :from, t('models.pricelist.leasespan.from') do 
+				= ff.text_field :from, :class => 'input-mini'
+				= raw('&nbsp &nbsp &nbsp &nbsp')
+				= ff.label :to, t('models.pricelist.leasespan.to'), :class => 'help-inline'
+				= raw('&nbsp &nbsp')
+				= ff.text_field :to, :class => 'input-mini'
+				= raw('&nbsp &nbsp')
+				= (t('views.pricelist.days')).downcase
+
 	= f.link_to_add :leasespans, :class => 'btn btn-success btn-small' do
 		%i.icon-plus.icon-white

@@ -5,6 +5,8 @@ en:
         agency:
             base: 'Agency'
             contacts: 'Contacts'
+            operating_languages: Operating languages
+            default_language: Default language
         booking:
             base: 'Booking'      
             bookings: 'Bookings'
@@ -34,6 +36,7 @@ en:
                 feature: 'Feature'
                 text: 'Text'
         estate:
+            hidden: Hidden
             comment: Comment
             margin: Margin
             comission: Comission

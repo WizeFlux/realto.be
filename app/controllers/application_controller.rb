@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_locale
-        I18n.locale = params[:locale] || I18n.default_locale
+        I18n.locale = params[:locale] || current_agency.default_language || I18n.default_locale
     end
 
     def editable?

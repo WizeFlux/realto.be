@@ -4,24 +4,9 @@
 			= t 'models.booklet.base'
 			%a{href: "http://redcloth.org/hobix.com/textile/", :target => "_blank"}
 				%i.icon-question-sign
-		= f.fields_for :title_translations do |ff|
-			.control-group
-				= ff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
-				.controls
-					= ff.text_field :en, :class => 'input-xlarge', :value => (f.object.title_translations['en'] unless f.object.new?)
-			.control-group
-				= ff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
-				.controls
-					= ff.text_field :ru, :class => 'input-xlarge', :value => (f.object.title_translations['ru'] unless f.object.new?)
-		= f.fields_for :content_translations do |ff|
-			.control-group
-				= ff.label :en, (t('models.booklet.content') + ' (En)'), :class => 'control-label'
-				.controls.row-fluid
-					= ff.text_area :en, :class => 'span9', :rows => 20, :value => (f.object.content_translations['en'] unless f.object.content.blank?)
-			.control-group
-				= ff.label :ru, (t('models.booklet.content') + ' (Ru)'), :class => 'control-label'
-				.controls.row-fluid
-					= ff.text_area :ru, :class => 'span9', :rows => 20, :value => (f.object.content_translations['ru'] unless f.object.content.blank?)
+
+		= bs_i18n_text_field f, :title, t('models.title'), :class => 'span11'
+		= bs_i18n_text_area f, :content, t('models.booklet.content'), :class => 'span11', :rows => 20
 
 		%fieldset.tags
 			:javascript
@@ -39,19 +24,9 @@
 				.well
 					= ff.link_to_remove :class => 'btn-danger btn btn-small pull-right' do
 						%i.icon-minus.icon-white
-					.control-group
-						= ff.label :feature_id, t('models.booklet.tag.feature'), :class => 'control-label'
-						.controls
-							= ff.select :feature_id, options_from_collection_for_select(Feature.all, 'id', 'title', :selected => ff.object.feature_id), {}, :class => 'input-large'
-					= ff.fields_for :text_translations do |fff|
-						.control-group
-							= fff.label :en, (t('models.booklet.tag.text') + ' (En)'), :class => 'control-label'
-							.controls
-								= fff.text_field :en, :class => 'span6 autocomplete', :value => (ff.object.text_translations['en'] unless ff.object.text.blank?)
-						.control-group
-							= fff.label :ru, (t('models.booklet.tag.text') + ' (Ru)'), :class => 'control-label'
-							.controls
-								= fff.text_field :ru, :class => 'span6  autocomplete', :value => (ff.object.text_translations['ru'] unless ff.object.text.blank?)	
+					= bs_wrapper ff, :feature_id, t('models.booklet.tag.feature') do
+						= ff.select :feature_id, options_from_collection_for_select(Feature.all, 'id', 'title', :selected => ff.object.feature_id), {}, :class => 'input-large'
+					= bs_i18n_text_field ff, :text, t('models.booklet.tag.text'), :class => 'span10 autocomplete'
 			= f.link_to_add :tags, :class => 'btn-success btn btn-small' do
 				%i.icon-plus.icon-white
 	
@@ -77,6 +52,7 @@
 		%ul.thumbnails#filepool
 			- f.object.images.each do |image|
 				= render 'images/blob', :image => image, :selected => (f.object.avatar_id == image.id.to_s)
+
 		:javascript
 			$(function() {
 				$('#fileupload').fileupload({
@@ -94,3 +70,4 @@
 					}
 			    });
 			});
+		

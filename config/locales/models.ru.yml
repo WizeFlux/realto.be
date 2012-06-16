@@ -5,6 +5,8 @@ ru:
         agency:
             base: Агентство
             contacts: Контакты
+            operating_languages: Языки
+            default_language: Язык по умолчанию
         booking:
             base: Брнирование
             bookings: Заказы
@@ -33,6 +35,7 @@ ru:
                 feature: Удобство
                 text: Текст
         estate:
+            hidden: Скрыть
             comment: Комментарий
             margin: Наценка
             comission: Комиссия

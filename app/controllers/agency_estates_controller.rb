@@ -7,7 +7,8 @@ class AgencyEstatesController < EstatesController
     before_filter :find_resource, :only => %w[show update edit destroy delete]
     
     def lookup_resources
-        r = Estate.where(:agency_id => current_parent_resource.id)
+        r = Estate.where(:agency_id => current_parent_resource.id).includes(:district)
+        r = r.excludes(:hidden => true) unless current_resource.able_to_update?(current_person)
         if q
             r = r.where(:features_ids.all => features) if features
             r = r.where(:"pricelist.accommodations".matches => {:bedrooms => {'$gte' => q[:beds_from].to_i, '$lte' => q[:beds_to].to_i}})

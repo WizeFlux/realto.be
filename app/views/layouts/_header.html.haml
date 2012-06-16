@@ -9,10 +9,13 @@
 				%li{:class => active_if(['agency_estates', 'estate_booklets', 'estate_pricelist', 'estate_bookings', 'estate_map'], false)}
 					%a{:href => estates_url}= t 'models.estate.estates'
 				%li.divider-vertical
-				%li{:class => ->{I18n.locale == :ru ? 'active' : ''}.call}
-					%a.iconed{:href => url_for(:locale => :ru), :style => 'background-image: url(/assets/icons/flags/ru.gif)'}Русский
-				%li{:class => ->{I18n.locale == :en ? 'active' : ''}.call}
-					%a.iconed{:href => url_for(:locale => :en), :style => 'background-image: url(/assets/icons/flags/en.gif)'}English
+				- if current_agency.operating_languages.size > 1
+					- if current_agency.operating_languages.include?('ru')
+						%li{:class => ->{I18n.locale == :ru ? 'active' : ''}.call}
+							%a.iconed{:href => url_for(:locale => :ru), :style => 'background-image: url(/assets/icons/flags/ru.gif)'}Русский
+					- if current_agency.operating_languages.include?('en')
+						%li{:class => ->{I18n.locale == :en ? 'active' : ''}.call}
+							%a.iconed{:href => url_for(:locale => :en), :style => 'background-image: url(/assets/icons/flags/en.gif)'}English
 				
 			%ul.nav.pull-right
 				- if signed_in?

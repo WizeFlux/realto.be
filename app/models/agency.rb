@@ -5,9 +5,21 @@ class Agency
     key :subdomain
     
     after_create :create_map
+    before_save :clear_operating_languages
     
     field :title, localize: true, default: ' '
     field :teaser, localize: true, default: ' '
+    field :default_language, type: String, default: 'en'
+    field :operating_languages, type: Array, default: ['en', 'ru']
+    
+    def self.avaiable_languages
+        ['en', 'ru']
+    end
+    
+    def clear_operating_languages
+        operating_languages.delete("")
+        logger.info operating_languages
+    end
     
     def able_to_update?(person)
         person == owner

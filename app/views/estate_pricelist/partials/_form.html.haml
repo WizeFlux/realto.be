@@ -3,15 +3,7 @@
 	= render 'estate_pricelist/partials/prices_fields', :f => f, :pricelist => pricelist
 	%br
 	%br
-	= f.fields_for :comment_translations do |ff|
-		.control-group
-			= ff.label :en, (t('models.pricelist.comment') + ' (En)'), :class => 'control-label'
-			.controls
-				= ff.text_area :en, :class => 'span8', :rows => 5, :value => (f.object.comment_translations['en'] if f.object.comment_translations['en'])
-		.control-group
-			= ff.label :ru, (t('models.pricelist.comment') + ' (Ru)'), :class => 'control-label'
-			.controls
-				= ff.text_area :ru, :class => 'span8', :rows => 5, :value => (f.object.comment_translations['ru'] if f.object.comment_translations['ru'])
+	= bs_i18n_text_area f, :comment, t('models.title'), :class => 'span8', :rows => 5
 	%br
 	%br
 	= render 'estate_pricelist/partials/accommodations_fields', :f => f, :pricelist => pricelist
@@ -24,7 +16,6 @@
 	%br
 	%br
 	= render 'estate_pricelist/partials/choices_fields', :f => f, :pricelist => pricelist
-
 
 	%fieldset
 		.form-actions

@@ -1,56 +1,24 @@
 %fieldset
 	%legend= t 'views.estate.information'
-
-	= f.fields_for :title_translations do |ff|
-		.control-group
-			= ff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
-			.controls
-				= ff.text_field :en, :class => 'input-xlarge', :value => (f.object.title_translations['en'] unless f.object.new?)
-		.control-group
-			= ff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
-			.controls
-				= ff.text_field :ru, :class => 'input-xlarge', :value => (f.object.title_translations['ru'] unless f.object.new?)
-
-	= f.fields_for :teaser_translations do |ff|
-		.control-group
-			= ff.label :en, (t('models.teaser') + ' (En)'), :class => 'control-label'
-			.controls
-				= ff.text_area :en, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['en'] unless f.object.new?)
-		.control-group
-			= ff.label :ru, (t('models.teaser') + ' (Ru)'), :class => 'control-label'
-			.controls
-				= ff.text_area :ru, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['ru'] unless f.object.new?)
-
-	.control-group
-		= f.label :slug, t('models.estate.slug'), :class => 'control-label'
-		.controls
-			= f.text_field :slug, :class => 'input-xlarge', :disabled => !f.object.new?
-
-	.control-group
-		= f.label :district_id, t('models.district.base'), :class => 'control-label'
-		.controls
-			= f.select :district_id, options_from_collection_for_select(District.all, 'id', 'title', f.object.district_id), {:include_blank => true}, :class => 'input-xlarge'
+	
+	= bs_i18n_text_field f, :title, t('models.title'), :class => 'span8'
+	= bs_i18n_text_area f, :teaser, t('models.teaser'), :rows => '2', :class => 'span8'
+	= bs_text_field f, :slug, t('models.estate.slug'), :class => 'input-xlarge', :disabled => !f.object.new?
+	= bs_wrapper f, :district_id, t('models.district.base') do
+		= f.select :district_id, options_from_collection_for_select(District.all, 'id', 'title', f.object.district_id), {:include_blank => true}, :class => 'input-xlarge'
+	= bs_wrapper f, :hidden, t('models.estate.hidden') do
+		%label.checkbox
+			= f.check_box :hidden
 
 %fieldset
 	%legend= t 'views.estate.privat'
 	
-	.control-group
-		= f.label :comission, t('models.estate.comission'), :class => 'control-label'
-		.controls
-			= f.text_field :comission, :class => 'input-xlarge'
+	= bs_text_field f, :comission, t('models.estate.comission'), :class => 'input-xlarge'
+	= bs_text_field f, :margin, t('models.estate.margin'), :class => 'input-xlarge'
+	= bs_text_area f, :comment, t('models.estate.comment'), :class => 'input-xlarge', :rows => 5
 	
 	.control-group
-		= f.label :margin, t('models.estate.margin'), :class => 'control-label'
-		.controls
-			= f.text_field :margin, :class => 'input-xlarge'
-
-	.control-group
-		= f.label :comment, t('models.estate.comment'), :class => 'control-label'
-		.controls
-			= f.text_area :comment, :rows => 5, :class => 'input-xlarge'
-
-	.control-group
-		%label.control-label= t 'models.agency.contact.contacts'
+		%label.control-label= t 'models.agency.contacts'
 		.controls
 			= f.fields_for :contacts do |ff|
 				= ff.select :kind, options_for_select(Contact.kinds, :selected => ff.object.kind), {}, :class => 'input-small'

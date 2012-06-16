@@ -1,27 +1,25 @@
 = nested_form_for agency, :url => agency_url, :remote => true, :html => {:class => 'form-horizontal'} do |f|
 	%fieldset
 		%legend= t 'views.agency.information'
-		= f.fields_for :title_translations do |ff|
-			.control-group
-				= ff.label :en, (t('models.title') + ' (En)'), :class => 'control-label'
-				.controls
-					= ff.text_field :en, :class => 'input-xlarge', :value => (f.object.title_translations['en'] if f.object.title_translations['en'])
-			.control-group
-				= ff.label :ru, (t('models.title') + ' (Ru)'), :class => 'control-label'
-				.controls
-					= ff.text_field :ru, :class => 'input-xlarge', :value => (f.object.title_translations['ru'] if f.object.title_translations['ru'])
-		= f.fields_for :teaser_translations do |ff|
-			.control-group
-				= ff.label :en, (t('models.teaser') + ' (En)'), :class => 'control-label'
-				.controls
-					= ff.text_area :en, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['en'] if f.object.teaser_translations['en'])
-			.control-group
-				= ff.label :ru, (t('models.teaser') + ' (Ru)'), :class => 'control-label'
-				.controls
-					= ff.text_area :ru, :class => 'input-xlarge', :rows => 5, :value => (f.object.teaser_translations['ru'] if f.object.teaser_translations['ru'])
-
+		
+		= bs_i18n_text_field f, :title, t('models.title'), :class => 'span8'
+		= bs_i18n_text_area f, :teaser, t('models.teaser'), :rows => '2', :class => 'span8'
+		
+		= bs_wrapper f, :operating_languages, t('models.agency.operating_languages') do
+			- Agency.avaiable_languages.each do |language| 
+				= label_tag language, :class => 'checkbox inline' do
+					= check_box_tag 'agency[operating_languages][]', language, agency.operating_languages.include?(language), :id => language
+					= language.classify
+			= hidden_field_tag 'agency[operating_languages][]', nil
+		
+		= bs_wrapper f, :default_language, t('models.agency.default_language') do
+			- agency.operating_languages.each do |language| 
+				= f.label "default_language_#{language}", :class => 'radio inline' do
+					= f.radio_button :default_language, language
+					= language.classify
+			
 		.control-group
-			%label.control-label= t 'models.agency.contact.contacts'
+			%label.control-label= t 'models.agency.contacts'
 			.controls
 				= f.fields_for :contacts do |ff|
 					= ff.select :kind, options_for_select(Contact.kinds, :selected => ff.object.kind), {}, :class => 'input-small'

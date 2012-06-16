@@ -1,8 +1,11 @@
 production:
     database: realtobe
+    identity_map_enabled: true
 
 development:
     database: realtobe
+    identity_map_enabled: true
 
 test:
     database: realtobe_test
+    identity_map_enabled: true
