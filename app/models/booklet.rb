@@ -39,6 +39,7 @@ class Booklet
     end
     
     embedded_in :describable, polymorphic: true
+    
     has_and_belongs_to_many :images
 
     embeds_many :tags, cascade_callbacks: true
