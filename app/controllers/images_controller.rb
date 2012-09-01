@@ -12,26 +12,29 @@ class ImagesController < ApplicationController
 
     def resource_create_success
         respond_to do |format|
-          format.html {  
-            render :json => [json_respond].to_json, :content_type => 'text/html', :layout => false
-          }
-          format.json {  
-            render :json => [json_respond].to_json			
-          }
-          format.js {  
-            render :json => [json_respond].to_json			
-          }
+            format.html {  
+                render :json => [json_respond].to_json, :content_type => 'text/html', :layout => false
+            }
+            format.json {  
+                render :json => [json_respond].to_json			
+            }
+            format.js {  
+                render :json => [json_respond].to_json			
+            }
         end
     end
     
     def json_respond
-      {
-        "name" => @image.image.filename,
-        "size" => @image.image.size,
-        "url" => @image.image.url,
-        "html" => render_to_string(:layout => false, :partial => 'images/blob', :formats => [:html], :handlers => [:haml], :locals => {:image => @image}),
-        "id" => @image.id
-      }
+        {
+            "name" => @image.image.filename,
+            "size" => @image.image.size,
+            "url" => @image.image.url,
+            "html" => render_to_string(
+                :partial => 'images/blob',
+                :formats => [:html],
+                :locals => {:image => @image}),
+            "id" => @image.id
+        }
     end
     
     def resource_create_failure

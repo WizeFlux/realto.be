@@ -12,23 +12,21 @@ class ImageUploader < CarrierWave::Uploader::Base
         "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
-    process :quality => 100
-
     version :lightbox do
         process :resize_to_limit => [1024, 768]
         process :quality => 100
     end
-
+    
     version :thumb do
         process :resize_to_fill => [290, 215]
         process :quality => 100
     end
-
+    
     version :medium do
         process :resize_to_fill => [210, 145]
         process :quality => 100
     end
-
+    
     version :nano do
         process :resize_to_fill => [130, 97]
         process :quality => 100

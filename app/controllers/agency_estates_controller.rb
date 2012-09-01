@@ -8,20 +8,24 @@ class AgencyEstatesController < EstatesController
     
     def lookup_resources
         r = Estate.where(:agency_id => current_parent_resource.id).includes(:district)
+        
         r = r.excludes(:hidden => true) unless current_resource.able_to_update?(current_person)
+        
         if q
             r = r.where(:features_ids.all => features) if features
-            r = r.where(:"pricelist.accommodations".matches => {:bedrooms => {'$gte' => q[:beds_from].to_i, '$lte' => q[:beds_to].to_i}})
-            r = r.where(:district_id => District.find(q[:district_id]).id) unless q[:district_id].blank?
+            r = r.where(:"pricelist.accommodations".elem_match => {:bedrooms => {'$gte' => q[:beds_from].to_i, '$lte' => q[:beds_to].to_i}})            
+            r = r.where(:district_id => Moped::BSON::ObjectId(q[:district_id]) ) unless q[:district_id].blank?
             if selected_days >= 1
                 r.each do |estate| 
                     estate.pricelist.accommodations.each do |accommodation|
-                        estate.pricings.find_or_create_by(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc, :accommodation_id => accommodation.id.to_s)
+                        estate.pricings.find_or_create_by(  :checkin => checkin,
+                                                            :checkout => checkout,
+                                                            :accommodation_id => accommodation.id)
                     end
                 end
-                r = r.where(:pricings.matches => {  :checkin => checkin.to_time.utc,
-                                                    :checkout => checkout.to_time.utc,
-                                                    :actual => true  })
+                r = r.where(:pricings.elem_match => {   :checkin => checkin,
+                                                        :checkout => checkout,
+                                                        :actual => true  })
             end
         end
         r.order_by(resource_sort_conditions)

@@ -1,5 +1,5 @@
 %fieldset
-	- if f.object.new?
+	- if f.object.new_record?
 		%legend= t('views.booking.form')
 	- else
 		= bs_wrapper f, :status, t('models.booking.status.base') do
@@ -50,15 +50,15 @@
 		= raw('&nbsp &nbsp')
 		= f.select :children, options_for_select(0..24, 0), {}, :class => 'input-mini'
 
-	- if (signed_in? && f.object.new?) || (f.object.customer && !f.object.new?)
+	- if (signed_in? && f.object.new_record?) || (f.object.customer && !f.object.new_record?)
 		= bs_wrapper f, :customer_id, t('models.booking.person') do
-			= f.hidden_field :customer_id, :value => (f.object.new? ? current_person.id : f.object.customer.id)
+			= f.hidden_field :customer_id, :value => (f.object.new_record? ? current_person.id : f.object.customer.id)
 			.input-prepend
 				%span.add-on<>
 					%i.icon-user
-				%input.input-large.disabled{:disabled => :disabled, :value => (f.object.new? ? current_person.name : f.object.customer.name)}
+				%input.input-large.disabled{:disabled => :disabled, :value => (f.object.new_record? ? current_person.name : f.object.customer.name)}
 				%span.help-inline
-					- if f.object.new?
+					- if f.object.new_record?
 						= link_to t('views.interface.logout'), session_url(:redirect_id => this_page_redirect.id), :method => :delete
 					- else
 						- if f.object.customer.fb_url
@@ -66,7 +66,7 @@
 	- else
 		= bs_wrapper f, :addressing, t('models.booking.person') do
 			= f.text_field :addressing, :class =>'input-xlarge'
-			- if f.object.new?
+			- if f.object.new_record?
 				%a.iconed.help-inline{:href => Koala::Facebook::OAuth.new(oauth_url(this_page_redirect.id.to_s)).url_for_oauth_code(:permissions => "email"), :style => 'background-image: url(/assets/icons/facebook.png) !important;'} Facebook
 		
 		= bs_text_field f, :email, t('models.booking.email'), :class => 'input-xlarge'

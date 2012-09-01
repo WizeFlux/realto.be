@@ -10,15 +10,15 @@ class Contact
     
     def href
         case kind
-			when 'Email' 
-			    'mailto:' + entry
-			when 'Skype'
-			    'skype:' + entry + '?call'
+            when 'Email' 
+                'mailto:' + entry
+            when 'Skype'
+                'skype:' + entry + '?call'
 			when 'Facebook'
 			    'http://' + entry
 		    when 'Phone'
-		        'callto://' + entry
-		end
+                'callto://' + entry
+        end
     end
     
     embedded_in :contactable, polymorphic: true

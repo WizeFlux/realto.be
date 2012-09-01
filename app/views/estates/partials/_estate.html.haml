@@ -68,32 +68,33 @@
 			%img.slim{:src => slim_marker_url}
 			%img.fat{:src => fat_marker_url}
 		.span5
-			%table.table.table-bordered.table-condensed
-				%thead
-					%tr
-						%td
-							- if q and selected_days > 0
-								= t 'models.pricelist.price.base'
-								= t('counters.days', :count => selected_days)
-								%br
-								= t 'views.estate.from'
-								%i= l(checkin, :format => :long)
-								= t 'views.estate.to'
-								%i= l(checkout, :format => :long)
-							- else
-								= t 'models.pricelist.price.base'
-								= t 'views.interface.lv_per_day'
-				%tbody
-					- estate.pricelist.accommodations.where({:bedrooms => {'$gte' => beds_from, '$lte' => beds_to}}).each do |accommodation|
-						- pricing = estate.pricings.where(:checkin => checkin.to_time.utc, :checkout => checkout.to_time.utc, :accommodation_id => accommodation.id.to_s).first
+			- unless estate.pricelist.accommodations.empty?
+				%table.table.table-bordered.table-condensed
+					%thead
 						%tr
 							%td
-								= accommodation.title
-							- if (selected_days >= 1)
-								%td= pricing.total.to_s + '$'
-							- else
-								- if accommodation.min_price == accommodation.max_price
-									%td= accommodation.min_price.to_s + '$'
+								- if q and (selected_days >= 1)
+									= t 'models.pricelist.price.base'
+									= t('counters.days', :count => selected_days)
+									-#%br
+									= t 'views.estate.from'
+									%i= l(checkin.to_date, :format => :short)
+									= t 'views.estate.to'
+									%i= l(checkout.to_date, :format => :short)
 								- else
-									%td= accommodation.min_price.to_s + '$ - ' + accommodation.max_price.to_s + '$'
+									= t 'models.pricelist.price.base'
+									= t 'views.interface.lv_per_day'
+					%tbody
+						- estate.pricelist.accommodations.where({:bedrooms => {'$gte' => beds_from, '$lte' => beds_to}}).each do |accommodation|
+							%tr
+								%td
+									= accommodation.title
+								- if (selected_days >= 1)
+									- pricing = estate.pricings.where(:checkin => DateTime.parse(checkin.to_s), :checkout => DateTime.parse(checkout.to_s), :accommodation_id => accommodation.id).first
+									%td= pricing.total.to_s + '$'
+								- else
+									- if accommodation.min_price == accommodation.max_price
+										%td= accommodation.min_price.to_s + '$'
+									- else
+										%td= accommodation.min_price.to_s + '$ - ' + accommodation.max_price.to_s + '$'
 	%hr

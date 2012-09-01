@@ -5,7 +5,7 @@ module Traits::Resource
   end
   
   def locate_resource(id)
-    resource_scope.find :first, :conditions => {resource_attribute => id}
+    resource_scope.find_by(resource_attribute => id)
   end
   
   def resource_attribute

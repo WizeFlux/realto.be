@@ -1,6 +1,6 @@
 %ul.nav.nav-tabs
 	- estate.booklets.each_with_index do |b, i|
-		- unless b.new?
+		- unless b.new_record?
 			%li{:class => active_if(["estate_booklets#show##{b.id.to_s}", "estate_booklets#edit##{b.id.to_s}"], (i==0 && controller_name == 'agency_estates'))}
 				= link_to b.title, estate_booklet_url(estate, b)
 

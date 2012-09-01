@@ -12,7 +12,7 @@ class EstatesController < ApplicationController
     end
 
     def selected_days
-        (checkout - checkin).to_i
+        (checkout.to_date - checkin.to_date).to_i
     end
 
     def beds_from
@@ -24,11 +24,11 @@ class EstatesController < ApplicationController
     end
     
     def checkin
-        q ? (q[:checkin].to_date or Date.today) : Date.today
+        DateTime.parse((!q or q[:checkin].empty?) ? Date.today.to_s : q[:checkin])
     end
     
     def checkout
-        q ? (q[:checkout].to_date or Date.today) : Date.today
+        DateTime.parse((!q or q[:checkout].empty?) ? Date.today.to_s : q[:checkout])
     end
     
     def q

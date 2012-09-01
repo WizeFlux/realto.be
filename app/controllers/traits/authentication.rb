@@ -13,7 +13,7 @@ module Traits::Authentication
     end
     
     def authenticate_from_cookie!
-        Person.find(:first, :conditions => {:token => cookies[:token]}) if cookies[:token]
+        Person.find_by(:token => cookies[:token]) if cookies[:token]
     end
     
     #

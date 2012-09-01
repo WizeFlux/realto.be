@@ -22,6 +22,7 @@ class Pricelist
     end
     
     def price_for(day, days, accommodation_id)
+        # logger.info "#{day}, #{days}"
         if leasespan_for(days) && season_for(day)
             prices.where(
                 :leasespan_id => leasespan_for(days).id,

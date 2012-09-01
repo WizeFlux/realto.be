@@ -6,6 +6,6 @@ class EstatePricingController < ApplicationController
     before_filter :find_resource
     
     def find_resource
-      self.current_resource = current_parent_resource.pricings.find_or_create_by resource_attributes
+        self.current_resource = current_parent_resource.pricings.find_or_create_by resource_attributes
     end
 end

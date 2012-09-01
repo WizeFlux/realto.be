@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     layout proc{ |c| c.request.xhr? ? false : "application" }
     protect_from_forgery
     
-    before_filter :set_locale
+    before_filter :set_locale 
 
     def agency_param_from_domain
         request.subdomain.blank? ? request.domain.split('.').first : request.subdomain

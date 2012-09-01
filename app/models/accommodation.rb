@@ -11,6 +11,9 @@ class Accommodation
     
     after_save :populate_fillings
 
+    def pricing(checkin, checkout)
+    end
+
     def min_price
         pricelist.prices.where(:accommodation_id => id).map(&:value).min.to_i
     end

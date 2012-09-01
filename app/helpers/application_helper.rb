@@ -1,4 +1,8 @@
 module ApplicationHelper
+
+    def log!(item)
+        logger.info "==> -=##{item.class}#=- #{item.inspect}"
+    end
     
     def bs_i18n_text_area(f, method, title, options = {})
         bs_i18n_text_wrapper(f, method, title, options) do |ff, flng, ftitle, foptions|
@@ -15,7 +19,7 @@ module ApplicationHelper
     def bs_i18n_text_wrapper(f, method, title, options = {}, &block)
         f.fields_for (method.to_s + '_translations') do |ff|
             fields = current_agency.operating_languages.collect do |lng|
-                if !f.object.new? and f.object.send(method.to_s + '_translations') and f.object.send(method.to_s + '_translations')[lng]
+                if !f.object.new_record? and f.object.send(method.to_s + '_translations') and f.object.send(method.to_s + '_translations')[lng]
                     options.merge!({:value => (f.object.send(method.to_s + '_translations')[lng])})
                 end
                 yield(ff, lng, (title + " (#{lng})"), options)

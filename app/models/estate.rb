@@ -16,7 +16,8 @@ class Estate
     field :margin, type: String
     field :hidden, type: Boolean, default: false
     
-    key :slug
+    # key :slug
+    field :_id, type: String, default: ->{ slug }
     
     def features
         booklets.inject([]){|i,b| i << b.tags.map(&:feature_id)}.flatten.uniq
@@ -36,9 +37,8 @@ class Estate
 
     after_create :create_pricelist, :create_map
     
-    accepts_nested_attributes_for :contacts, :allow_destroy => true
     embeds_many :contacts
-    
+    accepts_nested_attributes_for :contacts, :allow_destroy => true
     
     embeds_one :pricelist
     embeds_one :map, :as => :locatable

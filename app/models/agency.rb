@@ -2,7 +2,9 @@ class Agency
     include Mongoid::Document
     
     field :subdomain
-    key :subdomain
+    
+    #key :subdomain
+    field :_id, type: String, default: ->{ subdomain }
     
     after_create :create_map
     before_save :clear_operating_languages

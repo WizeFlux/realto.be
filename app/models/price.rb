@@ -2,9 +2,9 @@ class Price
     include Mongoid::Document
 
     field :value, type: Integer, default: 0
-    field :accommodation_id
-    field :season_id
-    field :leasespan_id
+    field :accommodation_id, type: Moped::BSON::ObjectId
+    field :season_id, type: Moped::BSON::ObjectId
+    field :leasespan_id, type: Moped::BSON::ObjectId
 
     def outdated?
         id if (leasespan.nil? || season.nil? || accommodation.nil?)
