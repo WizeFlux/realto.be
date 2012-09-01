@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     helper_method :attempted_signin?
     
     def resource_create
-        @person = Person.find_by(resource_attributes.slice(:email, :password))
+        @person = Person.where(resource_attributes.slice(:email, :password)).first
     end
     
     def attempted_signin?
