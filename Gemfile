@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 
 gem 'rake'
-gem "mongoid", "~> 3.0.5"
+gem "mongoid", "~> 3.0.6"
 gem 'mongoid_spacial'
 gem 'bson_ext'
 gem 'bson'
@@ -27,12 +27,12 @@ gem "carrierwave-mongoid", :git => "git://github.com/jnicklas/carrierwave-mongoi
 gem 'russian'
 gem 'unicorn'
 
-gem 'ruby-debug19'
+gem 'debugger'
 
 group :assets do
 	gem 'sass-rails', '~> 3.2.5'
-	gem 'bootstrap-sass', '~> 2.0.4.1'
+	gem 'bootstrap-sass', '~> 2.1.0.0'
 	gem 'coffee-rails', '~> 3.2.2'
-	gem 'uglifier', '~> 1.2.7'
+	gem 'uglifier', '~> 1.3.0'
 end
 

@@ -45,3 +45,7 @@ class Booklet
     embeds_many :tags, cascade_callbacks: true
     accepts_nested_attributes_for :tags, :allow_destroy => true
 end
+
+
+
+

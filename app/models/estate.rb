@@ -3,7 +3,6 @@ class Estate
 
     field :title, localize: true
     field :teaser, localize: true
-    field :slug, type: String
     
     field :features_ids, type: Array, :default => []
     
@@ -17,7 +16,9 @@ class Estate
     field :hidden, type: Boolean, default: false
     
     # key :slug
+    field :slug, type: String
     field :_id, type: String, default: ->{ slug }
+    validates_presence_of :slug
     
     def features
         booklets.inject([]){|i,b| i << b.tags.map(&:feature_id)}.flatten.uniq

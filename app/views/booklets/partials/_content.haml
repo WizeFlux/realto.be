@@ -1,4 +1,4 @@
-%article.span9<>= (booklet.content and !booklet.content.empty?) ? raw(booklet.format!) : t('views.interface.write_something')
+%article.span9.booklet-content<>= (booklet.content and !booklet.content.empty?) ? raw(booklet.format!) : t('views.interface.write_something')
 :javascript
 	$(function(){
 		$("a.colorbox").fancybox();

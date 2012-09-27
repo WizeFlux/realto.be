@@ -4,6 +4,7 @@
 	= bs_i18n_text_field f, :title, t('models.title'), :class => 'span8'
 	= bs_i18n_text_area f, :teaser, t('models.teaser'), :rows => '2', :class => 'span8'
 	= bs_text_field f, :slug, t('models.estate.slug'), :class => 'input-xlarge', :disabled => !f.object.new_record?
+	
 	= bs_wrapper f, :district_id, t('models.district.base') do
 		= f.select :district_id, options_from_collection_for_select(District.all, 'id', 'title', f.object.district_id), {:include_blank => true}, :class => 'input-xlarge'
 	= bs_wrapper f, :hidden, t('models.estate.hidden') do
@@ -12,7 +13,6 @@
 
 %fieldset
 	%legend= t 'views.estate.privat'
-	
 	= bs_text_field f, :comission, t('models.estate.comission'), :class => 'input-xlarge'
 	= bs_text_field f, :margin, t('models.estate.margin'), :class => 'input-xlarge'
 	= bs_text_area f, :comment, t('models.estate.comment'), :class => 'input-xlarge', :rows => 5

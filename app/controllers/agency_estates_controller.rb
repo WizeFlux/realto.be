@@ -16,7 +16,7 @@ class AgencyEstatesController < EstatesController
             r = r.where(:"pricelist.accommodations".elem_match => {:bedrooms => {'$gte' => q[:beds_from].to_i, '$lte' => q[:beds_to].to_i}})            
             r = r.where(:district_id => Moped::BSON::ObjectId(q[:district_id]) ) unless q[:district_id].blank?
             if selected_days >= 1
-                r.each do |estate| 
+                r.each do |estate|
                     estate.pricelist.accommodations.each do |accommodation|
                         estate.pricings.find_or_create_by(  :checkin => checkin,
                                                             :checkout => checkout,

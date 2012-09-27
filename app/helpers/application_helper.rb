@@ -41,7 +41,10 @@ module ApplicationHelper
     end
     
     def bs_wrapper(f, method, title, &block)
-        content_tag :div, :class => 'control-group' do
+        klass = 'control-group'
+        klass += ' error' if (f.object && f.object.errors.has_key?(method))
+        
+        content_tag :div, :class => klass do
             f.label(method, title, :class => 'control-label') + content_tag(:div, capture(&block), :class => 'controls')
         end
     end
@@ -60,7 +63,7 @@ module ApplicationHelper
             :locale => nil,
             :href => page,
             :send => false,
-            :layout => :standart,
+            :layout => :standard,
             :width => 300,
             :height => 35,
             :show_faces => false,
