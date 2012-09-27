@@ -23,7 +23,7 @@
 			%ul
 				- agency.contacts.where(:kind => kind).each do |contact|
 					%li
-						%a.iconed{:style => "background-image: url(/assets/icons/#{kind.downcase}.png);", :href => contact.href, :class => kind.downcase}= contact.entry
+						%a.iconed{:style => "background-image: url(/assets/icons/#{kind.downcase}.png);", :href => contact.href, :class => kind.downcase}= contact.text
 	%p
 		= plus_one_button(request.url)
 		= like_button(request.url)

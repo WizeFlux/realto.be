@@ -44,6 +44,7 @@ en:
             search: 'Search'
             searching: 'Searching...'
             facebook: 'Facebook'
+            facebook_group: 'Our group'
             information: 'Information'
         agency:
             information: 'Agency information'

@@ -7,6 +7,19 @@ class Contact
     def self.kinds
         ['Skype', 'Email', 'Facebook', 'Phone', 'Website']
     end
+
+    def text
+        case kind
+            when 'Email' 
+                entry
+            when 'Skype'
+                entry
+			when 'Facebook'
+			    I18n.t('views.interface.facebook_group')
+		    when 'Phone'
+                entry
+        end
+    end
     
     def href
         case kind
