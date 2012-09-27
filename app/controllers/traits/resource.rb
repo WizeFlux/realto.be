@@ -41,7 +41,7 @@ module Traits::Resource
   end
   
   def lookup_resources
-    resource_scope.all :conditions => resource_conditions.delete_if{|key, value| value.blank?}, :sort => resource_sort_conditions
+    resource_scope.where(resource_conditions.delete_if{|key, value| value.blank?}).sort(resource_sort_conditions)
   end
   
   def resource_scope
