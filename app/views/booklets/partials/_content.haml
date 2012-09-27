@@ -27,9 +27,9 @@
 			%thead
 				%tr
 					%td{width: "20px"}
-						%img{:src => "/assets/icons/features/#{tag.feature.title_translations['en'].parameterize}.png"}
-					%td
-						%h3=tag.feature.title
+						%h4						
+							%img{:src => "/assets/icons/features/#{tag.feature.title_translations['en'].parameterize}.png", :style => "display: inline-block;"}
+							= raw('&nbsp') + tag.feature.title
 			%tbody
 				%tr
 					%td{colspan: 2}= tag.text
