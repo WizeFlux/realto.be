@@ -75,8 +75,8 @@ module ApplicationHelper
             :height => 35,
             :show_faces => false,
             :action => :like,
-            :colorscheme => :light,
-            :appId => Facebook::APP_ID.to_s
+            :colorscheme => :light#,
+            # :appId => Facebook::APP_ID.to_s
         )
         render 'shared/like', :url => url
     end
