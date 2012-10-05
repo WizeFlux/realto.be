@@ -1,8 +1,16 @@
 %h3 Спасибо за Ваш заказ.
 %p В настоящее время Ваш заказ обрабатывается. Менеджер нашей компании свяжется с вами в
 ближайшее время.
-%h6 Детали
+%h4 Детали
 %ul
+	%li
+		Клиент:
+		= @booking.addressing
+		= "(#{@booking.email})"
+	- unless @booking.message.empty?
+		%li
+			Сообщение:
+			= @booking.message
 	%li
 		Объект:
 		%a{href: "http://#{@booking.agency.host}/estates/#{@booking.estate.id}"}= @booking.estate.title
@@ -14,12 +22,25 @@
 		= @booking.checkin
 		= ' - '
 		= @booking.checkout
+	%li
+		Цена: $
+		= @booking.count_price
 
 
+
+%hr
 %h3 Thank you for your order.
 %p Your order is being processed. Our manager will contact you shortly.
-%h6 Details
+%h4 Details
 %ul
+	%li
+		Customer:
+		= @booking.addressing
+		= "(#{@booking.email})"
+	- unless @booking.message.empty?
+		%li
+			Message:
+			= @booking.message
 	%li
 		Estate:
 		%a{href: "http://#{@booking.agency.host}/estates/#{@booking.estate.id}"}= @booking.estate.title
@@ -31,3 +52,6 @@
 		= @booking.checkin
 		= ' - '
 		= @booking.checkout
+	%li
+		Price: $
+		= @booking.count_price

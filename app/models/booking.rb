@@ -17,13 +17,21 @@ class Booking
   
   field :price, type: Integer, default: 0
   
+  def count_price
+    estate.pricings.find_or_create_by({
+      :checkin => checkin,
+      :checkout => checkout,
+      :accommodation_id => accommodation_id.to_s}).total
+  end
+  
   field :checkin, type: Date, default: -> {Date.today}
   field :checkout, type: Date, default: -> {Date.today}
   
   field :adults, type: Integer, :default => 1
   field :children, type: Integer, :default => 0
   
-  field :addressing, type: String
+  field :addressing, type: String, default: -> {customer ? customer.name : nil}
+  validates_presence_of :addressing
   
   field :email, type: String, default: -> {customer ? customer.email : nil}
   validates_presence_of :email
