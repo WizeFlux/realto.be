@@ -10,7 +10,11 @@ class EstatesController < ApplicationController
     def features
         params[:features].values.delete_if(&:empty?) if (q && params[:features])
     end
-
+    
+    def selected_district
+      q[:district_id].empty? ? false : Moped::BSON::ObjectId(q[:district_id])  
+    end
+    
     def selected_days
         (checkout.to_date - checkin.to_date).to_i
     end

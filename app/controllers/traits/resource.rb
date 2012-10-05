@@ -17,11 +17,11 @@ module Traits::Resource
   end
   
   def find_resources
-    self.current_resources = lookup_resources
+    self.current_resources = resource_scope
+    find_resources_process
   end
   
-  def resource_conditions
-    {}
+  def find_resources_process
   end
   
   def resource_sort_conditions
@@ -40,8 +40,8 @@ module Traits::Resource
     raise Mongoid::Errors::DocumentNotFound.new(resource, resource_attribute => resource_param)
   end
   
-  def lookup_resources
-    resource_scope.where(resource_conditions.delete_if{|key, value| value.blank?}).sort(resource_sort_conditions)
+  def scope_modify(method, args)
+    self.current_resources = current_resources.send(method, args)
   end
   
   def resource_scope

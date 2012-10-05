@@ -2,8 +2,10 @@ class Estate
     include Mongoid::Document
 
     field :title, localize: true
-    field :teaser, localize: true
+    validates_presence_of :title
+    field :_id, type: String, default: ->{ Moped::BSON::ObjectId.new}
     
+    field :teaser, localize: true
     field :features_ids, type: Array, :default => []
     
     field :average_price, type: Integer, :default => 0
@@ -13,12 +15,13 @@ class Estate
     field :comment, type: String
     field :comission, type: String
     field :margin, type: String
-    field :hidden, type: Boolean, default: false
+    field :hidden, type: Boolean, default: false    
     
-    # key :slug
-    field :slug, type: String
-    field :_id, type: String, default: ->{ slug }
-    validates_presence_of :slug
+    def create_pricings(checkin, checkout)
+      pricelist.accommodations.each do |accommodation|
+        pricings.find_or_create_by(checkin: checkin, checkout: checkout, accommodation_id: accommodation.id)
+      end
+    end
     
     def features
         booklets.inject([]){|i,b| i << b.tags.map(&:feature_id)}.flatten.uniq
@@ -48,5 +51,6 @@ class Estate
     
     has_many :bookings
     belongs_to :district
+    validates_presence_of :district_id
     belongs_to :agency    
 end

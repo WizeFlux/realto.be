@@ -5,44 +5,51 @@ module ApplicationHelper
     end
     
     def bs_i18n_text_area(f, method, title, options = {})
-        bs_i18n_text_wrapper(f, method, title, options) do |ff, flng, ftitle, foptions|
-            bs_text_area ff, flng, ftitle, foptions
+        bs_i18n_text_wrapper(f, method, title, options) do |ff, flng, ftitle, foptions, parent_f|
+            bs_text_area ff, flng, ftitle, foptions, parent_f, method
         end
     end
     
     def bs_i18n_text_field(f, method, title, options = {})
-        bs_i18n_text_wrapper(f, method, title, options) do |ff, flng, ftitle, foptions|
-            bs_text_field ff, flng, ftitle, foptions
+        bs_i18n_text_wrapper(f, method, title, options) do |ff, flng, ftitle, foptions, parent_f|
+            bs_text_field ff, flng, ftitle, foptions, parent_f, method
         end
+    end
+    
+    def avaiable_languages
+      current_agency.operating_languages
     end
     
     def bs_i18n_text_wrapper(f, method, title, options = {}, &block)
         f.fields_for (method.to_s + '_translations') do |ff|
-            fields = current_agency.operating_languages.collect do |lng|
+            fields = avaiable_languages.collect do |lng|
                 if !f.object.new_record? and f.object.send(method.to_s + '_translations') and f.object.send(method.to_s + '_translations')[lng]
                     options.merge!({:value => (f.object.send(method.to_s + '_translations')[lng])})
                 end
-                yield(ff, lng, (title + " (#{lng})"), options)
+                yield(ff, lng, (title + " (#{lng})"), options, f)
             end
             raw(fields.join)
         end
     end
 
-    def bs_text_area(f, method, title, options = {})
-        bs_wrapper(f, method, title) do
+    def bs_text_area(f, method, title, options = {}, parent_f = nil, parent_method = nil)
+        bs_wrapper(f, method, title, parent_f, parent_method) do
             f.text_area method, options
         end
     end
     
-    def bs_text_field(f, method, title, options = {})
-        bs_wrapper(f, method, title) do
+    def bs_text_field(f, method, title, options = {}, parent_f = nil, parent_method = nil) 
+        bs_wrapper(f, method, title, parent_f, parent_method) do
             f.text_field method, options
         end
     end
     
-    def bs_wrapper(f, method, title, &block)
+    def bs_wrapper(f, method, title, parent_f = nil, parent_method = nil, &block)
         klass = 'control-group'
-        klass += ' error' if (f.object && f.object.errors.has_key?(method))
+        # debugger
+        if (parent_f and parent_f.object.errors.has_key?(parent_method)) or (f.object and f.object.errors.has_key?(method))
+          klass += ' error'
+        end
         
         content_tag :div, :class => klass do
             f.label(method, title, :class => 'control-label') + content_tag(:div, capture(&block), :class => 'controls')
