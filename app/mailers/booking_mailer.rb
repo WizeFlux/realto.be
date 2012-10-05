@@ -3,7 +3,7 @@ class BookingMailer < ActionMailer::Base
     @booking = booking
     mail(
       :from => booking.agency.contacts.where(kind: 'Email').first.entry,
-      :bcc => booking.agency.contacts.where(kind: 'Email').first.entry,
+      :bcc => booking.agency.contacts.where(kind: 'Email').map(&:entry),
       :to => booking.email
     )
   end
