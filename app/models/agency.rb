@@ -2,8 +2,8 @@ class Agency
     include Mongoid::Document
     
     field :subdomain
+    field :host
     
-    #key :subdomain
     field :_id, type: String, default: ->{ subdomain }
     
     after_create :create_map

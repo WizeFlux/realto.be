@@ -56,13 +56,14 @@
 			.input-prepend
 				%span.add-on<>
 					%i.icon-user
-				%input.input-large.disabled{:disabled => :disabled, :value => (f.object.new_record? ? current_person.name : f.object.customer.name)}
-				%span.help-inline
-					- if f.object.new_record?
-						= link_to t('views.interface.logout'), session_url(:redirect_id => this_page_redirect.id), :method => :delete
-					- else
-						- if f.object.customer.fb_url
-							%a{:href => f.object.customer.fb_url} Open Facebook
+				%input.input-large{:disabled => :disabled, :value => (f.object.new_record? ? current_person.name : f.object.customer.name), :type => :text}
+			%span.help-inline
+				- if f.object.new_record?
+					= link_to t('views.interface.logout'), session_url(:redirect_id => this_page_redirect.id), :method => :delete
+				- else
+					- if f.object.customer.fb_url
+						%a{:href => f.object.customer.fb_url} Open Facebook
+				
 	- else
 		= bs_wrapper f, :addressing, t('models.booking.person') do
 			= f.text_field :addressing, :class =>'input-xlarge'

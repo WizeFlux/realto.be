@@ -1,4 +1,4 @@
 en:
     notices:
         booking:
-            success: "Congradulations! Your booking was accepted, confirmation of your request was sent to described email. It will be reviewed in two operational hours 08:00 - 20:00 (UTC+8h), ffter that you will be informed by same email. If you didn't see letter with confirmation in 10 minutes, please, check 'Spam' folder in email application."
+            success: "Thank you for your order. The confirmation email was sent to specified email address. If you will not get the email within 15 minutes please check the spam or contact us in any other way."

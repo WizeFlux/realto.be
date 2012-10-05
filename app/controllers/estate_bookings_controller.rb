@@ -17,6 +17,10 @@ class EstateBookingsController < BookingsController
         })
     end
   
+    def deliver_mail_on_successfull_create
+      BookingMailer.placement_success(@booking).deliver
+    end
+
     def post_create_location
         estate_booking_url(@estate, @booking)
     end

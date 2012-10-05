@@ -23,7 +23,11 @@ module Traits::Actions
         end
 
         def resource_create_success
+            deliver_mail_on_successfull_create
             redirect_to post_create_location, :flash => {:success => create_success_flash}
+        end
+
+        def deliver_mail_on_successfull_create
         end
 
         def create_success_flash

@@ -24,7 +24,10 @@ class Booking
   field :children, type: Integer, :default => 0
   
   field :addressing, type: String
-  field :email, type: String
+  
+  field :email, type: String, default: -> {customer ? customer.email : nil}
+  validates_presence_of :email
+  
   field :phone, type: String
   field :skype, type: String
   

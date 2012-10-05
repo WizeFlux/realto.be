@@ -1,0 +1,33 @@
+%h3 Спасибо за Ваш заказ.
+%p В настоящее время Ваш заказ обрабатывается. Менеджер нашей компании свяжется с вами в
+ближайшее время.
+%h6 Детали
+%ul
+	%li
+		Объект:
+		%a{href: "http://#{@booking.agency.host}/estates/#{@booking.estate.id}"}= @booking.estate.title
+	%li
+		Дата заказа:
+		= @booking.created_at
+	%li
+		Даты размещения:
+		= @booking.checkin
+		= ' - '
+		= @booking.checkout
+
+
+%h3 Thank you for your order.
+%p Your order is being processed. Our manager will contact you shortly.
+%h6 Details
+%ul
+	%li
+		Estate:
+		%a{href: "http://#{@booking.agency.host}/estates/#{@booking.estate.id}"}= @booking.estate.title
+	%li
+		Date of order:
+		= @booking.created_at
+	%li
+		Date of placement:
+		= @booking.checkin
+		= ' - '
+		= @booking.checkout

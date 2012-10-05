@@ -5,6 +5,9 @@
 		= bs_i18n_text_field f, :title, t('models.title'), :class => 'span8'
 		= bs_i18n_text_area f, :teaser, t('models.teaser'), :rows => '2', :class => 'span8'
 		
+		= bs_text_field f, :subdomain, 'subdomain', :class => 'span8'
+		= bs_text_field f, :host, 'subdomain', :class => 'span8'
+		
 		= bs_wrapper f, :operating_languages, t('models.agency.operating_languages') do
 			- Agency.avaiable_languages.each do |language| 
 				= label_tag language, :class => 'checkbox inline' do

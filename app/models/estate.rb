@@ -3,7 +3,7 @@ class Estate
 
     field :title, localize: true
     validates_presence_of :title
-    field :_id, type: String, default: ->{ title ? title.parameterize : Moped::BSON::ObjectId.new}
+    field :_id, type: String, default: ->{ title ? title.parameterize : Moped::BSON::ObjectId.new }
     
     field :teaser, localize: true
     field :features_ids, type: Array, :default => []
