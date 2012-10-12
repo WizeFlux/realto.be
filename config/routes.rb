@@ -19,7 +19,9 @@ RealtoBe::Application.routes.draw do
         resource :pricelist, :controller => 'estate_pricelist'
         resource :map, :controller => 'estate_map'
     end
-
+    
+    match 'sitemap' => 'static#sitemap'
+    
     root :to => 'agencies#show'
     # root :to => 'estates#index'
 end

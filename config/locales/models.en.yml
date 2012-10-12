@@ -7,6 +7,9 @@ en:
             contacts: 'Contacts'
             operating_languages: Operating languages
             default_language: Default language
+            subdomain: Subdomain
+            host: Host
+            keywords: Keywords
         booking:
             base: 'Booking'      
             bookings: 'Bookings'

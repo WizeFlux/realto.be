@@ -13,6 +13,7 @@ class Agency
     field :teaser, localize: true, default: ' '
     field :default_language, type: String, default: 'en'
     field :operating_languages, type: Array, default: ['en', 'ru']
+    field :keywords, type: String
     
     def self.avaiable_languages
         ['en', 'ru']

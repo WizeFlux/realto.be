@@ -7,6 +7,9 @@ ru:
             contacts: Контакты
             operating_languages: Языки
             default_language: Язык по умолчанию
+            subdomain: Субдомен
+            host: Хост
+            keywords: Ключевые слова
         booking:
             base: Брнирование
             bookings: Заказы

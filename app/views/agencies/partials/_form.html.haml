@@ -3,10 +3,11 @@
 		%legend= t 'views.agency.information'
 		
 		= bs_i18n_text_field f, :title, t('models.title'), :class => 'span8'
-		= bs_i18n_text_area f, :teaser, t('models.teaser'), :rows => '2', :class => 'span8'
+		= bs_i18n_text_area f, :teaser, t('models.teaser'), :rows => 2, :class => 'span8'
 		
-		= bs_text_field f, :subdomain, 'subdomain', :class => 'span8'
-		= bs_text_field f, :host, 'subdomain', :class => 'span8'
+		= bs_text_field f, :subdomain, t('models.agency.subdomain'), :class => 'span8'
+		= bs_text_field f, :host, t('models.agency.host'), :class => 'span8'
+		= bs_text_area f, :keywords, t('models.agency.keywords'), :class => 'span8', :rows => 2
 		
 		= bs_wrapper f, :operating_languages, t('models.agency.operating_languages') do
 			- Agency.avaiable_languages.each do |language| 

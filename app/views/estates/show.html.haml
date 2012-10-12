@@ -1,5 +1,8 @@
 = content_for :title do
 	= @estate.title
+	
+= content_for :description do
+	= @estate.teaser
 
 = content_for :billboard do
 	= render 'estates/partials/billboard', :estate => @estate

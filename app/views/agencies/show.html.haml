@@ -1,6 +1,9 @@
 = content_for :title do
 	= @agency.title
 
+= content_for :description do
+	= @agency.teaser
+
 = content_for :billboard do
 	= render 'agencies/partials/billboard', :agency => @agency
 	

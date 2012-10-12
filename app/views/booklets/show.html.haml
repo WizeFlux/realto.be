@@ -1,6 +1,9 @@
 = content_for :title do
 	= current_parent_resource.title
 
+= content_for :description do
+	= current_parent_resource.teaser
+
 = content_for :billboard do
 	= render "#{current_parent_resource.class.name.pluralize.downcase}/partials/billboard", :"#{current_parent_resource.class.name.downcase}" => current_parent_resource
 
