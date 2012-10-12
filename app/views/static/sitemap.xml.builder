@@ -1,5 +1,5 @@
 xml.instruct!
-xml.urlset do
+xml.urlset :xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   current_agency.operating_languages.each do |language|
     
     current_agency.booklets.each do |booklet|
