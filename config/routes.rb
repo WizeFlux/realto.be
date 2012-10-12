@@ -21,6 +21,7 @@ RealtoBe::Application.routes.draw do
     end
     
     match 'sitemap' => 'static#sitemap'
+    match 'robots' => 'static#robots'
     
     root :to => 'agencies#show'
     # root :to => 'estates#index'
