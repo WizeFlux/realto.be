@@ -10,6 +10,7 @@ ru:
             subdomain: Субдомен
             host: Хост
             keywords: Ключевые слова
+            seo_script: Сео скрипт
         booking:
             base: Брнирование
             bookings: Заказы

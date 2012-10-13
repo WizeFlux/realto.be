@@ -2,16 +2,18 @@
 	= yield :title
 
 = csrf_meta_tag
+= stylesheet_link_tag :application
+= raw(current_agency.seo_script)
+= javascript_include_tag :application
+
+%meta{:controller => controller_name, :action => action_name}
 %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
 %meta{:name => 'description', :content => yield(:description)}
 %meta{:name => 'keywords', :content => current_agency.keywords}
 %link{:rel => 'shortcut icon', :href => '/favicon.ico', :type => 'image/x-icon'}
 
-= stylesheet_link_tag :application
-
-%meta{:controller => controller_name, :action => action_name}
 - if (controller_name == "agency_estates" || "estate_map" || "agency_map")
 	%script{:type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDNIzwBp4cCrFqwk-mZ6OIRSMuvP_Uc22U&sensor=true"}
-= javascript_include_tag :application
+
 - if I18n.locale == :ru
 	= javascript_include_tag :'jquery.ui.datepicker-ru'

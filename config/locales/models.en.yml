@@ -10,6 +10,7 @@ en:
             subdomain: Subdomain
             host: Host
             keywords: Keywords
+            seo_script: Seo script
         booking:
             base: 'Booking'      
             bookings: 'Bookings'

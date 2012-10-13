@@ -14,6 +14,7 @@ class Agency
     field :default_language, type: String, default: 'en'
     field :operating_languages, type: Array, default: ['en', 'ru']
     field :keywords, type: String
+    field :seo_script, type: String
     
     def self.avaiable_languages
         ['en', 'ru']
